@@ -1,0 +1,14 @@
+{
+    "docs": [
+        {
+            "location": "/README/", 
+            "text": "BTK\n\n\nA toolkit for Roblox.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/README/#btk", 
+            "text": "A toolkit for Roblox.", 
+            "title": "BTK"
+        }
+    ]
+}
