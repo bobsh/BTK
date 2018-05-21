@@ -72,13 +72,13 @@ function CharacterComponent:initialize(input)
 	local humanoid = self:GetHumanoid()
 	local inputEventData = self:GetInputEvent()
 	if humanoid then
-		inputEventData.Event:Connect(function(input)
-			if input.Type == Schema.Enums.InputEventType.Damage then
+		inputEventData.Event:Connect(function(input2)
+			if input2.Type == Schema.Enums.InputEventType.Damage then
 				self:Dbg("Received damage")
 				if humanoid.RigType == Enum.HumanoidRigType.R15 then
-					humanoid.Health = humanoid.Health - input.Payload.Damage
+					humanoid.Health = humanoid.Health - input2.Payload.Damage
 				else
-					humanoid:TakeDamage(input.Payload.Damage)
+					humanoid:TakeDamage(input2.Payload.Damage)
 				end
 			end
 		end)

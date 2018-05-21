@@ -6,13 +6,13 @@ local Smashable = ModelComponent:subclass(script.Name)
 function Smashable:initialize(input)
 	ModelComponent.initialize(self, input)
 
-	self:GetInputEvent().Event:Connect(function(input)
+	self:GetInputEvent().Event:Connect(function(input2)
 		self:AssertSchema(
-			input,
+			input2,
 			Schema:Message()
 		)
 
-		if input.Type == Schema.Enums.InputEventType.Damage then
+		if input2.Type == Schema.Enums.InputEventType.Damage then
 			self:Dbg("Received damage")
 			self:Destroy()
 		end
