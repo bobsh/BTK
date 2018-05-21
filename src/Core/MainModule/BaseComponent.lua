@@ -7,12 +7,12 @@ local DataModule = require(script.Parent.DataModule)
 	BaseComponent is an abstract class representing BTK's higher level
 	component concept.
 --]]
-BaseComponent = BaseInstance:subclass(script.Name)
+local BaseComponent = BaseInstance:subclass(script.Name)
 BaseComponent:include(DataModule)
 
 function BaseComponent:initialize(input)
 	BaseInstance.initialize(self, input)
-	
+
 	self:AssertSchema(
 		input,
 		Schema.Record {
@@ -21,7 +21,7 @@ function BaseComponent:initialize(input)
 			Script = Schema.ComponentScript,
 		}
 	)
-	
+
 	self:DataSetup(input)
 	self:_metaSetup(input)
 	self:_eventSetup()
@@ -36,9 +36,9 @@ function BaseComponent:Destroy()
 end
 
 --[[--------------------------------------------
-	
+
 	DATA
-	
+
 ----------------------------------------------]]
 
 --[[
@@ -51,7 +51,7 @@ function BaseComponent:GetComponentData(input)
 			Inst = Schema:IsA("Instance"),
 		}
 	)
-	
+
 	local output = {}
 	if input.Inst:IsA("Model") or input.Inst:IsA("Tool") then
 		output.Root = input.Inst
@@ -61,7 +61,7 @@ function BaseComponent:GetComponentData(input)
 			output.Root = input.Inst:FindFirstAncestorOfClass("Model")
 		end
 	end
-	
+
 	-- No root? probably not a component just bail with nil
 	if not output.Root then
 		self:Debug("Cannot find a compatible root of instance probably not a component",
@@ -71,15 +71,15 @@ function BaseComponent:GetComponentData(input)
 		)
 		return nil
 	end
-	
+
 	-- Create a new component handle and return that
 	return ComponentHandle:new(output)
 end
 
 --[[--------------------------------------------
-	
+
 	META
-	
+
 ----------------------------------------------]]
 
 function BaseComponent:_metaSetup(input)
@@ -89,14 +89,14 @@ function BaseComponent:_metaSetup(input)
 		Value = input.Root,
 		Schema = Schema.Root,
 	})
-		
+
 	self:CreateData({
 		Name = "Component",
 		Type = "StringValue",
 		Value = input.Component,
 		Schema = Schema.ComponentName,
 	})
-	
+
 	self:CreateData({
 		Name = "Script",
 		Type = "ObjectValue",
@@ -106,9 +106,9 @@ function BaseComponent:_metaSetup(input)
 end
 
 --[[--------------------------------------------
-	
+
 	EVENTS
-	
+
 ----------------------------------------------]]
 
 --[[

@@ -7,7 +7,7 @@ local RbxGui = LoadLibrary("RbxGui")
 --[[
 	CreationWidget
 --]]
-CreationWidget = BaseObject:subclass(script.Name)
+local CreationWidget = BaseObject:subclass(script.Name)
 
 CreationWidget.ComponentTypes = {
 	Teleporter = {
@@ -67,12 +67,12 @@ CreationWidget.ComponentTypes = {
 }
 CreationWidget.ComponentSelected = "NPC"
 
-function CreationWidget:initialize(gui)	
-	BaseObject.initialize(self)	
-	
+function CreationWidget:initialize(gui)
+	BaseObject.initialize(self)
+
 	self.MainScreenGUI = gui
 
-	local entire, container, info, event = RbxGui.CreatePluginFrame(
+	local entire, container, _, event = RbxGui.CreatePluginFrame(
 		"Create Object",
 		UDim2.new(0,320,0,200),
 		UDim2.new(0,0,0,0),
@@ -85,53 +85,78 @@ function CreationWidget:initialize(gui)
 		self.WidgetFrame.Visible = false
 	end)
 	self.WidgetFrame.Visible = false
-	
+
 	self:Trace("Drawing GUI Widgets")
-	
+
 	-- small  utility to easily change the position of GUI elements while still having them
 	-- relatively positioned.
 	local curY = 10
-	local function setY(v) curY = v end
 	local function addY(v) curY = curY + v end
 
 	--[[
 		Component type selection
-	--]]	
-	local widthLabel = UI:CreateStandardLabel("ComponentTypeLabel", UDim2.new(0, 8, 0, curY), UDim2.new(0, 67, 0, 14), "First choose a component type", container)
+	--]]
+	UI:CreateStandardLabel(
+		"ComponentTypeLabel",
+		UDim2.new(0, 8, 0, curY),
+		UDim2.new(0, 67, 0, 14),
+		"First choose a component type",
+		container
+	)
 	addY(24)
-	
+
 	local function onComponentTypeDropDown	(value)
 		self:Debug("Drop down changed, value is now " .. tostring(value))
 		self.ComponentSelected = value
 	end
-	
-	local componentTypeDropDown, componentTypeSet = UI:CreateStandardDropdown("ComponentTypeDropdown",
-						        UDim2.new(0,0,0,curY),
-								{"NPC", "Weapon", "Platform", "Teleporter", "Area", "Currency"},
-								self.ComponentSelected,
-								onComponentTypeDropDown, 
-								container)
-	
+
+	UI:CreateStandardDropdown(
+		"ComponentTypeDropdown",
+		UDim2.new(0,0,0,curY),
+		{"NPC", "Weapon", "Platform", "Teleporter", "Area", "Currency"},
+		self.ComponentSelected,
+		onComponentTypeDropDown,
+		container
+	)
+
 	addY(48)
-	
-	
-	
+
+
+
 	--[[
 		Parent selection
 	--]]
-	local focusLabel = UI:CreateStandardLabel("FocusLabel", UDim2.new(0, 8, 0, curY), UDim2.new(0, 67, 0, 14), "Then select a suitable item in the explorer", container)
+	UI:CreateStandardLabel(
+		"FocusLabel",
+		UDim2.new(0, 8, 0, curY),
+		UDim2.new(0, 67, 0, 14),
+		"Then select a suitable item in the explorer",
+		container
+	)
 	addY(24)
-	
-	UI:CreateStandardLabel("FocusedOnLabel", UDim2.new(0, 8, 0, curY), UDim2.new(0, 67, 0, 14), "Currently selected:", container)
-	local focusValueLabel = UI:CreateStandardTextBox("FocusValueLabel", UDim2.new(0, 140, 0, curY), UDim2.new(0, 67, 0, 14), "Nothing", container)
+
+	UI:CreateStandardLabel(
+		"FocusedOnLabel",
+		UDim2.new(0, 8, 0, curY),
+		UDim2.new(0, 67, 0, 14),
+		"Currently selected:",
+		container
+	)
+	local focusValueLabel = UI:CreateStandardTextBox(
+		"FocusValueLabel",
+		UDim2.new(0, 140, 0, curY),
+		UDim2.new(0, 67, 0, 14),
+		"Nothing",
+		container
+	)
 	addY(32)
-	
+
 	--[[
 		Create button
 	--]]
 	local function createFunction()
 		self:Trace("Create button pushed")
-		
+
 		ConfirmationPopupObject = ConfirmationPopup.Create(
 			self.MainScreenGUI,
 			"Ready to create?",
@@ -153,14 +178,14 @@ function CreationWidget:initialize(gui)
 			end
 		)
 	end
-	
+
 	local createButton = UI:CreateStandardButton("CreateButton",
 											UDim2.new(0, 0, 0, curY),
 										    "Create",
 										    createFunction,
 	    container)
 	createButton.Active = false
-	
+
 	local selectionFn = function()
 		local selections = game.Selection:Get()
 		local selection = selections[1]
@@ -175,8 +200,8 @@ function CreationWidget:initialize(gui)
 	end
 	selectionFn()
 
-	game.Selection.SelectionChanged:connect(selectionFn)	
-	
+	game.Selection.SelectionChanged:connect(selectionFn)
+
 	self:Trace("Initilisation complete")
 end
 

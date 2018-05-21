@@ -5,11 +5,11 @@ local AssetsWidget = require(script.Parent.AssetsWidget)
 local ConfigurationWidget = require(script.Parent.ConfigurationWidget)
 
 --[[
-	
+
 	MainToolBar
-	
+
 --]]
-MainToolBar = BaseObject:subclass(script.Name)
+local MainToolBar = BaseObject:subclass(script.Name)
 
 MainToolBar.AssetsToInstall = {
 	{
@@ -59,12 +59,12 @@ MainToolBar.AssetsToInstall = {
 
 function MainToolBar:initialize(plg, gui)
 	BaseObject.initialize(self)
-	
+
 	self.MainScreenGUI = gui
 	self.Plugin = plg
-	
+
 	local installToolbar = self.Plugin:CreateToolbar("Bob's Toolkit")
-	
+
 	self.Buttons = {
 		CreateButton = installToolbar:CreateButton(
 			"Create",
@@ -82,14 +82,12 @@ function MainToolBar:initialize(plg, gui)
 			"rbxassetid://1675202319"
 		)
 	}
-	
+
 	self.CreationWidget = CreationWidget:new(self.MainScreenGUI)
-	
+
 	self.Buttons.CreateButton.Click:connect(function()
 		self:Trace("CreateButton pushed")
 
-		local status = self.CreationWidget:Status()		
-				
 		if self.CreationWidget:Status() then
 			self.CreationWidget:Off()
 			self.Buttons.CreateButton:SetActive(false)
@@ -98,10 +96,10 @@ function MainToolBar:initialize(plg, gui)
 			self.Buttons.CreateButton:SetActive(true)
 		end
 	end)
-	
+
 	self.AssetsWidget = AssetsWidget:new(self.Plugin, self.MainScreenGUI)
 	self.ConfigurationWidget = ConfigurationWidget:new(self.Plugin)
-	
+
 	local function updateButtons()
 		local assets = AssetsUtil:GetMany(self.AssetsToInstall)
 		self:Debug("Assets installed: " .. #assets .. " Number of assets to install: " .. #self.AssetsToInstall)
@@ -116,19 +114,19 @@ function MainToolBar:initialize(plg, gui)
 		end
 	end
 
-	
+
 	self.Buttons.InstallButton.Click:connect(function()
 		AssetsUtil:InstallMany(self.AssetsToInstall)
 		updateButtons()
 	end)
-	
+
 	self.Buttons.UninstallButton.Click:connect(function()
 		AssetsUtil:UninstallMany(self.AssetsToInstall)
-		updateButtons()		
+		updateButtons()
 	end)
 
 	updateButtons()
-	for idx, value in pairs(self.AssetsToInstall) do
+	for _, value in pairs(self.AssetsToInstall) do
 		local function updateFn(child)
 			updateButtons()
 		end

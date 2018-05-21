@@ -6,7 +6,7 @@ local ServerInit = require(script.ServerInit)
 --[[
 	BTKMainModule
 --]]
-btk = BaseObject:subclass('btk')
+local btk = BaseObject:subclass('btk')
 
 btk.static.BTKPlugin = require(script.BTKPlugin)
 btk.static.ScriptHelper = require(script.ScriptHelper)
@@ -18,21 +18,21 @@ function btk.static:GetComponent(input)
 			Script = Schema.ComponentScript,
 		}
 	)
-	
+
 	local output = {
 		Script = input.Script,
 		Component = nil,
 		Root = nil,
 	}
-	
-	local comp = nil
+
+	local comp
 	do
 		local scriptConfig = input.Script:FindFirstChild("Configuration")
 		btk:Assert(scriptConfig, "No calling Script configuration")
-	
+
 		local scriptComponent = scriptConfig:FindFirstChild("Component")
 		btk:Assert(scriptComponent, "No calling Script component configuration")
-	
+
 		output.Component = scriptComponent.Value
 		if output.Component == "" then
 			btk:Err("Calling script component value is empty")
@@ -44,7 +44,7 @@ function btk.static:GetComponent(input)
 		comp = require(runScript)
 		btk:Assert(comp, "no object returned from component " .. output.Component)
 	end
-	
+
 	output.Root = input.Script.Parent
 	self:Assert(output.Root, "No parent for Script on input")
 	if not (output.Root:IsA("Model") or output.Root:IsA("Tool")) then

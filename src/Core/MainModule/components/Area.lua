@@ -5,18 +5,18 @@ local Area = ModelComponent:subclass(script.Name)
 
 function Area:initialize(input)
 	ModelComponent.initialize(self, input)
-	
+
 	self:CreateData({
 		Name = "AreaPart",
 		Type = "ObjectValue",
 		Value = self:GetPrimaryPart(),
 		Schema = Schema:IsA("BasePart"),
 	})
-	
+
 	local partValue = self:GetAreaPart()
 	partValue.Anchored = true
 	partValue.CanCollide = false
-	partValue.Transparency = 1.0	
+	partValue.Transparency = 1.0
 	partValue.Touched:Connect(self:TouchedConnect())
 	partValue.TouchEnded:Connect(self:TouchEndedConnect())
 end
@@ -29,17 +29,17 @@ function Area:TouchedConnect()
 		if not comp then
 			return
 		end
-		
+
 		local humanoid = comp:GetData("Humanoid")
 		if not humanoid then
 			return
 		end
-		
+
 		local rootPart = humanoid.RootPart
 		if (not rootPart) or otherPart ~= rootPart then
 			return
 		end
-		
+
 		local player = comp:GetData("Player")
 		if player ~= nil then
 			self:Dbg(("Player touched with %s"):format(tostring(player)))
@@ -57,17 +57,17 @@ function Area:TouchEndedConnect()
 		if not comp then
 			return
 		end
-		
+
 		local humanoid = comp:GetData("Humanoid")
 		if not humanoid then
 			return
 		end
-		
+
 		local rootPart = humanoid.RootPart
 		if (not rootPart) or otherPart ~= rootPart then
 			return
 		end
-		
+
 		local player = comp:GetData("Player")
 		if player ~= nil then
 			self:Dbg("Player touch ended")

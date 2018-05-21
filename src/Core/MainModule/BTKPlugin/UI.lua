@@ -15,8 +15,8 @@ function UI:CreateFrame(
 	frame.Name = name
 	frame.Position = pos
 	frame.Size = size
-	
-	return frame	
+
+	return frame
 end
 
 function UI:CreateScrollingFrame(
@@ -29,8 +29,8 @@ function UI:CreateScrollingFrame(
 	frame.Name = name
 	frame.Position = pos
 	frame.Size = size
-	
-	return frame	
+
+	return frame
 end
 
 -- Create a standard text label.  Use this for all lables in the popup so it is easy to standardize.
@@ -55,9 +55,9 @@ function UI:CreateStandardLabel(labelName,
 	label.Font = Enum.Font.ArialBold
 	label.FontSize = Enum.FontSize.Size14
 	label.TextXAlignment = Enum.TextXAlignment.Left
-	label.BackgroundTransparency = 1	
-	label.Parent = parent	
-	
+	label.BackgroundTransparency = 1
+	label.Parent = parent
+
 	return label
 end
 
@@ -83,11 +83,11 @@ function UI:CreateStandardTextBox(labelName,
 	label.Font = Enum.Font.ArialBold
 	label.FontSize = Enum.FontSize.Size14
 	label.TextXAlignment = Enum.TextXAlignment.Left
-	label.BackgroundTransparency = 1	
+	label.BackgroundTransparency = 1
 	label.BorderSizePixel = 1
 	label.BorderColor3 = Color3.new(0.95, 0.95, 0.95)
-	label.Parent = parent	
-	
+	label.Parent = parent
+
 	return label
 end
 
@@ -96,7 +96,7 @@ end
 -- pos   - Position to display the slider at.
 -- steps - How many steps there are in the slider.
 -- funcOnChange - Function to call when the slider changes.
--- initValue    - Initial value to set the slider to.  If nil the slider stays at the default. 
+-- initValue    - Initial value to set the slider to.  If nil the slider stays at the default.
 -- parent       - What to set as the parent.
 -- Return:
 -- sliderGui      - Slider gui object.
@@ -109,7 +109,7 @@ function UI:CreateStandardSlider(name,
 							  initValue,
 							  parent)
 	local sliderGui, sliderPosition = RbxGui.CreateSlider(steps, 0, UDim2.new(0,0,0,0))
-	
+
 	sliderGui.Name = name
 	sliderGui.Parent = parent
 	sliderGui.Position = pos
@@ -117,16 +117,16 @@ function UI:CreateStandardSlider(name,
 	local lengthBar = sliderGui:FindFirstChild("Bar")
 	lengthBar.Size = UDim2.new(1, -21, 0, 5)
 	lengthBar.Position = lengthBarPos
-	
+
 	if nil ~= funcOnChange then
 		sliderPosition.Changed:connect(function() funcOnChange(sliderPosition) end)
 	end
-	
-	if nil ~= initValue then 
+
+	if nil ~= initValue then
 		sliderPosition.Value = initValue
 	end
-	
-	return sliderGui, sliderPosition 
+
+	return sliderGui, sliderPosition
 end
 
 -- Create a standard dropdown.  Use this for all dropdowns in the popup so it is easy to standardize.
@@ -138,13 +138,13 @@ end
 -- parent 	 	 - What to set the parent as.
 -- Return:
 -- dropdown 	   - The dropdown gui.
--- updateSelection - Object to use to change the current dropdown.																																		
+-- updateSelection - Object to use to change the current dropdown.
 function UI:CreateStandardDropdown(name,
 						        pos,
 								values,
 								initValue,
 								funcOnChange,
-								parent)					
+								parent)
 	-- Create a dropdown selection for the modes to fill in a river
 	local dropdown, updateSelection=RbxGui.CreateDropDownMenu(values, funcOnChange);
 	dropdown.Name = name
@@ -153,16 +153,16 @@ function UI:CreateStandardDropdown(name,
 	dropdown.Size = UDim2.new(0,150,0,32)
 	dropdown.Parent = parent
 
-	updateSelection(initValue)		
+	updateSelection(initValue)
 
 	return dropdown, updateSelection
-end		
+end
 
 -- Keep common button properties here to make it easer to change them all at once.
 -- These are the default properties to use for a button.
-buttonTextColor = Color3.new(1, 1, 1);
-buttonFont = Enum.Font.ArialBold;
-buttonFontSize = Enum.FontSize.Size18;
+local buttonTextColor = Color3.new(1, 1, 1);
+local buttonFont = Enum.Font.ArialBold;
+local buttonFontSize = Enum.FontSize.Size18;
 
 -- Create a standard dropdown.  Use this for all dropdowns in the popup so it is easy to standardize.
 -- name - What to use.
@@ -171,14 +171,14 @@ buttonFontSize = Enum.FontSize.Size18;
 -- funcOnPress  - Function to run when the button is pressed.
 -- parent 	 	- What to set the parent as.
 -- Return:
--- button 	   - The button gui.																																	
+-- button 	   - The button gui.
 function UI:CreateStandardButton(name,
-  							  pos,
+								pos,
 							  text,
 							  funcOnPress,
 							  parent,
-							  size)					
-	button = Instance.new("TextButton", parent)
+							  size)
+	local button = Instance.new("TextButton", parent)
 	button.Name = name
 	button.Position = pos
 
@@ -188,7 +188,7 @@ function UI:CreateStandardButton(name,
 	if size then
 		button.Size = size
 	end
-	
+
 	button.Style = Enum.ButtonStyle.RobloxButton
 
 	button.TextColor3 = buttonTextColor
@@ -196,17 +196,19 @@ function UI:CreateStandardButton(name,
 	button.FontSize = buttonFontSize
 
 	button.MouseButton1Click:connect(funcOnPress)
-	
-	return button
-end	
 
-function UI:CreateImageButton(name,
-  							  pos,
-							  image,
-							  funcOnPress,
-							  parent,
-							  size)					
-	button = Instance.new("ImageButton", parent)
+	return button
+end
+
+function UI:CreateImageButton(
+	name,
+	pos,
+	image,
+	funcOnPress,
+	parent,
+	size)
+
+	local button = Instance.new("ImageButton", parent)
 	button.Name = name
 	button.Position = pos
 
@@ -216,13 +218,13 @@ function UI:CreateImageButton(name,
 	if size then
 		button.Size = size
 	end
-	
+
 	button.Style = Enum.ButtonStyle.RobloxButton
 
 	button.MouseButton1Click:connect(funcOnPress)
-	
+
 	return button
-end	
+end
 
 
 -- Create a standard accordion, which contains many child areas that can be
@@ -230,13 +232,13 @@ end
 -- name
 -- pos           - Where to put it
 -- childList     - List of children to add, format: [{Name = ..., Gui = ..., Height = ...}]
--- 
-function UI:CreateStandardAccordion(name, 
-	                             pos, 
-	                             size, 
-	                             childList, 
+--
+function UI:CreateStandardAccordion(name,
+	                             pos,
+	                             size,
+	                             childList,
 	                             parent)
-	frame = Instance.new('Frame', parent)
+	local frame = Instance.new('Frame', parent)
 	frame.Position = pos
 	frame.Size = size
 	frame.Name = name

@@ -12,7 +12,7 @@ local helpers = {
 		end
 		return self.name
 	end,
-	
+
 	--[[
 	Adds a member to self using key and value if the member exists
 	throw an error
@@ -23,7 +23,7 @@ local helpers = {
 		end
 		self[key] = value
 	end,
-	
+
 	--[[
 		Checks if a member of this class exists
 	--]]
@@ -34,7 +34,7 @@ local helpers = {
 		end
 		return true
 	end,
-	
+
 	--[[
 		Gets a member of this classes table
 	--]]
