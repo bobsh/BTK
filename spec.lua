@@ -61,7 +61,7 @@ collapse(Root)
 -- Load TestEZ and run our tests
 local TestEZ = habitat:require(Root.TestEZ)
 
-local results = TestEZ.TestBootstrap:run(Root.Source, TestEZ.Reporters.TextReporter)
+local results = TestEZ.TestBootstrap:run(Root.Core, TestEZ.Reporters.TextReporter)
 
 -- Did something go wrong?
 if results.failureCount > 0 then
