@@ -1,7 +1,6 @@
 local BaseObject = require(script.BaseObject)
 local Schema = require(script.Schema)
 local PlayerInit = require(script.PlayerInit)
-local ServerInit = require(script.ServerInit)
 
 --[[
 	BTKMainModule
@@ -62,11 +61,6 @@ end
 function btk.static:PlayerInit(input)
 	self:Trace("PlayerInit")
 	return PlayerInit:new(input)
-end
-
-function btk.static:ServerInit(input)
-	self:Trace("ServerInit")
-	return ServerInit:new(input)
 end
 
 return btk

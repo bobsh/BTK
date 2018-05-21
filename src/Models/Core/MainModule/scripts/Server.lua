@@ -1,10 +1,10 @@
-local BaseObject = require(script.Parent.BaseObject)
-local AssetsUtil = require(script.Parent.AssetsUtil)
+local BaseScript = require(script.Parent.Parent.BaseScript)
+local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
 
-local ServerInit = BaseObject:subclass(script.Name)
+local Server = BaseScript:subclass(script.Name)
 
-function ServerInit:initialize(input)
-	BaseObject.initialize(self, input)
+function Server:initialize(input)
+	BaseScript.initialize(self, input)
 
 	self.ServerConfig = game.ServerStorage.BTKServerConfig
 	self:Assert(self.ServerConfig, "No BTKServerConfig in ServerStorage")
@@ -86,4 +86,4 @@ function ServerInit:initialize(input)
 	self:Debug("Init complete")
 end
 
-return ServerInit
+return Server

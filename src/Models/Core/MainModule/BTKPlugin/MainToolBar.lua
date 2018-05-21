@@ -21,11 +21,11 @@ MainToolBar.AssetsToInstall = {
 	},
 	{
 		Parent = game.ServerScriptService,
-		Name = "BTKServerInit",
+		Name = "BTK:Server",
 		Type = "Script",
 		Local = {
 			Folder = "Init",
-			Name = "BTKServerInit"
+			Name = "BTK:Script"
 		}
 	},
 	{
