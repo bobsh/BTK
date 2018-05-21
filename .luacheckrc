@@ -6,9 +6,13 @@ stds.roblox = {
 		-- Roblox globals
 		"script",
 
+		-- For plugins
+		"plugin", "PluginManager",
+
 		-- Extra functions
 		"tick", "warn", "spawn",
 		"wait", "settings", "typeof",
+		"time", "delay",
 
 		-- Types
 		"Vector2", "Vector3",
@@ -18,6 +22,13 @@ stds.roblox = {
 		"CFrame",
 		"Enum",
 		"Instance",
+
+		-- Other
+		"Random",
+		"DockWidgetPluginGuiInfo",
+		"LoadLibrary",
+		"PhysicalProperties",
+		"BrickColor",
 	}
 }
 

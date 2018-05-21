@@ -63,7 +63,7 @@ function PlatformMover:MovePart(newPos)
 	local Mag = Diff.magnitude -- the distance between the two parts
 	local Direction = CFrame.new(platform.Position, newPos).lookVector
 
-	for n = 0, Mag, increment do
+	for _ = 0, Mag, increment do
 		platform.CFrame = platform.CFrame + (Direction * increment)
 		wait( (timeToMove/Mag) * increment )
 	end

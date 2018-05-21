@@ -157,7 +157,7 @@ function CreationWidget:initialize(gui)
 	local function createFunction()
 		self:Trace("Create button pushed")
 
-		ConfirmationPopupObject = ConfirmationPopup.Create(
+		self.ConfirmationPopupObject = ConfirmationPopup.Create(
 			self.MainScreenGUI,
 			"Ready to create?",
 			"Create",
@@ -170,11 +170,11 @@ function CreationWidget:initialize(gui)
 				print("Finished adding asset to object")
 				self:Off()
 
-				ConfirmationPopupObject:Clear()
+				self.ConfirmationPopupObject:Clear()
 			end,
 			function()
 				print("Popup destroyed")
-				ConfirmationPopupObject:Clear()
+				self.ConfirmationPopupObject:Clear()
 			end
 		)
 	end

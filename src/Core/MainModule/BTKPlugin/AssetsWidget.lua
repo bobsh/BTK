@@ -64,23 +64,24 @@ function AssetsWidget:initialize(plg, gui)
 	)
 	addY(32)
 
-	local Frames = {}
-	Frames.NPC = self:CreateContentFrame(
-		"NPC",
-		UDim2.new(0,0,0,curY),
-		pluginGUI
-	)
-	Frames.Tools = self:CreateContentFrame(
-		"Tools",
-		UDim2.new(0,0,0,curY),
-		pluginGUI
-	)
+	local Frames = {
+		NPC = self:CreateContentFrame(
+			"NPC",
+			UDim2.new(0,0,0,curY),
+			pluginGUI
+		),
+		Tools = self:CreateContentFrame(
+			"Tools",
+			UDim2.new(0,0,0,curY),
+			pluginGUI
+		),
+		Utilities = self:CreateContentFrame(
+			"Utilities",
+			UDim2.new(0,0,0,curY),
+			pluginGUI
+		),
+	}
 	Frames.Tools.Visible = false
-	Frames.Utilities = self:CreateContentFrame(
-		"Utilities",
-		UDim2.new(0,0,0,curY),
-		pluginGUI
-	)
 	Frames.Utilities.Visible = false
 
 	local currentFrame = "NPC"
@@ -91,7 +92,9 @@ function AssetsWidget:initialize(plg, gui)
 		{"NPC","Tools","Utilities"},
 		"NPC",
 		function(selected)
-			Frames[currentFrame].Visible = false
+			local curr = Frames[currentFrame]
+			curr.Visible = false
+
 			currentFrame = selected
 			Frames[currentFrame].Visible = true
 		end,

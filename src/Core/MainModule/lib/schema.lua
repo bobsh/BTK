@@ -42,7 +42,7 @@ end
 
 function schema.FormatOutput(output)
     local format = schema.List()
-    for k,v in ipairs(output) do
+    for _,v in ipairs(output) do
         format:append(v:format())
     end
     return table.concat(format, "\n")
@@ -81,7 +81,7 @@ function Path:target()
         error("Path:target() called on a path without a base!")
     end
     local current = self.base
-    for k,v in ipairs(self.p) do
+    for _,v in ipairs(self.p) do
         current = current[v]
         if current == nil then
             return nil
@@ -206,9 +206,9 @@ end
 function Error:format()
     local output = List.new(self.message)
     if self.suberrors ~= nil then
-        for k,sub in pairs(self.suberrors) do
+        for _,sub in pairs(self.suberrors) do
             local subout = sub:format()
-            for k1,msg in pairs(subout) do
+            for _,msg in pairs(subout) do
                 output = output:add("  "..msg)
             end
         end
@@ -231,7 +231,7 @@ schema.Error = Error
 -- Schema Building Blocks
 -- A schema is a function taking the object to be checked and the path to the
 -- current value in the environment.
--- It returns either 'true' if the schema accepted the object or an Error 
+-- It returns either 'true' if the schema accepted the object or an Error
 -- object which describes why it was rejected.
 -- The schemata below are just some basic building blocks. Expand them to your
 -- liking.
@@ -343,7 +343,7 @@ end
 function schema.OneOf(...)
     local arg = {...}
     local function CheckOneOf(obj, path)
-        for k,v in ipairs(arg) do
+        for _,v in ipairs(arg) do
             local err = schema.CheckSchema(obj, v, path)
             if not err then return nil end
         end
@@ -362,7 +362,7 @@ function schema.AllOf(...)
     local arg = {...}
     local function CheckAllOf(obj, path)
         local errmsg = nil
-        for k,v in ipairs(arg) do
+        for _,v in ipairs(arg) do
             local err = schema.CheckSchema(obj, v, path)
             if err then
                 if errmsg == nil then
@@ -410,7 +410,7 @@ function schema.Record(recordschema, additionalValues)
             path:pop()
         end
 
-        for k, v in pairs(obj) do
+        for k, _ in pairs(obj) do
             path:push(k)
             if type(k) ~= "string" then
                 AddError(schema.Error("Invalid key: '"..path.."' must be of type 'string'", path))
@@ -548,8 +548,6 @@ function schema.Tuple(...)
             end
         end
 
-        local min = 1
-        local max = #arg
         for k, v in pairs(obj) do
             path:push(k)
             local err = schema.Integer(k, path)
@@ -579,7 +577,7 @@ function schema.Case(relativePath, ...)
         relativePath = schema.Path("..", relativePath)
     end
     local cases = {...}
-    for k,v in ipairs(cases) do
+    for _,v in ipairs(cases) do
         if type(v) ~= "table" then
             error("Cases expects inputs of the form {conditionSchema, schema}; argument "..v.." is invalid")
         end
@@ -615,7 +613,8 @@ function schema.Case(relativePath, ...)
                 anyCond = true
                 local err = schema.CheckSchema(obj, valSchema, path)
                 if err then
-                    AddError(schema.Error("Case failed: Condition "..k.." of '"..path.."' holds but the consequence does not", path, err))
+                    AddError(schema.Error(
+                        "Case failed: Condition "..k.." of '"..path.."' holds but the consequence does not", path, err))
                 end
             end
         end

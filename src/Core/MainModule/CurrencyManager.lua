@@ -4,7 +4,6 @@ local CurrencyManager = {}
 local DataStoreService = game:GetService("DataStoreService")
 
 -- Setable variables
-local timeZoneOffset = -8 * 60 * 60
 local initialFunds = 0
 
 -- Constants
@@ -19,7 +18,7 @@ local playerDataStore = DataStoreService:GetDataStore("PlayerData")
 -- is unable to be run then this function returns false and creates an error.
 local function dataStoreRetry(dataStoreFunction)
 	local tries = 0
-	local success = true
+	local success
 	local data = nil
 	repeat
 		tries = tries + 1
@@ -63,12 +62,6 @@ local function batchTransactions(playerId, transactions, deposit)
 	end)
 
 	return success, balance, enoughMoney
-end
-
--- Setters
--- Sets the time zone offset for the server. Mainly used to calculate daily login bonus
-function CurrencyManager:SetTimeZoneOffsetHours(offset)
-	timeZoneOffset = offset * 60 * 60
 end
 
 -- Sets the initial amount of money to grant to players the first time they join

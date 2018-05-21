@@ -119,8 +119,6 @@ function Weapon:Hit(projectile)
 		if hit.Parent then
 			humanoid = hit.Parent:FindFirstChild("Humanoid")
 		end
-		vCharacter = self:GetTool().Parent
-		myHumanoid = vCharacter:FindFirstChild("Humanoid")
 
 		if humanoid ~= nil and myHumanoid ~= nil and humanoid ~= myHumanoid then
 			hitComponent:SendDamage({
