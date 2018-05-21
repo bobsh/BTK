@@ -132,7 +132,7 @@ function AssetsWidget:CreateContentFrame(
 			mouse.Icon = "rbxassetid://1684734025"
 
 			local touchedConnection
-			touchedConnection = mouse.Button1Down:Connect(function(hit)
+			touchedConnection = mouse.Button1Down:Connect(function(_)
 				self:Trace("Button1Down start")
 				AssetsUtil:Install(asset)
 				touchedConnection:Disconnect()
@@ -203,14 +203,17 @@ function AssetsWidget:CreateContentFrame(
 end
 
 function AssetsWidget:On()
+	self:Trace("On")
 	--self.WidgetFrame.Visible = true
 end
 
 function AssetsWidget:Off()
+	self:Trace("Off")
 	--self.WidgetFrame.Visible = false
 end
 
 function AssetsWidget:Status()
+	self:Trace("Status")
 	return true
 	--return self.WidgetFrame.Visible
 end

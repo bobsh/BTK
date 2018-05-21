@@ -170,15 +170,15 @@ local function TrySend(client, rawData, headers)
 		local succeed, err = pcall(Http.JSONEncode, Http, rawData)
 		if (succeed) then
 			local packetJSON = err
-			local succeed, err = pcall(Http.PostAsync, Http, client.requestUrl, packetJSON,
+			local succeed2, err2 = pcall(Http.PostAsync, Http, client.requestUrl, packetJSON,
 				Enum.HttpContentType.ApplicationJson, true, headers)
-			if (succeed) then
-				local responseJSON = err
-				local succeed, err = pcall(Http.JSONDecode, Http, responseJSON)
-				if (succeed) then
-					return true, err
+			if (succeed2) then
+				local responseJSON = err2
+				local succeed3, err3 = pcall(Http.JSONDecode, Http, responseJSON)
+				if (succeed3) then
+					return true, err3
 				else
-					return false, err
+					return false, err3
 				end
 			else
 				local status = tonumber(err:match("^HTTP (%d+)"))

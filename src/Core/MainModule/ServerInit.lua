@@ -4,6 +4,8 @@ local AssetsUtil = require(script.Parent.AssetsUtil)
 local ServerInit = BaseObject:subclass(script.Name)
 
 function ServerInit:initialize(input)
+	BaseObject.initialize(self, input)
+
 	self.ServerConfig = game.ServerStorage.BTKServerConfig
 	self:Assert(self.ServerConfig, "No BTKServerConfig in ServerStorage")
 

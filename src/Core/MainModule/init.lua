@@ -60,10 +60,12 @@ function btk.static:GetComponent(input)
 end
 
 function btk.static:PlayerInit(input)
+	self:Trace("PlayerInit")
 	return PlayerInit:new(input)
 end
 
 function btk.static:ServerInit(input)
+	self:Trace("ServerInit")
 	return ServerInit:new(input)
 end
 

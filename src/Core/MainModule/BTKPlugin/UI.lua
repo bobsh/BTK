@@ -1,16 +1,18 @@
+local BaseObject = require(script.Parent.Parent.BaseObject)
 local RbxGui = LoadLibrary("RbxGui")
 
 --[[
 	UI Functions
 --]]
-local UI = {}
+local UI = BaseObject:subclass(script.Name)
 
-function UI:CreateFrame(
+function UI.static:CreateFrame(
 	name,
 	pos,
 	size,
-	parent
-)
+	parent)
+	self:Trace("create")
+
 	local frame = Instance.new("Frame", parent)
 	frame.Name = name
 	frame.Position = pos
@@ -19,12 +21,13 @@ function UI:CreateFrame(
 	return frame
 end
 
-function UI:CreateScrollingFrame(
+function UI.static:CreateScrollingFrame(
 	name,
 	pos,
 	size,
-	parent
-)
+	parent)
+	self:Trace("create")
+
 	local frame = Instance.new("ScrollingFrame", parent)
 	frame.Name = name
 	frame.Position = pos
@@ -41,11 +44,14 @@ end
 -- parent 	 - What to set the text parent as.
 -- Return:
 -- Value is the created label.
-function UI:CreateStandardLabel(labelName,
-                             pos,
-							 size,
-							 text,
-							 parent)
+function UI.static:CreateStandardLabel(
+	labelName,
+	pos,
+	size,
+	text,
+	parent)
+	self:Trace("create")
+
 	local label = Instance.new("TextLabel", parent)
 	label.Name = labelName
 	label.Position = pos
@@ -69,11 +75,13 @@ end
 -- parent 	 - What to set the text parent as.
 -- Return:
 -- Value is the created label.
-function UI:CreateStandardTextBox(labelName,
+function UI.static:CreateStandardTextBox(labelName,
                              pos,
 							 size,
 							 text,
 							 parent)
+	self:Trace("create")
+
 	local label = Instance.new("TextBox", parent)
 	label.Name = labelName
 	label.Position = pos
@@ -101,13 +109,16 @@ end
 -- Return:
 -- sliderGui      - Slider gui object.
 -- sliderPosition - Object that can set the slider value.
-function UI:CreateStandardSlider(name,
+function UI.static:CreateStandardSlider(name,
                               pos,
 							  lengthBarPos,
 							  steps,
 							  funcOnChange,
 							  initValue,
 							  parent)
+
+	self:Trace("create")
+
 	local sliderGui, sliderPosition = RbxGui.CreateSlider(steps, 0, UDim2.new(0,0,0,0))
 
 	sliderGui.Name = name
@@ -139,12 +150,15 @@ end
 -- Return:
 -- dropdown 	   - The dropdown gui.
 -- updateSelection - Object to use to change the current dropdown.
-function UI:CreateStandardDropdown(name,
+function UI.static:CreateStandardDropdown(name,
 						        pos,
 								values,
 								initValue,
 								funcOnChange,
 								parent)
+
+	self:Trace("create")
+
 	-- Create a dropdown selection for the modes to fill in a river
 	local dropdown, updateSelection=RbxGui.CreateDropDownMenu(values, funcOnChange);
 	dropdown.Name = name
@@ -172,12 +186,15 @@ local buttonFontSize = Enum.FontSize.Size18;
 -- parent 	 	- What to set the parent as.
 -- Return:
 -- button 	   - The button gui.
-function UI:CreateStandardButton(name,
+function UI.static:CreateStandardButton(name,
 								pos,
 							  text,
 							  funcOnPress,
 							  parent,
 							  size)
+
+	self:Trace("create")
+
 	local button = Instance.new("TextButton", parent)
 	button.Name = name
 	button.Position = pos
@@ -200,13 +217,16 @@ function UI:CreateStandardButton(name,
 	return button
 end
 
-function UI:CreateImageButton(
+function UI.static:CreateImageButton(
 	name,
 	pos,
 	image,
 	funcOnPress,
 	parent,
 	size)
+
+	self:Trace("create")
+
 
 	local button = Instance.new("ImageButton", parent)
 	button.Name = name
@@ -233,11 +253,14 @@ end
 -- pos           - Where to put it
 -- childList     - List of children to add, format: [{Name = ..., Gui = ..., Height = ...}]
 --
-function UI:CreateStandardAccordion(name,
+function UI.static:CreateStandardAccordion(name,
 	                             pos,
 	                             size,
 	                             childList,
-	                             parent)
+								 parent)
+
+	self:Trace("create")
+
 	local frame = Instance.new('Frame', parent)
 	frame.Position = pos
 	frame.Size = size

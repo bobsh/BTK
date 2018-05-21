@@ -41,11 +41,6 @@ stds.testez = {
 	}
 }
 
-ignore = {
-	"212", -- unused arguments
-	"421", -- shadowing local variable
-}
-
 std = "lua51+roblox"
 
 files["**/*.spec.lua"] = {

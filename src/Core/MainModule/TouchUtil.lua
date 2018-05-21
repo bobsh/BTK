@@ -5,6 +5,7 @@ local ComponentHandle = require(script.Parent.ComponentHandle)
 local TouchUtil = BaseUtil:subclass(script.Name)
 
 function TouchUtil.static:Debounce(func)
+	self:Trace("Debounce")
     local isRunning = false    -- Create a local debounce variable
     return function(...)       -- Return a new function
         if not isRunning then
@@ -18,6 +19,7 @@ function TouchUtil.static:Debounce(func)
 end
 
 function TouchUtil.static:EnhancedFn(func)
+	self:Trace("EnhancedFn")
 	return function(hit)
 		local input = {
 			Hit = hit,

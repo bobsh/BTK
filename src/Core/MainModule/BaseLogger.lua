@@ -18,6 +18,7 @@ function BaseLogger:Log(input)
 	assert(input, 'No input to Log()')
 	assert(input.Message, 'Message not provided to Log()')
 	assert(input.Level, 'Level not provided to Log()')
+	assert(self.ClassName, 'ClassName not defined in class')
 end
 
 return BaseLogger

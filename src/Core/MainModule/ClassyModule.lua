@@ -1,6 +1,6 @@
 local ClassModule = {
 	static = {},
-	included = function(self, klass)
+	included = function(_, klass)
 		print("ClassyModule was included by: " .. klass.name)
 	end
 }

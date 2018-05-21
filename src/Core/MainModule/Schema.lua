@@ -109,6 +109,7 @@ end
 ----------------------------------------------]]
 
 function Schema.static:TypeOf(className)
+	local _ = self
 	return function(obj, path)
 		if not obj then
 			return s.Error("Checked component is nil", path)
@@ -135,6 +136,7 @@ end
 	Ref<SchemaError> function(obj, path) Schema:IsA(className)
 --]]
 function Schema.static:IsA(className)
+	local _ = self
 	return function(obj, path)
 		if not obj then
 			return s.Error("Checked component is nil", path)
@@ -163,6 +165,7 @@ end
 	Matches the instance name provided
 --]]
 function Schema.static:InstanceName(name)
+	local _ = self
 	return function(obj, path)
 		if not obj then
 			return s.Error("Checked component is nil", path)

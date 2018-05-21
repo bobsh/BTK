@@ -127,7 +127,7 @@ function MainToolBar:initialize(plg, gui)
 
 	updateButtons()
 	for _, value in pairs(self.AssetsToInstall) do
-		local function updateFn(child)
+		local function updateFn(_)
 			updateButtons()
 		end
 		value.Parent.ChildAdded:connect(updateFn)

@@ -147,7 +147,7 @@ Path.__len = function(self)
 end
 
 setmetatable(Path, {
-    __call = function (cls, ...)
+    __call = function (_, ...)
         return Path.new(...)
     end
 })
@@ -185,7 +185,7 @@ List.__tostring = function(self)
     return table.concat(tmp, "\n")
 end
 setmetatable(List, {
-    __call = function(cls, ...)
+    __call = function(_, ...)
         return List.new(...)
     end
 })
@@ -221,7 +221,7 @@ Error.__tostring = function(self)
 end
 Error.__index = Error
 setmetatable(Error, {
-    __call = function(cls, ...)
+    __call = function(_, ...)
         return List(Error.new(...))
     end
 })
@@ -238,12 +238,12 @@ schema.Error = Error
 -------------------------------------------------------------------------------
 
 -- Always accepts.
-function schema.Any(obj, path)
+function schema.Any(_, _)
     return nil
 end
 
 -- Always fails.
-function schema.Nothing(obj, path)
+function schema.Nothing(_, path)
     return schema.Error("Failure: '"..path.."' will always fail.", path)
 end
 

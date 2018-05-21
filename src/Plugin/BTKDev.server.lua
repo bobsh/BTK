@@ -8,11 +8,13 @@ local insertService = game:GetService("InsertService")
 local Assets = {}
 
 function Assets:GetAsset(asset)
+	local _ = self
 	print("Assets: Finding child " .. asset.Name .. " of parent " .. asset.Parent.Name)
 	return asset.Parent:FindFirstChild(asset.Name, false)
 end
 
 function Assets:GetAssets(assets)
+	local _ = self
 	local list = {}
 	for _, value in pairs(assets) do
 		table.insert(list, value)
@@ -21,6 +23,7 @@ function Assets:GetAssets(assets)
 end
 
 function Assets:InstallAsset(asset)
+	local _ = self
 	print(("Assets: Installing %s with id %d into %s"):format(asset.Name, asset.ID, asset.Parent.Name))
 
 	local currentAsset = Assets:GetAsset(asset)
@@ -52,12 +55,14 @@ function Assets:InstallAsset(asset)
 end
 
 function Assets:InstallAssets(assets)
+	local _ = self
 	for _, value in pairs(assets) do
 		Assets:InstallAsset(value)
 	end
 end
 
 function Assets:UninstallAsset(asset)
+	local _ = self
 	print(("Assets: Uninstalling %s from %s"):format(asset.Name, asset.Parent.Name))
 
 	local currentAsset = Assets:GetAsset(asset)
@@ -71,12 +76,14 @@ function Assets:UninstallAsset(asset)
 end
 
 function Assets:UninstallAssets(assets)
+	local _ = self
 	for _, value in pairs(assets) do
 		Assets:UninstallAsset(value)
 	end
 end
 
 function Assets:AttachOnClick(asset)
+	local _ = self
 	return function()
 		local selectRef = game.Selection:Get()[1]
 		if not selectRef then
@@ -99,6 +106,7 @@ end
 local DevToolBar = {}
 
 function DevToolBar:Init()
+	local _ = self
 	local installToolbar = plugin:CreateToolbar("BTK Development")
 
 	local installButton = installToolbar:CreateButton(

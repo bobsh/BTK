@@ -148,6 +148,7 @@ function Assets.static:Uninstall(input)
 end
 
 function Assets.static:UninstallMany(assets)
+	self:Trace("Uninstalling many")
 	for _, value in pairs(assets) do
 		Assets:Uninstall(value)
 	end
