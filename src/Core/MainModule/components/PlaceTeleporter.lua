@@ -8,20 +8,20 @@ local PlaceTeleporter = ModelComponent:subclass(script.Name)
 
 function PlaceTeleporter:initialize(input)
 	ModelComponent.initialize(self, input)
-	
+
 	self:CreateData({
 		Name = "TeleportPlaceId",
 		Type = "NumberValue",
 		Schema = Schema.PlaceId,
 	})
-	
+
 	self:CreateData({
 		Name = "ReserveInstance",
 		Type = "BoolValue",
 		Value = false,
 		Schema = Schema.Boolean,
 	})
-	
+
 	self:GetPrimaryPart().Touched:Connect(
 		TouchUtil:Debounce(
 			TouchUtil:EnhancedFn(

@@ -4,19 +4,19 @@ local Schema = require(script.Parent.Schema)
 --[[
 	ModelComponent
 --]]
-ModelComponent = BaseComponent:subclass(script.Name)
+local ModelComponent = BaseComponent:subclass(script.Name)
 
 function ModelComponent:initialize(input)
 	BaseComponent.initialize(self, input)
 	self:AssertSchema(input.Root, Schema:IsA("Model"))
-	
+
 	self:CreateData({
 		Name = "Model",
 		Type = "ObjectValue",
 		Value = self:GetRoot(),
 		Schema = Schema:IsA("Model"),
-	})	
-	
+	})
+
 	self:CreateData({
 		Name = "PrimaryPart",
 		Type = "ObjectValue",

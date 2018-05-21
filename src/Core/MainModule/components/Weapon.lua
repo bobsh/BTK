@@ -2,14 +2,14 @@ local ToolComponent = require(script.Parent.Parent.ToolComponent)
 local Schema = require(script.Parent.Parent.Schema)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 
-Weapon = ToolComponent:subclass(script.Name)
+local Weapon = ToolComponent:subclass(script.Name)
 
 --[[
 	void Weapon:Init()
 --]]
 function Weapon:initialize(input)
 	ToolComponent.initialize(self, input)
-	
+
 	self:CreateData({
 		Name = "Type",
 		Type = "StringValue",
@@ -22,10 +22,10 @@ function Weapon:initialize(input)
 		self:GetTool().Activated:Connect(self:RangedActivate())
 		self:GetTool().Equipped:Connect(function(_)
 			print "Weapon: Equipped"
-			local vCharacter = self.GetRoot().Parent 
+			local vCharacter = self.GetRoot().Parent
 			local myHumanoid = vCharacter:FindFirstChild("Humanoid")
 			local rootPart = myHumanoid.RootPart
-			
+
 			self.Aimer = Instance.new("Part", rootPart)
 			self.Aimer.Name = "Aimer"
 			self.Aimer.CanCollide = false
@@ -34,7 +34,7 @@ function Weapon:initialize(input)
 			self.Aimer.Color = BrickColor.Red().Color
 			self.Aimer.Transparency = 0.2
 			self.Aimer.CollisionGroupId = 1
-			
+
 			local weld = Instance.new("Weld", self.Aimer)
 			weld.Part0 = rootPart
 			weld.Part1 = self.Aimer
@@ -43,7 +43,7 @@ function Weapon:initialize(input)
 		end)
 		self:GetTool().Unequipped:Connect(function()
 			print "Weapon: Unequipped"
-			
+
 			self.Aimer:Destroy()
 		end)
 	end
@@ -55,18 +55,18 @@ end
 function Weapon:Blow()
 	return function(hit)
 		local humanoid, myHumanoid
-		
+
 		local myCharacterComponent = self:GetOwner()
 		if myCharacterComponent then
 			myHumanoid = myCharacterComponent:GetData("Humanoid")
 		else
 			self:Err("Weapon has no owner")
 		end
-		
+
 		if not myHumanoid then
 			self:Err("Weapon has no humanoid")
 		end
-		
+
 		local hitComponent = self:GetComponentData({
 			Inst = hit,
 		})
@@ -86,7 +86,7 @@ function Weapon:Blow()
 				Damage = self:GetConfiguration("Damage")
 			})
 			wait(0.7)
-		end 
+		end
 	end
 end
 
@@ -108,7 +108,7 @@ function Weapon:Hit(projectile)
 		if hitComponent then
 			humanoid = hitComponent:GetData("Humanoid")
 		end
-		
+
 		local vCharacter = self:GetTool().Parent
 		local myCharacterComponent = self:GetComponentData({
 			Inst = vCharacter,
@@ -116,10 +116,10 @@ function Weapon:Hit(projectile)
 		if myCharacterComponent then
 			myHumanoid = myCharacterComponent:GetData("Humanoid")
 		end
-		if hit.Parent then 
+		if hit.Parent then
 			humanoid = hit.Parent:FindFirstChild("Humanoid")
 		end
-		vCharacter = self:GetTool().Parent 
+		vCharacter = self:GetTool().Parent
 		myHumanoid = vCharacter:FindFirstChild("Humanoid")
 
 		if humanoid ~= nil and myHumanoid ~= nil and humanoid ~= myHumanoid then
@@ -149,7 +149,7 @@ end
 	void Weapon:SetToolAnim(
 		string name -- Name to set toolanim too
 	)
-	
+
 	Creates a new StringValue alled 'toolanim' and sets it to a value.
 	This interacts with the baked in Animate script for characters to
 	enable a particular animation name for tool usage.
@@ -165,11 +165,11 @@ end
 --]]
 function Weapon:MeleeActivate()
 	return function()
-		if self:GetTool().Enabled == false then 
-			return 
-		end 
+		if self:GetTool().Enabled == false then
+			return
+		end
 
-		print "Weapon: Activating"	
+		print "Weapon: Activating"
 
 		local handleConnect = self:GetTool().Handle.Touched:Connect(
 			TouchUtil:Debounce(
@@ -177,12 +177,12 @@ function Weapon:MeleeActivate()
 			)
 		)
 
-		self:GetTool().Enabled = false 		
+		self:GetTool().Enabled = false
 		self:SetToolAnim("Slash")
 		wait(0.7)
 		handleConnect:Disconnect()
-		self:GetTool().Enabled = true 
-		
+		self:GetTool().Enabled = true
+
 		print "Weapon: Done activating"
 	end
 end
@@ -192,17 +192,17 @@ end
 --]]
 function Weapon:RangedActivate()
 	return function()
-		if self:GetTool().Enabled == false then 
-			return 
+		if self:GetTool().Enabled == false then
+			return
 		end
 
 		print "Ranged: Activating"
 
 		self:GetTool().Enabled = false
-		self:SetToolAnim("Lunge")		
+		self:SetToolAnim("Lunge")
 		wait(0.2)
 
-		local vCharacter = self:GetTool().Parent 
+		local vCharacter = self:GetTool().Parent
 		local myHumanoid = vCharacter:FindFirstChild("Humanoid")
 		local rootPart = myHumanoid.RootPart
 
@@ -216,16 +216,16 @@ function Weapon:RangedActivate()
 		projectile.Orientation = Vector3.new(po.X, po.Y+90, po.Z)
 		--projectile.Orientation = self.Handle.Muzzle.WorldOrientation
 		projectile.Touched:Connect(self:Hit(projectile))
-		
+
 		local force = Instance.new("BodyThrust", projectile)
 		force.Force = Vector3.new(90.0, 0.0, 0.0)
 
 		wait(0.5)
-		
-		self:GetTool().Enabled = true 
-		
+
+		self:GetTool().Enabled = true
+
 		print "Ranged: Done activating"
 	end
 end
- 
+
 return Weapon

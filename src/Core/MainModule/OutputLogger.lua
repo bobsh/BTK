@@ -5,7 +5,7 @@ local inspect = require(script.Parent.lib.inspect)
 --[[
 	OutputLogger outputs to the standard text output
 --]]
-OutputLogger = BaseLogger:subclass(script.Name)
+local OutputLogger = BaseLogger:subclass(script.Name)
 
 function OutputLogger:Log(input)
 	BaseLogger.Log(self, input)
@@ -16,7 +16,7 @@ function OutputLogger:Log(input)
 	if input.Data then
 		outMsg = outMsg .. "\n" .. inspect(input.Data)
 	end
-	
+
 	if input.Level == Schema.Enums.LogLevel.Trace or
 		input.Level == Schema.Enums.LogLevel.Debug or
 		input.Level == Schema.Enums.LogLevel.Info then

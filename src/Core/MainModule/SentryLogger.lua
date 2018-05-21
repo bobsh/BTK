@@ -7,28 +7,28 @@ local RunService = game:GetService("RunService")
 --[[
 	SentryLogger outputs to sentry
 --]]
-SentryLogger = BaseLogger:subclass(script.Name)
+local SentryLogger = BaseLogger:subclass(script.Name)
 
 function SentryLogger:initialize(input)
 	BaseLogger.initialize(self, input)
-	
+
 	-- Don't set a client if we're in the studio
 	if RunService:IsStudio() then
 		return
 	end
-	
+
 	if not self.Config.DSN then
 		warn("No DSN configured")
 		return
 	end
-	
+
 	local rconf = {
 		environment = "development",
 		tags = {
 			ClassName = self.ClassName,
 		},
 	}
-	
+
 	if game.JobId ~= "" then
 		rconf["server_name"] = game.JobId
 		rconf["environment"] = "production"
@@ -39,18 +39,18 @@ function SentryLogger:initialize(input)
 			PlaceId = game.PlaceId,
 		}
 	end
-	
+
 	if game.PlaceVersion ~= 0 then
 		rconf["release"] = tostring(game.PlaceVersion)
 	end
-	
+
 	if input.Player then
 		rconf.user = {
 			id = input.Player.UserId,
 			username = input.Player.Name,
 		}
 	end
-	
+
 	self._ravenClient = Raven:Client(
 		self.Config.DSN,
 		rconf
@@ -70,7 +70,7 @@ function SentryLogger:Log(input)
 	if not self._raventClient then
 		return
 	end
-	
+
 	-- Skip anything above Info
 	if input.Level.Value > Schema.Enums.LogLevel.Info.Value then
 		return

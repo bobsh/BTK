@@ -5,8 +5,8 @@ local PC = CharacterComponent:subclass(script.Name)
 
 function PC:initialize(input)
 	CharacterComponent.initialize(self, input)
-	
-	self:_playerSetup()	
+
+	self:_playerSetup()
 	self:_currencySetup()
 	self:_collectSetup()
 end
@@ -60,40 +60,40 @@ function PC:_collectSetup()
 		if not comp then
 			return
 		end
-		
+
 		local colAttachment = comp:GetData("CollectableAttachment")
 		if not colAttachment then
 			return
 		end
-	
+
 		self:Debug("Hit someting with CollectableAttachment",
 			{
 				HitName = hit.Name,
 			}
 		)
-			
+
 		local cf = Instance.new("AlignPosition", colAttachment)
 		cf.Name = "CollectableForce"
 		cf.Attachment0 = colAttachment
 		cf.Attachment1 = self:GetCollectAttachment()
-		
+
 		delay(4, function()
 			cf:Destroy()
 		end)
 	end)
-	
+
 	local weld = Instance.new("Weld", self:GetRootPart())
 	weld.Name = "CollectCollisionWeld"
 	weld.Part0 = self:GetRootPart()
-	weld.Part1 = cc	
-	
+	weld.Part1 = cc
+
 	self:CreateData({
 		Name = "CollectCollision",
 		Type = "ObjectValue",
 		Value = cc,
 		Schema = Schema:IsA("Part"),
 	})
-	
+
 	self:CreateData({
 		Name = "CollectAttachment",
 		Type = "ObjectValue",

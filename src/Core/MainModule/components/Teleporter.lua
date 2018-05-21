@@ -6,19 +6,19 @@ local Teleporter = ModelComponent:subclass(script.Name)
 
 function Teleporter:initialize(input)
 	ModelComponent.initialize(self, input)
-	
+
 	self:CreateData({
 		Name = "Target",
 		Type = "ObjectValue",
 		Schema = Schema:IsA("BasePart"),
 	})
-	
+
 	self:CreateData({
 		Name = "Offset",
 		Type = "Vector3Value",
 		Schema = Schema:TypeOf("Vector3"),
 	})
-	
+
 	self:GetPrimaryPart().Touched:Connect(
 		TouchUtil:Debounce(
 			TouchUtil:EnhancedFn(

@@ -1,11 +1,9 @@
-local storage = game.ServerStorage
-
 local loaded = {}
 
 --[[
 	LoadPlugin reloads individual plugins
 --]]
-function LoadPlugin(name, pluginBase)
+local function LoadPlugin(name, pluginBase)
 	local newPlugin = PluginManager():CreatePlugin()
 	newPlugin.Name = name
 	if typeof(pluginBase) == "Instance" then
@@ -43,7 +41,7 @@ end
 --[[
 	LoadPlugins loads all BTK plugins
 --]]
-function LoadPlugins(plugins)
+local function LoadPlugins(plugins)
 	print "LoadPlugins: Start"
 	for _, pluginBase in next, plugins:GetChildren() do
 		if not loaded[pluginBase.Name] then

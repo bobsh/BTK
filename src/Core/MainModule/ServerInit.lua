@@ -1,10 +1,7 @@
 local BaseObject = require(script.Parent.BaseObject)
 local AssetsUtil = require(script.Parent.AssetsUtil)
-local Schema = require(script.Parent.Schema)
 
-local RunService = game:GetService("RunService")
-
-ServerInit = BaseObject:subclass(script.Name)
+local ServerInit = BaseObject:subclass(script.Name)
 
 function ServerInit:initialize(input)
 	self.ServerConfig = game.ServerStorage.BTKServerConfig
@@ -12,7 +9,7 @@ function ServerInit:initialize(input)
 
 	--[[
 		Output initialisation messages to logs and discordapp
-	--]]	
+	--]]
 	local serverData = {
 		CreatorId = game.CreatorId,
 		GameId = game.GameId,
@@ -21,9 +18,9 @@ function ServerInit:initialize(input)
 		PlaceVersion = game.PlaceVersion,
 		SecondsSinceStart = time(),
 	}
-	
+
 	self:Info("Initialising server", serverData)
-	
+
 	--[[
 		Setup game close logging
 	--]]
@@ -31,7 +28,7 @@ function ServerInit:initialize(input)
 		serverData.SecondsSinceStart = time()
 		self:Info("Server close", serverData)
 	end)
-	
+
 	-- CHange default anims
 	game.Players.PlayerAdded:connect(function(player)
 		self:Info({
@@ -44,12 +41,12 @@ function ServerInit:initialize(input)
 
 	self:Debug("Disabling character autoload")
 	game.Players.CharacterAutoLoads = false
-	
+
 	self:Debug("Disabling custom characters")
 	game.StarterPlayer.LoadCharacterAppearance = false
-	
+
 	local loadCharacters = self.ServerConfig:FindFirstChild("LoadCharacters")
-	if loadCharacters == nil or loadCharacters.Value == true then	
+	if loadCharacters == nil or loadCharacters.Value == true then
 		self:Debug("Configuring StarterHumanoid")
 		local starterHumanoid = Instance.new("Humanoid", game.StarterPlayer)
 		starterHumanoid.Name = "StarterHumanoid"
@@ -59,11 +56,11 @@ function ServerInit:initialize(input)
 		starterHumanoid.HipHeight = 1.35
 		starterHumanoid.MaxSlopeAngle = 89
 		starterHumanoid.WalkSpeed = 16
-	
-		self:Debug("Configuring initial tools")	
+
+		self:Debug("Configuring initial tools")
 		local initialTools = self.ServerConfig:FindFirstChild("InitialTools")
 		if initialTools then
-			for idx, value in pairs(initialTools:GetChildren()) do
+			for _, value in pairs(initialTools:GetChildren()) do
 				self:Debug("Configuring tool: " .. value.Name)
 				AssetsUtil:Install({
 					Parent = game.StarterPack,
@@ -73,17 +70,17 @@ function ServerInit:initialize(input)
 				})
 			end
 		end
-			
+
 		self:Debug("Loading characters")
-		for idx, value in pairs(game.Players:GetPlayers()) do
+		for _, value in pairs(game.Players:GetPlayers()) do
 			self:Debug("Loading character: " .. value.Name)
-			value:LoadCharacter()		
+			value:LoadCharacter()
 		end
-		game.Players.CharacterAutoLoads = true	
+		game.Players.CharacterAutoLoads = true
 	else
 		self:Debug("Not loading characters")
 	end
-	
+
 	self:Debug("Init complete")
 end
 

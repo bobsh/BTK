@@ -1,7 +1,7 @@
 local BaseObject = require(script.Parent.BaseObject)
 local Schema = require(script.Parent.Schema)
 
-ComponentHandle = BaseObject:subclass(script.Name)
+local ComponentHandle = BaseObject:subclass(script.Name)
 
 --[[
 	Ref<ComponentHandle> ComponentHandle.new({
@@ -45,12 +45,12 @@ function ComponentHandle:GetData(key)
 
 	local data = self:GetRoot():WaitForChild("Data", 5.0)
 	assert(data, "Data child not found in time")
-		
+
 	local dataPart = data:FindFirstChild(key)
 	if not dataPart then
 		return nil
 	end
-		
+
 	return dataPart.Value
 end
 
@@ -62,7 +62,7 @@ end
 --]]
 function ComponentHandle:SendMessage(input)
 	self:AssertSchema(input, Schema.Message)
-	
+
 	local inputEvent = self:GetData("InputEvent")
 	inputEvent:Fire(input)
 end
@@ -74,7 +74,7 @@ end
 --]]
 function ComponentHandle:SendDamage(input)
 	self:AssertSchema(input, Schema.DamagePayload)
-	
+
 	self:Dbg("Doing damage " .. input.Damage)
 
 	self:SendMessage({

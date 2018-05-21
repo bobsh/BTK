@@ -8,7 +8,7 @@ local HttpService = game:GetService("HttpService")
 --[[
 	DiscordApp provides facilities for communicating with DiscordApp
 --]]
-DiscordApp = BaseUtil:subclass(script.Name)
+local DiscordApp = BaseUtil:subclass(script.Name)
 
 function DiscordApp.static:Send(input)
 	self:AssertSchema(
@@ -18,9 +18,9 @@ function DiscordApp.static:Send(input)
 			Webhook = Schema:HttpsURL(),
 		}
 	)
-	
+
 	self:Dbg("Received " .. inspect(input))
-	
+
 	local data = {
 		content = input.Message,
 	}

@@ -2,16 +2,16 @@ local BaseUtil = require(script.Parent.BaseUtil)
 local Schema = require(script.Parent.Schema)
 local ComponentHandle = require(script.Parent.ComponentHandle)
 
-TouchUtil = BaseUtil:subclass(script.Name)
+local TouchUtil = BaseUtil:subclass(script.Name)
 
 function TouchUtil.static:Debounce(func)
     local isRunning = false    -- Create a local debounce variable
     return function(...)       -- Return a new function
         if not isRunning then
             isRunning = true
- 
+
             func(...)          -- Call it with the original arguments
- 
+
             isRunning = false
         end
     end
@@ -40,7 +40,7 @@ function TouchUtil.static:GetComponentData(input)
 			Inst = Schema:IsA("Instance"),
 		}
 	)
-	
+
 	local output = {}
 	if input.Inst:IsA("Model") or input.Inst:IsA("Tool") then
 		output.Root = input.Inst
@@ -50,7 +50,7 @@ function TouchUtil.static:GetComponentData(input)
 			output.Root = input.Inst:FindFirstAncestorOfClass("Model")
 		end
 	end
-	
+
 	-- No root? probably not a component just bail with nil
 	if not output.Root then
 		self:Debug("Cannot find a compatible root of instance probably not a component",
@@ -60,7 +60,7 @@ function TouchUtil.static:GetComponentData(input)
 		)
 		return nil
 	end
-	
+
 	-- Create a new component handle and return that
 	return ComponentHandle:new(output)
 end

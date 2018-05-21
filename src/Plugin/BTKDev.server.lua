@@ -14,7 +14,7 @@ end
 
 function Assets:GetAssets(assets)
 	local list = {}
-	for idx, value in pairs(assets) do
+	for _, value in pairs(assets) do
 		table.insert(list, value)
 	end
 	return list
@@ -23,15 +23,15 @@ end
 function Assets:InstallAsset(asset)
 	print(("Assets: Installing %s with id %d into %s"):format(asset.Name, asset.ID, asset.Parent.Name))
 
-	local currentAsset = Assets:GetAsset(asset)		
+	local currentAsset = Assets:GetAsset(asset)
 	if currentAsset ~= nil then
 		warn(("Assets: %s already exists in %s"):format(asset.Name, asset.Parent.Name))
 		return
 	end
-	
+
 	local versionID = insertService:GetLatestAssetVersionAsync(asset.ID)
 	print(("Assets: Found version %d for asset ID %d"):format(versionID, asset.ID))
-	
+
 	local assetRef = insertService:LoadAssetVersion(versionID)
 	if not assetRef then
 		error "Assets: Unable to load asset"
@@ -46,12 +46,13 @@ function Assets:InstallAsset(asset)
 	end
 	btkScript.Parent = asset.Parent
 	btkScript.Name = asset.Name
-	
-	print(("Assets: Done installing %s with id %d version %d into %s"):format(asset.Name, asset.ID, versionID, asset.Parent.Name))
+
+	print(("Assets: Done installing %s with id %d version %d into %s"):format(
+		asset.Name, asset.ID, versionID, asset.Parent.Name))
 end
 
 function Assets:InstallAssets(assets)
-	for idx, value in pairs(assets) do
+	for _, value in pairs(assets) do
 		Assets:InstallAsset(value)
 	end
 end
@@ -70,7 +71,7 @@ function Assets:UninstallAsset(asset)
 end
 
 function Assets:UninstallAssets(assets)
-	for idx, value in pairs(assets) do
+	for _, value in pairs(assets) do
 		Assets:UninstallAsset(value)
 	end
 end
@@ -87,7 +88,7 @@ function Assets:AttachOnClick(asset)
 		end
 
 		asset.Parent = selectRef
-		
+
 		Assets:InstallAsset(asset)
 	end
 end
@@ -99,31 +100,31 @@ local DevToolBar = {}
 
 function DevToolBar:Init()
 	local installToolbar = plugin:CreateToolbar("BTK Development")
-	
+
 	local installButton = installToolbar:CreateButton(
 		"Install",
 		"Install BTK development environment",
 		"rbxassetid://1675181449"
 	)
-	
+
 	local uninstallButton = installToolbar:CreateButton(
 		"Uninstall",
 		"Uninstall BTK development environment",
 		"rbxassetid://1675202319"
 	)
-	
+
 	local publishButton = installToolbar:CreateButton(
 		"Publish MainModule",
 		"Publish BTK development environment",
 		"rbxassetid://133293265"
 	)
-	
+
 	local publishContentButton = installToolbar:CreateButton(
 		"Publish BTKContent",
 		"Publish BTKContent",
 		"rbxassetid://133293265"
 	)
-	
+
 	-- Setup button
 	local componentButton = installToolbar:CreateButton(
 		"Attach Component",
@@ -131,14 +132,14 @@ function DevToolBar:Init()
 		"rbxassetid://133293265"
 		---"rbxassetid://1606339973"
 	)
-	
+
 	componentButton.Click:connect(Assets:AttachOnClick({
 		Name = "BTKComponent",
 		ID = 1608226814,
 		Type = "Script",
 		ParentType = "Instance"
 	}))
-	
+
 	-- Setup button
 	local diagsButton = installToolbar:CreateButton(
 		"Diags",
@@ -149,48 +150,48 @@ function DevToolBar:Init()
 	diagsButton.Click:connect(function()
 		local coreGUIChildren = game.CoreGui:GetChildren()
 		print "BTKDev: Printing list of coregui children"
-		for idx, value in pairs(coreGUIChildren) do
+		for _, value in pairs(coreGUIChildren) do
 			print("BTKDEV: - " .. value.Name)
 		end
 		print "BTKDev: End of coregui children"
 	end)
-	
-	
-		
+
+
+
 	local btkMod = {
 		Parent = game.Workspace,
 		Name = "MainModule",
 		ID = 1637466041,
 		Type = "ModuleScript"
 	}
-	
+
 	local btkContent = {
 		Parent = game.ServerStorage,
 		Name = "BTKContent",
 		ID = 1671168926,
 		Type = "Folder"
 	}
-		
+
 	installButton.Click:connect(function()
 		Assets:InstallAsset(btkMod)
 	end)
-	
+
 	uninstallButton.Click:connect(function()
 		Assets:InstallAsset(btkMod)
 	end)
-	
+
 	publishButton.Click:connect(function()
 		local mod = Assets:GetAsset(btkMod)
 		game.Selection:Set({mod})
 		plugin:SaveSelectedToRoblox()
 	end)
-	
+
 	publishContentButton.Click:connect(function()
 		local mod = Assets:GetAsset(btkContent)
 		game.Selection:Set({mod})
 		plugin:SaveSelectedToRoblox()
 	end)
-	
+
 	local function updateButtons()
 		local mod = Assets:GetAsset(btkMod)
 		if (mod == nil) then

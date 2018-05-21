@@ -1,7 +1,7 @@
 local BaseObject = require(script.Parent.BaseObject)
 local Schema = require(script.Parent.Schema)
 
-ScriptHelper = BaseObject:subclass(script.Name)
+local ScriptHelper = BaseObject:subclass(script.Name)
 
 ScriptHelper.static.Pattern = "^BTK:(%u[%u%l%d]+)$"
 
@@ -11,7 +11,7 @@ function ScriptHelper.static:Get(s)
 		self:Error("BTK script name not valid",
 			{
 				ScriptName = s.Name,
-				Pattern = self.Pattern,	
+				Pattern = self.Pattern,
 			}
 		)
 	end
@@ -28,8 +28,8 @@ function ScriptHelper.static:Get(s)
 	self:AssertSchema(
 		scriptToCall,
 		Schema:IsA("ModuleScript")
-	)	
-	
+	)
+
 	local scriptModule = require(scriptToCall)
 	if scriptModule == nil then
 		self:Error("Script require returned nil",

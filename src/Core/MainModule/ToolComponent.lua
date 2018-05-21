@@ -8,9 +8,9 @@ local ToolComponent = BaseComponent:subclass(script.Name)
 
 function ToolComponent:initialize(input)
 	BaseComponent.initialize(self, input)
-	
+
 	self:AssertSchema(input.Root, Schema:IsA("Tool"))
-	
+
 	self:CreateData({
 		Name = "Owner",
 		Type = "ObjectValue",
@@ -23,7 +23,7 @@ function ToolComponent:initialize(input)
 		self:Debug("AncestryChanged: recalculating Owner")
 		self:SetData("Owner", self:_getOwner())
 	end)
-	
+
 	self:CreateData({
 		Name = "Equipped",
 		Type = "BoolValue",
@@ -61,7 +61,7 @@ function ToolComponent:_getOwner()
 			model = player.Character
 		end
 	end
-	
+
 	if not model:IsA("Model") then
 		self:Debug("The instance is not a model",
 			{

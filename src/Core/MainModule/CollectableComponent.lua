@@ -21,7 +21,7 @@ function CollectableComponent:_collectSetup()
 		Value = self:GetPrimaryPart(),
 		Schema = Schema:IsA("BasePart"),
 	})
-	
+
 	self:CreateData({
 		Name = "CollectableAttachment",
 		Type = "ObjectValue",

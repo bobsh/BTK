@@ -2,7 +2,6 @@ local CharacterComponent = require(script.Parent.Parent.CharacterComponent)
 local s = require(script.Parent.Parent.lib.schema)
 local Schema = require(script.Parent.Parent.Schema)
 local PathfindingService = game:GetService("PathfindingService")
-local RunService = game:GetService("RunService")
 
 local NPCState = {
 	Dead = "Dead",
@@ -11,13 +10,13 @@ local NPCState = {
 	AttackTarget = "AttackTarget",
 }
 
-NPC = CharacterComponent:subclass(script.Name)
+local NPC = CharacterComponent:subclass(script.Name)
 
 function NPC:initialize(input)
 	CharacterComponent.initialize(self, input)
-	
+
 	self.Waypoints = {}
-	
+
 	self.State = self:CreateData({
 		Name = "State",
 		Type = "StringValue",
@@ -47,7 +46,7 @@ function NPC:initialize(input)
 			end
 		end
 	})
-	
+
 	self.EnemyTarget = self:CreateData({
 		Name = "EnemyTarget",
 		Type = "ObjectValue",
@@ -86,16 +85,13 @@ function NPC:initialize(input)
 		self:Debug("Reached target: " .. tostring(reached))
 		self:WalkToTarget()
 	end)
-	
+
 	self.Humanoid.Died:Connect(function()
 		self:Debug("Dead")
 		self:SetData("State", NPCState.Dead)
-		
-		stateConnect:Disconnect()
-		enemyTargetConnect:Disconnect()
-		distanceToTargetConnect:Disconnect()
+
 		moveToFinishedConnect:Disconnect()
-		
+
 		delay(4, function()
 			self:Destroy()
 		end)
@@ -112,14 +108,14 @@ function NPC:initialize(input)
 	else
 		self:Warn("No area found")
 	end
-	
+
 	self:CreateData({
 		Name = "LastAttack",
 		Type = "NumberValue",
 		Value = 0,
 		Schema = s.NonNegativeNumber,
 	})
-	
+
 	self:Heartbeat()
 end
 
@@ -129,7 +125,7 @@ end
 function NPC:_setDistanceToTarget()
 	local start = self.Humanoid.RootPart.Position
 	local finish = self:GetEnemyTarget().PrimaryPart.Position
-	
+
 	self:SetData("DistanceToTarget",(finish - start).Magnitude)
 end
 
@@ -139,7 +135,7 @@ function NPC:RefreshPathToEnemy()
 		self:Debug("Path calc")
 		local start = self.Humanoid.RootPart
 		local finish = self:GetEnemyTarget().PrimaryPart
-	
+
 		local path = PathfindingService:FindPathAsync(start.Position, finish.Position)
 		self.Waypoints = path:GetWaypoints()
 		self.LastWaypointCalc = time()
@@ -150,18 +146,18 @@ function NPC:WalkToTarget()
 	if #self.Waypoints == 0 then
 		self:RefreshPathToEnemy()
 	end
-	
+
 	if  self.EnemyTarget and
 		self.Humanoid.PlatformStand == false then
-		
-				
+
+
 		local enemyPosition = self:GetEnemyTarget().PrimaryPart.Position
 		local lastWaypointPosition = self.Waypoints[#self.Waypoints].Position
 		local distanceBetween = (lastWaypointPosition-enemyPosition).Magnitude
-		
+
 		self:Debug("Distance between last waypoint and enemy: " ..
 			tostring(distanceBetween))
-		
+
 		if distanceBetween > self:GetAttackDistance() then
 			local timeSinceLast = time()-self.LastWaypointCalc
 			if timeSinceLast > 2 then
@@ -170,7 +166,7 @@ function NPC:WalkToTarget()
 				self:Debug("Throttling path calc")
 			end
 		end
-		
+
 		self:Debug("Number of waypoints: " .. tostring(#self.Waypoints))
 
 		self.Humanoid:MoveTo(
@@ -184,7 +180,7 @@ function NPC:Heartbeat()
 		if self:GetEnemyTarget() ~= nil then
 			self:_setDistanceToTarget()
 		end
-		
+
 		if self:GetState() == NPCState.AttackTarget then
 			local sinceLastAttack = time() - self:GetLastAttack()
 			if sinceLastAttack > 2 then

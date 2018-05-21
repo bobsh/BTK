@@ -2,12 +2,12 @@ local class = require(script.Parent.lib.middleclass)
 local s = require(script.Parent.lib.schema)
 
 --[[--------------------------------------------
-	
+
 	ENUMS
-	
+
 ----------------------------------------------]]
 
-EnumerationItem = class("EnumerationItem")
+local EnumerationItem = class("EnumerationItem")
 
 function EnumerationItem:initialize(input)
 	self.Name = input.Name
@@ -15,7 +15,7 @@ function EnumerationItem:initialize(input)
 	self.EnumType = input.EnumType
 end
 
-Enumeration = class("Enumeration")
+local Enumeration = class("Enumeration")
 
 function Enumeration:initialize(input)
 	self._data = {}
@@ -35,12 +35,12 @@ function EnumerationItem:GetEnumItems()
 	return self._data
 end
 
-Schema = class(script.Name)
+local Schema = class(script.Name)
 
 --[[--------------------------------------------
-	
+
 	ENUMS
-	
+
 ----------------------------------------------]]
 
 --[[
@@ -49,9 +49,9 @@ Schema = class(script.Name)
 Schema.static.Enums = {}
 
 --[[--------------------------------------------
-	
+
 	PROXIES
-	
+
 ----------------------------------------------]]
 
 Schema.static.Record = s.Record
@@ -61,9 +61,9 @@ Schema.static.Boolean = s.Boolean
 Schema.static.NumberFrom = s.NumberFrom
 
 --[[--------------------------------------------
-	
+
 	SIMPLE
-	
+
 ----------------------------------------------]]
 
 Schema.static.IntegerFrom = function(min, max)
@@ -87,8 +87,8 @@ Schema.static.StringLength = function(min, max)
 	max = max or 128
 	return function(obj, path)
 		local err = s.String(obj, path)
-		if err then return err end		
-				
+		if err then return err end
+
 		local len = string.len(obj)
 		if len < min or len > max then
 			return s.Error(
@@ -103,9 +103,9 @@ Schema.static.StringLength = function(min, max)
 end
 
 --[[--------------------------------------------
-	
+
 	ROBLOX
-	
+
 ----------------------------------------------]]
 
 function Schema.static:TypeOf(className)
@@ -113,7 +113,7 @@ function Schema.static:TypeOf(className)
 		if not obj then
 			return s.Error("Checked component is nil", path)
 		end
-				
+
 		-- If it is, return nothing
 		if typeof(obj) == className then
 			return nil
@@ -139,9 +139,9 @@ function Schema.static:IsA(className)
 		if not obj then
 			return s.Error("Checked component is nil", path)
 		end
-		
+
 		local isa = obj:IsA(className)
-		
+
 		-- If it is, return nothing
 		if isa then
 			return nil
@@ -166,12 +166,12 @@ function Schema.static:InstanceName(name)
 	return function(obj, path)
 		if not obj then
 			return s.Error("Checked component is nil", path)
-		end		
-		
+		end
+
 		if obj.Name == name then
 			return nil
 		end
-		
+
 		local err = (
 			"Instance of name %s does not match required instance name %s"
 		):format(
@@ -185,14 +185,14 @@ end
 Schema.static.PlaceId = s.Number
 
 --[[--------------------------------------------
-	
+
 	LOGGING
-	
+
 ----------------------------------------------]]
 
 Schema.static.Enums.LogLevel = Enumeration({
 	None = 0,
-	Fatal = 1,	
+	Fatal = 1,
 	Error = 2,
 	Warn = 3,
 	Info = 4,
@@ -214,9 +214,9 @@ Schema.static.LogInit = Schema.Record {
 }
 
 --[[--------------------------------------------
-	
+
 	COMPONENTS
-	
+
 ----------------------------------------------]]
 
 --[[
@@ -283,9 +283,9 @@ Schema.static.Root = s.AllOf(
 )
 
 --[[--------------------------------------------
-	
+
 	DATA
-	
+
 ----------------------------------------------]]
 
 --[[
@@ -303,7 +303,7 @@ Schema.static.DataType = s.OneOf(
 	"BrickColorValue",
 	"CFrameValue",
 	"Color3Value",
-	"NumberValue",	
+	"NumberValue",
 	"ObjectValue",
 	"RayValue",
 	"StringValue",
@@ -330,9 +330,9 @@ Schema.static.DataDefinition = Schema.Record {
 }
 
 --[[--------------------------------------------
-	
+
 	CONFIGURATION
-	
+
 ----------------------------------------------]]
 
 Schema.static.ConfigurationKey = Schema.DataKey
@@ -343,9 +343,9 @@ Schema.static.ConfigurationFolder = s.OneOf(
 )
 
 --[[--------------------------------------------
-	
+
 	EVENTS
-	
+
 ----------------------------------------------]]
 
 Schema.static.Enums.InputEventType = Enumeration({
@@ -380,9 +380,9 @@ Schema.static.DamageAmount = Schema.IntegerFrom(
 )
 
 --[[--------------------------------------------
-	
+
 	ASSETS
-	
+
 ----------------------------------------------]]
 
 --[[
@@ -403,9 +403,9 @@ Schema.static.AssetData = Schema.Record {
 }
 
 --[[--------------------------------------------
-	
+
 	URL
-	
+
 ----------------------------------------------]]
 
 Schema.static.HttpURL = s.AllOf(
@@ -419,9 +419,9 @@ Schema.static.HttpsURL = s.AllOf(
 )
 
 --[[--------------------------------------------
-	
+
 	CURRENCY
-	
+
 ----------------------------------------------]]
 
 Schema.static.MaximumCurrency = 1000000
@@ -432,9 +432,9 @@ Schema.static.Currency = Schema.IntegerFrom(
 )
 
 --[[--------------------------------------------
-	
+
 	WEAPONS
-	
+
 ----------------------------------------------]]
 
 Schema.static.Enums.WeaponType = Enumeration({

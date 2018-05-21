@@ -5,11 +5,11 @@ local TouchUtil = require(script.Parent.Parent.TouchUtil)
 local Currency = CollectableComponent:subclass(script.Name)
 
 function Currency:initialize(input)
-	CollectableComponent.initialize(self, input)	
+	CollectableComponent.initialize(self, input)
 	self:Debug("Init")
-	
+
 	self.Touched = false
-	
+
 	self:GetCollectablePart().Touched:Connect(
 		TouchUtil:Debounce(
 			TouchUtil:EnhancedFn(
@@ -25,7 +25,7 @@ function Currency:OnTouch()
 			self:Debug("Already touching, do nothing")
 			return
 		end
-		
+
 		if input.Player then
 			self:Debug(("Player touched %s"):format(input.Player.Name))
 			self.Touched = true
