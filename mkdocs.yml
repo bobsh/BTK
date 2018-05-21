@@ -1,0 +1,16 @@
+site_name: BTK
+site_url: https://bobsh.github.io/BTK/
+repo_name: bobsh/BTK
+repo_url: https://github.com/bobsh/BTK
+
+theme: readthedocs
+
+pages:
+  - Home: index.md
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true

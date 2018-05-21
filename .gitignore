@@ -1,2 +1,5 @@
 # luacov
 /luacov.stats.out
+
+# mkdocs
+/site/
