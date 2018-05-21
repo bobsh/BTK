@@ -107,8 +107,8 @@ function Assets.static:Install(input)
 
 	self:Debug(("Done installing %s with id %d version %d into %s"):format(
 		input.Name,
-		input.ID,
-		versionID,
+		input.ID or 0,
+		versionID or 0,
 		input.Parent.Name
 	))
 end

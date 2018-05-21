@@ -1,9 +1,9 @@
-local BaseObject = require(script.Parent.BaseObject)
-local AssetsUtil = require(script.Parent.AssetsUtil)
+local BaseScript = require(script.Parent.Parent.BaseScript)
+local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
 
-local PlayerInit = BaseObject:subclass(script.Name)
+local Player = BaseScript:subclass(script.Name)
 
-function PlayerInit:initialize(input)
+function Player:initialize(input)
 	local parent = input.Script.Parent
 
 	if not parent:IsA("PlayerScripts") then
@@ -22,4 +22,4 @@ function PlayerInit:initialize(input)
 	})
 end
 
-return PlayerInit
+return Player
