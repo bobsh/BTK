@@ -13,9 +13,9 @@ local MainToolBar = BaseObject:subclass(script.Name)
 
 MainToolBar.AssetsToInstall = {
 	{
-		Parent = game.ServerStorage,
+		Parent = game.ReplicatedStorage,
 		Name = "BTKContent",
-		ID = 1671168926,
+		ID = 1815201505,
 		Type = "Folder",
 		NoDelete = true
 	},

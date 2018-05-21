@@ -1,4 +1,4 @@
-local storage = game.ServerStorage
+local storage = game.ReplicatedStorage
 local BTKContent = storage:WaitForChild("BTKContent", 2)
 
 do

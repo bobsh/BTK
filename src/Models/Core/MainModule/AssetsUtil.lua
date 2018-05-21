@@ -46,7 +46,7 @@ function Assets.static:Install(input)
 	local newAsset
 	local versionID = 0
 	if input.Local ~= nil then
-		local ss = game.ServerStorage
+		local ss = game.ReplicatedStorage
 		local content = ss:FindFirstChild("BTKContent")
 		local folder = content:FindFirstChild(input.Local.Folder)
 		if folder == nil then
