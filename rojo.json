@@ -2,5 +2,9 @@
   "name": "BTK",
   "servePort": 8000,
   "partitions": {
+    "src": {
+      "path": "src",
+      "target": "ReplicatedStorage.BTK"
+    }
   }
 }
