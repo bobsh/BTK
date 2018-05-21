@@ -7,8 +7,13 @@ local function BTKScriptHelper(s)
 		Here we lookup a development version of the code
 		or fallback to the hosted version.
 	--]]
-	local mainModule = game.Workspace:FindFirstChild("MainModule", false)
-	local btk = require(mainModule or 1637466041)
+	local btkDev = game.ReplicatedStorage:FindFirstChild("BTK", false)
+	local btk
+	if btkDev then
+		btk = require(btkDev.Models.Core.MainModule)
+	else
+		btk = require(1815138614)
+	end
 	--[[
 		Call out to whatever ScriptHelper we found to continue
 		bootstrap in the central code area.
