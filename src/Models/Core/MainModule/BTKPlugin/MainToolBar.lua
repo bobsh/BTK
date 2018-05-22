@@ -39,11 +39,11 @@ MainToolBar.AssetsToInstall = {
 	},
 	{
 		Parent = game.StarterPlayer.StarterCharacterScripts,
-		Name = "BTKComponent",
+		Name = "BTK:PC",
 		Type = "Script",
 		Local = {
-			Folder = "CharacterScripts",
-			Name = "BTKComponent"
+			Folder = "Init",
+			Name = "BTK:Script"
 		}
 	},
 	{
