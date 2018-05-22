@@ -1,6 +1,7 @@
 local BaseObject = require(script.Parent.Parent.BaseObject)
 local UI = require(script.Parent.UI)
 local ScriptHelper = require(script.Parent.Parent.ScriptHelper)
+local Schema = require(script.Parent.Parent.Schema)
 
 local ConfigurationWidget = BaseObject:subclass(script.Name)
 
@@ -48,7 +49,7 @@ function ConfigurationWidget:NothingSelected()
 	addY(16)
 end
 
-function ConfigurationWidget:PopulateConfiguration(s)
+function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 	self.pluginGUI:ClearAllChildren()
 
 	-- small  utility to easily change the position of GUI elements while still having them
@@ -60,11 +61,24 @@ function ConfigurationWidget:PopulateConfiguration(s)
 		"Selection",
 		UDim2.new(0, 0, 0, curY),
 		UDim2.new(0, 128, 0, 16),
-		"Selected script: " .. s.Name,
+		"Selected script: " .. f.Name,
 		self.pluginGUI
 	)
 	createLabel.TextColor3 = Color3.new(0,0,0)
 	addY(16)
+
+	for key, val in pairs(btkScript:Properties()) do
+		self:AssertSchema(val, Schema.PropertyDefinition)
+		local fooLabel = UI:CreateStandardLabel(
+			"Selection",
+			UDim2.new(0, 0, 0, curY),
+			UDim2.new(0, 128, 0, 16),
+			key .. " Type: " .. val.Type,
+			self.pluginGUI
+		)
+		fooLabel.TextColor3 = Color3.new(0,0,0)
+		addY(16)
+	end
 end
 
 function ConfigurationWidget:HandleSelectionChange(signal)
@@ -101,8 +115,9 @@ function ConfigurationWidget:HandleSelectionChange(signal)
 			return
 		end
 
-		self:PopulateConfiguration(f)
+		self:PopulateConfiguration(f, btkScript)
 		self:Debug("Selected: " .. f.Name)
+		self:Debug("Properties", btkScript:Properties())
 	end)
 end
 

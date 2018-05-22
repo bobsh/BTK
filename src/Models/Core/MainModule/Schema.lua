@@ -59,6 +59,7 @@ Schema.static.Function = s.Function
 Schema.static.Optional = s.Optional
 Schema.static.Boolean = s.Boolean
 Schema.static.NumberFrom = s.NumberFrom
+Schema.static.OneOf = s.OneOf
 
 --[[--------------------------------------------
 
@@ -287,6 +288,17 @@ Schema.static.Root = s.AllOf(
 
 --[[--------------------------------------------
 
+	SCRIPTS
+
+----------------------------------------------]]
+
+Schema.static.Script = Schema.OneOf(
+	Schema:IsA("Script"),
+	Schema:IsA("LocalScript")
+)
+
+--[[--------------------------------------------
+
 	DATA
 
 ----------------------------------------------]]
@@ -328,6 +340,29 @@ Schema.static.DataDefinition = Schema.Record {
 	),
 	ValueInstance = Schema.Optional(
 		Schema:IsA("ValueBase")
+	),
+	AllowOverride = Schema.Optional(s.Boolean),
+}
+
+--[[--------------------------------------------
+
+	PROPERTIES
+
+----------------------------------------------]]
+
+Schema.static.PropertyDefinition = Schema.Record {
+	Name = Schema.DataKey,
+	Type = Schema.DataType,
+	Value = Schema.DataValue,
+	ValueFn = Schema.Optional(
+		s.Function
+	),
+	ValueInstance = Schema.Optional(
+		Schema:IsA("ValueBase")
+	),
+	SchemaFn = s.Function,
+	WatchFn = Schema.Optional(
+		s.Function
 	),
 	AllowOverride = Schema.Optional(s.Boolean),
 }

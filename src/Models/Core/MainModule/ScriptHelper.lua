@@ -6,6 +6,11 @@ local ScriptHelper = BaseObject:subclass(script.Name)
 ScriptHelper.static.Pattern = "^BTK:(%u[%u%l%d]+)$"
 
 function ScriptHelper.static:Get(s)
+	self:AssertSchema(
+		s,
+		Schema.Script
+	)
+
 	local name = s.Name:match(ScriptHelper.Pattern)
 	if name == nil then
 		self:Error("BTK script name not valid",

@@ -4,6 +4,7 @@ local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
 local Server = BaseScript:subclass(script.Name)
 
 function Server:initialize(input)
+	self:Debug("Init", {ScriptName = input.Script.Name})
 	BaseScript.initialize(self, input)
 
 	self.ServerConfig = game.ServerStorage.BTKServerConfig
