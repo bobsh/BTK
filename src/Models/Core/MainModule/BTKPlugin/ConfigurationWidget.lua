@@ -82,7 +82,37 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 	local uiSize = Instance.new("UISizeConstraint", propsFrame)
 	uiSize.MaxSize = Vector2.new(200, 32)
 
-	local idx = 1
+	--[[
+		HEADER
+	--]]
+	local cFrame = UI:CreateFrame(
+		"1",
+		UDim2.new(0,0,0,0),
+		UDim2.new(0,100,0,16),
+		"ColumnFrame"
+	)
+	local kLabel = UI:CreateStandardLabel(
+		"1",
+		UDim2.new(0, 0, 0, 0),
+		UDim2.new(0, 64, 0, 16),
+		"Name",
+		cFrame
+	)
+	kLabel.TextColor3 = Color3.new(0,0,0)
+
+	local tLabel = UI:CreateStandardLabel(
+		"2",
+		UDim2.new(0, 0, 0, 0),
+		UDim2.new(0, 64, 0, 16),
+		"Type",
+		cFrame
+	)
+	tLabel.TextColor3 = Color3.new(0,0,0)
+
+	--[[
+		ROWS
+	--]]
+	local idx = 2
 	for key, val in pairs(btkScript:Properties()) do
 		self:AssertSchema(val, Schema.PropertyDefinition)
 		local columnFrame = UI:CreateFrame(

@@ -1,17 +1,18 @@
 local Schema = require(script.Parent.Parent.Schema)
-local ModelComponent = require(script.Parent.Parent.ModelComponent)
+local Model = require(script.Parent.Model)
 
-local Area = ModelComponent:subclass(script.Name)
+local Area = Model:subclass(script.Name)
+Area:AddProperty({
+	Name = "AreaPart",
+	Type = "ObjectValue",
+	ValueFn = function(self2)
+		return self2:GetPrimaryPart()
+	end,
+	SchemaFn = Schema:IsA("BasePart"),
+})
 
 function Area:initialize(input)
-	ModelComponent.initialize(self, input)
-
-	self:CreateData({
-		Name = "AreaPart",
-		Type = "ObjectValue",
-		Value = self:GetPrimaryPart(),
-		Schema = Schema:IsA("BasePart"),
-	})
+	Model.initialize(self, input)
 
 	local partValue = self:GetAreaPart()
 	partValue.Anchored = true

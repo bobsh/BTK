@@ -1,11 +1,11 @@
-local CollectableComponent = require(script.Parent.Parent.CollectableComponent)
+local Collectable = require(script.Parent.Collectable)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 --local CurrencyManager = require(script.Parent.Parent.Services.CurrencyManager)
 
-local Currency = CollectableComponent:subclass(script.Name)
+local Currency = Collectable:subclass(script.Name)
 
 function Currency:initialize(input)
-	CollectableComponent.initialize(self, input)
+	Collectable.initialize(self, input)
 	self:Debug("Init")
 
 	self.Touched = false

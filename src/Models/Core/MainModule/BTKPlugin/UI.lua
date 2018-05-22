@@ -58,7 +58,7 @@ function UI.static:CreateStandardLabel(
 	label.Size = size
 	label.Text = text
 	label.TextColor3 = Color3.new(0.95, 0.95, 0.95)
-	label.Font = Enum.Font.ArialBold
+	label.Font = Enum.Font.SourceSans
 	label.FontSize = Enum.FontSize.Size14
 	label.TextXAlignment = Enum.TextXAlignment.Left
 	label.BackgroundTransparency = 1

@@ -1,10 +1,10 @@
-local ModelComponent = require(script.Parent.Parent.ModelComponent)
+local Model = require(script.Parent.Model)
 local Schema = require(script.Parent.Parent.Schema)
 
-local Smashable = ModelComponent:subclass(script.Name)
+local Smashable = Model:subclass(script.Name)
 
 function Smashable:initialize(input)
-	ModelComponent.initialize(self, input)
+	Model.initialize(self, input)
 
 	self:GetInputEvent().Event:Connect(function(input2)
 		self:AssertSchema(
