@@ -67,18 +67,52 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 	createLabel.TextColor3 = Color3.new(0,0,0)
 	addY(16)
 
+	local propsFrame = UI:CreateFrame(
+		"PropertiesFrame",
+		UDim2.new(0,0,0,curY),
+		UDim2.new(0.9,0,0,128),
+		self.pluginGUI
+	)
+
+	local uiLayout = Instance.new("UITableLayout", propsFrame)
+	uiLayout.FillEmptySpaceColumns = true
+	uiLayout.FillEmptySpaceRows = false
+	uiLayout.FillDirection = Enum.FillDirection.Vertical
+
+	local uiSize = Instance.new("UISizeConstraint", propsFrame)
+	uiSize.MaxSize = Vector2.new(200, 32)
+
+	local idx = 1
 	for key, val in pairs(btkScript:Properties()) do
 		self:AssertSchema(val, Schema.PropertyDefinition)
-		local fooLabel = UI:CreateStandardLabel(
-			"Selection",
-			UDim2.new(0, 0, 0, curY),
-			UDim2.new(0, 128, 0, 16),
-			key .. " Type: " .. val.Type,
-			self.pluginGUI
+		local columnFrame = UI:CreateFrame(
+			tostring(idx),
+			UDim2.new(0,0,0,0),
+			UDim2.new(0,100,0,16),
+			propsFrame
 		)
-		fooLabel.TextColor3 = Color3.new(0,0,0)
-		addY(16)
+		local keyLabel = UI:CreateStandardLabel(
+			"1",
+			UDim2.new(0, 0, 0, 0),
+			UDim2.new(0, 64, 0, 16),
+			key,
+			columnFrame
+		)
+		keyLabel.TextColor3 = Color3.new(0,0,0)
+
+		local typeLabel = UI:CreateStandardLabel(
+			"2",
+			UDim2.new(0, 0, 0, 0),
+			UDim2.new(0, 64, 0, 16),
+			val.Type,
+			columnFrame
+		)
+		typeLabel.TextColor3 = Color3.new(0,0,0)
+
+		idx = idx + 1
 	end
+
+	uiLayout:ApplyLayout()
 end
 
 function ConfigurationWidget:HandleSelectionChange(signal)
