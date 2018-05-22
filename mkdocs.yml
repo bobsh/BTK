@@ -4,7 +4,13 @@ site_description: BTK Docs
 repo_name: bobsh/BTK
 repo_url: https://github.com/bobsh/BTK
 
-theme: readthedocs
+copyright: 'Copyright &copy; 2018 Bob.sh Ltd'
+
+theme:
+  name: material
+  palette:
+    primary: 'Deep Purple'
+    accent: 'Light Blue'
 
 pages:
   - Home: index.md
@@ -13,9 +19,15 @@ pages:
   - Support: support.md
   - Development: development.md
 
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/bobsh'
+
 markdown_extensions:
   - admonition
   - codehilite:
       guess_lang: false
   - toc:
       permalink: true
+  - pymdownx.superfences
