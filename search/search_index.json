@@ -2,33 +2,38 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Home\n\n\nA toolkit for Roblox.", 
+            "text": "Overview\n\n\nA toolkit for Roblox.", 
             "title": "Home"
         }, 
         {
-            "location": "/#home", 
+            "location": "/#overview", 
             "text": "A toolkit for Roblox.", 
-            "title": "Home"
+            "title": "Overview"
         }, 
         {
             "location": "/installation/", 
-            "text": "Installation\n\n\nInstall the plugin into your Roblox Studio:\n\n\n\n\nhttps://www.roblox.com/library/1606500837/BTK\n\n\n\n\nAnd while focused on the place, go to the \nPlugins\n ribbon and\nclick \nInstall\n for Bob's Toolkit.", 
+            "text": "Plugin Installation\n\n\nInstall the plugin into your Roblox Studio:\n\n\n\n\nhttps://www.roblox.com/library/1606500837/BTK\n\n\n\n\nAnd while focused on the place, go to the \nPlugins\n ribbon and\nclick \nInstall\n for Bob's Toolkit.", 
             "title": "Installation"
         }, 
         {
-            "location": "/installation/#installation", 
+            "location": "/installation/#plugin-installation", 
             "text": "Install the plugin into your Roblox Studio:   https://www.roblox.com/library/1606500837/BTK   And while focused on the place, go to the  Plugins  ribbon and\nclick  Install  for Bob's Toolkit.", 
-            "title": "Installation"
+            "title": "Plugin Installation"
         }, 
         {
             "location": "/usage/", 
-            "text": "Usage\n\n\nTODO", 
+            "text": "Adding Scripts\n\n\nTODO\n\n\nConfiguring Scripts\n\n\nTODO", 
             "title": "Usage"
         }, 
         {
-            "location": "/usage/#usage", 
+            "location": "/usage/#adding-scripts", 
             "text": "TODO", 
-            "title": "Usage"
+            "title": "Adding Scripts"
+        }, 
+        {
+            "location": "/usage/#configuring-scripts", 
+            "text": "TODO", 
+            "title": "Configuring Scripts"
         }
     ]
 }
