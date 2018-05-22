@@ -1,3 +1,3 @@
-## BTK Usage
+# Usage
 
 TODO

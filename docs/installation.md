@@ -1,4 +1,4 @@
-## BTK Installation
+# Installation
 
 Install the plugin into your Roblox Studio:
 
