@@ -34,6 +34,41 @@
             "location": "/usage/#configuring-scripts", 
             "text": "TODO", 
             "title": "Configuring Scripts"
+        }, 
+        {
+            "location": "/support/", 
+            "text": "Raising bugs\n\n\nRaise issues on github: \nBug report\n\n\nFeature requests\n\n\nRaise requests on github: \nFeature request", 
+            "title": "Support"
+        }, 
+        {
+            "location": "/support/#raising-bugs", 
+            "text": "Raise issues on github:  Bug report", 
+            "title": "Raising bugs"
+        }, 
+        {
+            "location": "/support/#feature-requests", 
+            "text": "Raise requests on github:  Feature request", 
+            "title": "Feature requests"
+        }, 
+        {
+            "location": "/development/", 
+            "text": "Source Control\n\n\nGithub repo: \nbobsh/BTK\n\n\nProject Management\n\n\nGithub project: \nBTK\n\n\nAutomated testing\n\n\nTravisCI: \nbobsh/BTK\n\nCoveralls: \nbobsh/BTK", 
+            "title": "Development"
+        }, 
+        {
+            "location": "/development/#source-control", 
+            "text": "Github repo:  bobsh/BTK", 
+            "title": "Source Control"
+        }, 
+        {
+            "location": "/development/#project-management", 
+            "text": "Github project:  BTK", 
+            "title": "Project Management"
+        }, 
+        {
+            "location": "/development/#automated-testing", 
+            "text": "TravisCI:  bobsh/BTK \nCoveralls:  bobsh/BTK", 
+            "title": "Automated testing"
         }
     ]
 }
