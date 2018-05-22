@@ -11,6 +11,7 @@ pages:
   - Installation: installation.md
   - Usage: usage.md
   - Support: support.md
+  - Development: development.md
 
 markdown_extensions:
   - admonition
