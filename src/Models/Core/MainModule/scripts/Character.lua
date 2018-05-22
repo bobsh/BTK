@@ -1,5 +1,5 @@
 local Model = require(script.Parent.Model)
-local Schema = require(script.Parent.Schema)
+local Schema = require(script.Parent.Parent.Schema)
 
 local Character = Model:subclass(script.Name)
 Character:AddProperty({

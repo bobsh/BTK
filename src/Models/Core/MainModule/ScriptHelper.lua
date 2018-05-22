@@ -1,5 +1,6 @@
 local BaseObject = require(script.Parent.BaseObject)
 local Schema = require(script.Parent.Schema)
+local scripts = script.Parent.scripts
 
 local ScriptHelper = BaseObject:subclass(script.Name)
 
@@ -21,7 +22,7 @@ function ScriptHelper.static:Get(s)
 		)
 	end
 
-	local scriptToCall = script.Parent.scripts:FindFirstChild(name, false)
+	local scriptToCall = scripts:FindFirstChild(name, false)
 	if scriptToCall == nil then
 		self:Error("Script does not exist",
 			{

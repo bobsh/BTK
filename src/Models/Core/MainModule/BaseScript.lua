@@ -13,6 +13,17 @@ BaseScript:AddProperty({
 	),
 	AllowOverride = false,
 })
+BaseScript:AddProperty({
+	Name = "ConfigurationFolder",
+	Type = "ObjectValue",
+	ValueFn = function(self)
+		return self:GetScript():FindFirstChild("Configuration", false)
+	end,
+	SchemaFn = Schema.Optional(
+		Schema:IsA("Folder")
+	),
+	AllowOverride = false,
+})
 
 function BaseScript:initialize(input)
 	BaseInstance.initialize(self, input)
