@@ -1,23 +1,22 @@
-local ModelComponent = require(script.Parent.Parent.ModelComponent)
+local Model = require(script.Parent.Model)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 local Schema = require(script.Parent.Parent.Schema)
 
-local Teleporter = ModelComponent:subclass(script.Name)
+local Teleporter = Model:subclass(script.Name)
+Teleporter:AddProperty({
+	Name = "Target",
+	Type = "ObjectValue",
+	SchemaFn = Schema:IsA("BasePart"),
+})
+
+Teleporter:AddProperty({
+	Name = "Offset",
+	Type = "Vector3Value",
+	SchemaFn = Schema:TypeOf("Vector3"),
+})
 
 function Teleporter:initialize(input)
-	ModelComponent.initialize(self, input)
-
-	self:CreateData({
-		Name = "Target",
-		Type = "ObjectValue",
-		Schema = Schema:IsA("BasePart"),
-	})
-
-	self:CreateData({
-		Name = "Offset",
-		Type = "Vector3Value",
-		Schema = Schema:TypeOf("Vector3"),
-	})
+	Model.initialize(self, input)
 
 	self:GetPrimaryPart().Touched:Connect(
 		TouchUtil:Debounce(
@@ -34,8 +33,8 @@ function Teleporter:CreateOnTouched()
 		local offset = self:GetOffset()
 
 	    if input.Player
-			and input.Component:GetData("RootPart") then
-			input.Component:GetData("RootPart").CFrame = target + offset
+			and input.Component:GetRootPart() then
+			input.Component:GetRootPart().CFrame = target + offset
 	    end
 	end
 end

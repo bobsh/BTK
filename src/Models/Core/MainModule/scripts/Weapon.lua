@@ -1,20 +1,19 @@
-local ToolComponent = require(script.Parent.Parent.ToolComponent)
+local Tool = require(script.Parent.Tool)
 local Schema = require(script.Parent.Parent.Schema)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 
-local Weapon = ToolComponent:subclass(script.Name)
+local Weapon = Tool:subclass(script.Name)
+Weapon:AddProperty({
+	Name = "Type",
+	Type = "StringValue",
+	SchemaFn = Schema.WeaponType,
+})
 
 --[[
 	void Weapon:Init()
 --]]
 function Weapon:initialize(input)
-	ToolComponent.initialize(self, input)
-
-	self:CreateData({
-		Name = "Type",
-		Type = "StringValue",
-		Schema = Schema.WeaponType,
-	})
+	Tool.initialize(self, input)
 
 	if self:GetType() == Schema.Enums.WeaponType.Melee then
 		self:GetTool().Activated:Connect(self:MeleeActivate())

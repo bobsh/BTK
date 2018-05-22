@@ -1,5 +1,4 @@
-local CharacterComponent = require(script.Parent.Parent.CharacterComponent)
-local s = require(script.Parent.Parent.lib.schema)
+local Character = require(script.Parent.Character)
 local Schema = require(script.Parent.Parent.Schema)
 local PathfindingService = game:GetService("PathfindingService")
 
@@ -10,75 +9,78 @@ local NPCState = {
 	AttackTarget = "AttackTarget",
 }
 
-local NPC = CharacterComponent:subclass(script.Name)
+local NPC = Character:subclass(script.Name)
+NPC:AddProperty({
+	Name = "State",
+	Type = "StringValue",
+	Value = NPCState.Idle,
+	SchemaFn = Schema.OneOf(
+		NPCState.Dead,
+		NPCState.Idle,
+		NPCState.MoveToTarget,
+		NPCState.AttackTarget
+	),
+	WatchFn = function(self, value)
+		self:Debug("State is now " .. value)
+		if     value == NPCState.Idle then
+			self.Waypoints = {}
+			self.GetHumanoid().PlatformStand = true
+		elseif value == NPCState.MoveToTarget then
+			self.GetHumanoid().PlatformStand = false
+			self:WalkToTarget()
+		elseif value == NPCState.AttackTarget then
+			self.Waypoints = {}
+			self.GetHumanoid().PlatformStand = true
+		elseif value == NPCState.Dead then
+			self.Waypoints = {}
+			self.GetHumanoid().PlatformStand = true
+		else
+			self:Error("Unknown state: " .. value)
+		end
+	end
+})
+NPC:AddProperty({
+	Name = "LastAttack",
+	Type = "NumberValue",
+	Value = 0,
+	SchemaFn = Schema.NonNegativeNumber,
+})
+NPC:AddProperty({
+	Name = "DistanceToTarget",
+	Type = "NumberValue",
+	Value = 0.0,
+	SchemaFn = Schema.NumberFrom(0.0, 9999.0),
+	WatchFn = function(self, value)
+		if self:GetEnemyTarget() ~= nil then
+			if value < self:GetAttackDistance() then
+				self:SetState(NPCState.AttackTarget)
+			else
+				self:SetState(NPCState.MoveToTarget)
+			end
+		else
+			self:SetState(NPCState.Idle)
+		end
+	end
+})
+NPC:AddProperty({
+	Name = "EnemyTarget",
+	Type = "ObjectValue",
+	SchemaFn = Schema.Optional(
+		Schema.CharacterModel
+	),
+	WatchFn = function(self, value)
+		if value ~= nil then
+			self:SetState(NPCState.MoveToTarget)
+		else
+			self:SetState(NPCState.Idle)
+		end
+	end
+})
 
 function NPC:initialize(input)
-	CharacterComponent.initialize(self, input)
+	Character.initialize(self, input)
 
 	self.Waypoints = {}
-
-	self.State = self:CreateData({
-		Name = "State",
-		Type = "StringValue",
-		Value = NPCState.Idle,
-		Schema = s.OneOf(
-			NPCState.Dead,
-			NPCState.Idle,
-			NPCState.MoveToTarget,
-			NPCState.AttackTarget
-		),
-		Watch = function(value)
-			self:Debug("State is now " .. value)
-			if     value == NPCState.Idle then
-				self.Waypoints = {}
-				self.GetHumanoid().PlatformStand = true
-			elseif value == NPCState.MoveToTarget then
-				self.GetHumanoid().PlatformStand = false
-				self:WalkToTarget()
-			elseif value == NPCState.AttackTarget then
-				self.Waypoints = {}
-				self.GetHumanoid().PlatformStand = true
-			elseif value == NPCState.Dead then
-				self.Waypoints = {}
-				self.GetHumanoid().PlatformStand = true
-			else
-				self:Err("Unknown state: " .. value)
-			end
-		end
-	})
-
-	self.EnemyTarget = self:CreateData({
-		Name = "EnemyTarget",
-		Type = "ObjectValue",
-		Schema = Schema.Optional(
-			Schema.CharacterModel
-		),
-		Watch = function(value)
-			if value ~= nil then
-				self:SetData("State", NPCState.MoveToTarget)
-			else
-				self:SetData("State", NPCState.Idle)
-			end
-		end
-	})
-
-	self.DistanceToTarget = self:CreateData({
-		Name = "DistanceToTarget",
-		Type = "NumberValue",
-		Value = 0.0,
-		Schema = s.NumberFrom(0.0, 9999.0),
-		Watch = function(value)
-			if self:GetEnemyTarget() ~= nil then
-				if value < self:GetAttackDistance() then
-					self:SetData("State", NPCState.AttackTarget)
-				else
-					self:SetData("State", NPCState.MoveToTarget)
-				end
-			else
-				self:SetData("State", NPCState.Idle)
-			end
-		end
-	})
 
 	self.Humanoid = self:GetHumanoid()
 	local moveToFinishedConnect = self.Humanoid.MoveToFinished:Connect(function(reached)
@@ -88,7 +90,7 @@ function NPC:initialize(input)
 
 	self.Humanoid.Died:Connect(function()
 		self:Debug("Dead")
-		self:SetData("State", NPCState.Dead)
+		self:SetState(NPCState.Dead)
 
 		moveToFinishedConnect:Disconnect()
 
@@ -100,21 +102,14 @@ function NPC:initialize(input)
 	self.Area = self:GetArea()
 	if self.Area ~= nil then
 		self.Area.Events.PlayerTouched.Event:Connect(function(player)
-			self:SetData("EnemyTarget", player.Character)
+			self:SetEnemyTarget(player.Character)
 		end)
 		self.Area.Events.PlayerTouchEnded.Event:Connect(function(_)
-			self:SetData("EnemyTarget", nil)
+			self:SetEnemyTarget(nil)
 		end)
 	else
 		self:Warn("No area found")
 	end
-
-	self:CreateData({
-		Name = "LastAttack",
-		Type = "NumberValue",
-		Value = 0,
-		Schema = s.NonNegativeNumber,
-	})
 
 	self:Heartbeat()
 end

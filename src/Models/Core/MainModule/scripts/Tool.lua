@@ -1,35 +1,38 @@
-local BaseComponent = require(script.Parent.BaseComponent)
+local BaseScript = require(script.Parent.BaseScript)
 local Schema = require(script.Parent.Schema)
 
 --[[
 	ToolComponent represents a component that uses a Tool at its root.
 --]]
-local ToolComponent = BaseComponent:subclass(script.Name)
+local Tool = BaseScript:subclass(script.Name)
+Tool:AddProperty({
+	Name = "Owner",
+	Type = "ObjectValue",
+	ValueFn = function(self)
+		self:_getOwner()
+	end,
+	SchemaFn = Schema.Optional(
+		Schema.CharacterModel
+	),
+})
+Tool:AddProperty({
+	Name = "Equipped",
+	Type = "BoolValue",
+	Value = false,
+	SchemaFn = Schema.Boolean,
+})
 
-function ToolComponent:initialize(input)
-	BaseComponent.initialize(self, input)
+
+function Tool:initialize(input)
+	BaseScript.initialize(self, input)
 
 	self:AssertSchema(input.Root, Schema:IsA("Tool"))
 
-	self:CreateData({
-		Name = "Owner",
-		Type = "ObjectValue",
-		Value = self:_getOwner(),
-		Schema = Schema.Optional(
-			Schema.CharacterModel
-		),
-	})
 	self:GetTool().AncestryChanged:Connect(function()
 		self:Debug("AncestryChanged: recalculating Owner")
 		self:SetData("Owner", self:_getOwner())
 	end)
 
-	self:CreateData({
-		Name = "Equipped",
-		Type = "BoolValue",
-		Value = false,
-		Schema = Schema.Boolean,
-	})
 	self:GetTool().Equipped:Connect(function()
 		self:Debug("Equipped: recalculating IsEquipped")
 		self:SetData("IsEquipped", true)
@@ -43,7 +46,7 @@ end
 --[[
 	Get the tool at the root of this component.
 --]]
-function ToolComponent:GetTool()
+function Tool:GetTool()
 	return self:AssertSchema(
 		self:GetRoot(),
 		Schema:IsA("Tool")
@@ -53,7 +56,7 @@ end
 --[[
 	_getOwner returns the character that currently holds the object.
 --]]
-function ToolComponent:_getOwner()
+function Tool:_getOwner()
 	local model = self:GetTool().Parent
 	if model:IsA("Backpack") then
 		local player = model.Parent
@@ -87,4 +90,4 @@ function ToolComponent:_getOwner()
 	return nil
 end
 
-return ToolComponent
+return Tool

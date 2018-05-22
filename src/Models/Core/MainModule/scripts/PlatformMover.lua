@@ -1,51 +1,49 @@
-local ModelComponent = require(script.Parent.Parent.ModelComponent)
+local Model = require(script.Parent.Model)
 local Schema = require(script.Parent.Parent.Schema)
 
-local PlatformMover = ModelComponent:subclass(script.Name)
+local PlatformMover = Model:subclass(script.Name)
+PlatformMover:AddProperty({
+	Name = "PlatformPart",
+	Type = "ObjectValue",
+	ValueFn = function(self)
+		local a = self:GetPrimaryPart()
+		a.Anchored = true
+		return a
+	end,
+	SchemaFn = Schema:IsA("BasePart"),
+})
+PlatformMover:AddProperty({
+	Name = "StartPositionMarker",
+	Type = "ObjectValue",
+	SchemaFn = Schema:IsA("BasePart"),
+})
+PlatformMover:AddProperty({
+	Name = "EndPositionMarker",
+	Type = "ObjectValue",
+	SchemaFn = Schema:IsA("BasePart"),
+})
+PlatformMover:AddProperty({
+	Name = "TimeToMove",
+	Type = "NumberValue",
+	SchemaFn = Schema.NumberFrom(1.0, 1000.0),
+})
+PlatformMover:AddProperty({
+	Name = "Increment",
+	Type = "NumberValue",
+	SchemaFn = Schema.NumberFrom(0.1, 10.0),
+})
 
 function PlatformMover:initialize(input)
-	ModelComponent.initialize(self, input)
+	Model.initialize(self, input)
 
-	-- Platform
-	local platformPart = self:CreateData({
-		Name = "PlatformPart",
-		Type = "ObjectValue",
-		Value = self:GetPrimaryPart(),
-		Schema = Schema:IsA("BasePart"),
-	})
-	platformPart.Anchored = true
-
-	local startPosition = self:CreateData({
-		Name = "StartPositionMarker",
-		Type = "ObjectValue",
-		Schema = Schema:IsA("BasePart"),
-	})
-	startPosition.Transparency = 1
-
-	local endPosition = self:CreateData({
-		Name = "EndPositionMarker",
-		Type = "ObjectValue",
-		Schema = Schema:IsA("BasePart"),
-	})
-	endPosition.Transparency = 1
-
-	self:CreateData({
-		Name = "TimeToMove",
-		Type = "NumberValue",
-		Schema = Schema.NumberFrom(1.0, 1000.0),
-	})
-
-	self:CreateData({
-		Name = "Increment",
-		Type = "NumberValue",
-		Schema = Schema.NumberFrom(0.1, 10.0),
-	})
+	self:GetStartPositionMarker().Transparency = 1
+	self:EndStartPositionMarker().Transparency = 1
 
 	--- Begin moving, an infinite loop
 	self:Debug("Beginning cycle")
 	while true do
-		self:MovePart(endPosition.Position)
-		self:MovePart(startPosition.Position)
+		self:MovePart(self:EndStartPositionMarker().Position)
+		self:MovePart(self:GetStartPositionMarker().Position)
 	end
 end
 

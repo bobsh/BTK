@@ -1,26 +1,25 @@
-local ModelComponent = require(script.Parent.Parent.ModelComponent)
+local Model = require(script.Parent.Model)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 local Schema = require(script.Parent.Parent.Schema)
 
 local TeleportService = game:GetService("TeleportService")
 
-local PlaceTeleporter = ModelComponent:subclass(script.Name)
+local PlaceTeleporter = Model:subclass(script.Name)
+PlaceTeleporter:AddProperty({
+	Name = "TeleportPlaceId",
+	Type = "NumberValue",
+	SchemaFn = Schema.PlaceId,
+})
+
+PlaceTeleporter:AddProperty({
+	Name = "ReserveInstance",
+	Type = "BoolValue",
+	Value = false,
+	SchemaFn = Schema.Boolean,
+})
 
 function PlaceTeleporter:initialize(input)
-	ModelComponent.initialize(self, input)
-
-	self:CreateData({
-		Name = "TeleportPlaceId",
-		Type = "NumberValue",
-		Schema = Schema.PlaceId,
-	})
-
-	self:CreateData({
-		Name = "ReserveInstance",
-		Type = "BoolValue",
-		Value = false,
-		Schema = Schema.Boolean,
-	})
+	Model.initialize(self, input)
 
 	self:GetPrimaryPart().Touched:Connect(
 		TouchUtil:Debounce(
