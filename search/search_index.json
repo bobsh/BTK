@@ -9,6 +9,26 @@
             "location": "/#btk", 
             "text": "A toolkit for Roblox.", 
             "title": "BTK"
+        }, 
+        {
+            "location": "/installation/", 
+            "text": "BTK Installation\n\n\nInstall the plugin into your Roblox Studio:\n\n\n\n\nhttps://www.roblox.com/library/1606500837/BTK\n\n\n\n\nAnd while focused on the place, go to the \nPlugins\n ribbon and\nclick \nInstall\n for Bob's Toolkit.", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/installation/#btk-installation", 
+            "text": "Install the plugin into your Roblox Studio:   https://www.roblox.com/library/1606500837/BTK   And while focused on the place, go to the  Plugins  ribbon and\nclick  Install  for Bob's Toolkit.", 
+            "title": "BTK Installation"
+        }, 
+        {
+            "location": "/usage/", 
+            "text": "BTK Usage\n\n\nTODO", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/usage/#btk-usage", 
+            "text": "TODO", 
+            "title": "BTK Usage"
         }
     ]
 }

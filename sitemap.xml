@@ -4,7 +4,23 @@
     
     <url>
      <loc>https://bobsh.github.io/BTK//</loc>
-     <lastmod>2018-05-21</lastmod>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://bobsh.github.io/BTK//installation/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://bobsh.github.io/BTK//usage/</loc>
+     <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
