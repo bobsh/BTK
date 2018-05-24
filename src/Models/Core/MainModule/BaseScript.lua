@@ -21,6 +21,14 @@ BaseScript:AddProperty({
 	),
 	AllowOverride = false,
 })
+BaseScript:AddProperty({
+	Name = "InputEvent",
+	Type = "ObjectValue",
+	SchemaFn = Schema.Optional(
+		Schema:IsA("BindableEvent")
+	),
+	AllowOverride = false,
+})
 
 function BaseScript:initialize(input)
 	BaseInstance.initialize(self, input)
@@ -37,6 +45,9 @@ function BaseScript:initialize(input)
 
 	self:SetScript(input.Script)
 	self:SetConfigurationFolder(self:GetScript():FindFirstChild("Configuration", false))
+	local event = Instance.new("BindableEvent", self:GetScript())
+	event.Name = "InputEvent"
+	self:SetInputEvent(event)
 end
 
 return BaseScript
