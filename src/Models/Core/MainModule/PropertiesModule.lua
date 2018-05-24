@@ -42,8 +42,9 @@ local PropertiesModule = {
             )
             self:Debug("Adding new property", {
                 Name = input.Name,
+                Defs = self._property_defs,
             })
-            self.static._property_defs[input.Name] = input
+            self._property_defs[input.Name] = input
             self:_addPropertyHelpers(input)
         end,
 
@@ -51,8 +52,18 @@ local PropertiesModule = {
             Return all property definitions
         ]]
         Properties = function(self)
-            self:Debug("Returning properties", self.static._property_defs)
-            return self.static._property_defs
+            self:Debug("Returning properties", self._property_defs)
+            return self._property_defs
+        end,
+
+        subclassed = function(self, other)
+            self:Debug("Subclassed by " .. other:GetClassName())
+            local props = self:Properties()
+            local new = {}
+            for key, val in pairs(props) do
+                new[key] = val
+            end
+            self._property_defs = new
         end,
     },
 
