@@ -52,13 +52,28 @@
         }, 
         {
             "location": "/development/", 
-            "text": "Source Control\n\n\nGithub repo: \nbobsh/BTK\n\n\nProject Management\n\n\nGithub project: \nBTK\n\n\nAutomated testing\n\n\nTravisCI: \nbobsh/BTK\n\nCoveralls: \nbobsh/BTK", 
+            "text": "Source Control\n\n\nGithub repo: \nbobsh/BTK\n\n\nLocal Development\n\n\nThe project uses \"Rojo\" to sync up the source with Roblox Studio,\nmake sure this is running and you setup synchronisation for a solid development workflow.\n\n\nTo run rojo:\n\n\n# make dev\n\n\n\n\n\nTests\n\n\nRun\n\n\n# make test\n\n\n\n\n\nLint\n\n\nOr for lint:\n\n\n# make lint\n\n\n\n\n\nProject Management\n\n\nGithub project: \nBTK\n\n\nAutomated testing\n\n\nTravisCI: \nbobsh/BTK\n\nCoveralls: \nbobsh/BTK", 
             "title": "Development"
         }, 
         {
             "location": "/development/#source-control", 
             "text": "Github repo:  bobsh/BTK", 
             "title": "Source Control"
+        }, 
+        {
+            "location": "/development/#local-development", 
+            "text": "The project uses \"Rojo\" to sync up the source with Roblox Studio,\nmake sure this is running and you setup synchronisation for a solid development workflow.  To run rojo:  # make dev", 
+            "title": "Local Development"
+        }, 
+        {
+            "location": "/development/#tests", 
+            "text": "Run  # make test", 
+            "title": "Tests"
+        }, 
+        {
+            "location": "/development/#lint", 
+            "text": "Or for lint:  # make lint", 
+            "title": "Lint"
         }, 
         {
             "location": "/development/#project-management", 
