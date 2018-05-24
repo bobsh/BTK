@@ -4,3 +4,12 @@
 [submodule "modules/testez"]
 	path = modules/testez
 	url = https://github.com/Roblox/testez.git
+[submodule "modules/roact"]
+	path = modules/roact
+	url = https://github.com/Roblox/roact
+[submodule "modules/roact-material"]
+	path = modules/roact-material
+	url = https://github.com/AmaranthineCodices/roact-material
+[submodule "modules/roact-animate"]
+	path = modules/roact-animate
+	url = https://github.com/AmaranthineCodices/roact-animate
