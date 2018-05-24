@@ -14,22 +14,22 @@ local PropertiesModule = {
             )
 
             if input.Type == "BoolValue" then
-                self.class:AddMember("Is" .. input.Name, function(self2)
+                self:AddMember("Is" .. input.Name, function(self2)
                     return self2:GetProperty(input.Name)
                 end)
             end
 
             self:Debug("self is", self)
 
-            self.class:AddMember("Get" .. input.Name, function(self2)
+            self:AddMember("Get" .. input.Name, function(self2)
                 return self2:GetProperty(input.Name)
             end)
 
-            self.class:AddMember("Set" .. input.Name, function(self2, value)
+            self:AddMember("Set" .. input.Name, function(self2, value)
                 return self2:SetProperty(input.Name, value)
             end)
 
-            self.class:AddMember("Watch" .. input.Name, function(self2, value)
+            self:AddMember("Watch" .. input.Name, function(self2, value)
                 return self2:WatchProperty(input.Name, value)
             end)
         end,
@@ -46,6 +46,7 @@ local PropertiesModule = {
                 Name = input.Name,
             })
             self.static._property_defs[input.Name] = input
+            self:_addPropertyHelpers(input)
         end,
 
         --[[
