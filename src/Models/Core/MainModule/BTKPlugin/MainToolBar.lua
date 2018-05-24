@@ -1,8 +1,6 @@
 local BaseObject = require(script.Parent.Parent.BaseObject)
 local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
 local CreationWidget = require(script.Parent.CreationWidget)
-local AssetsWidget = require(script.Parent.AssetsWidget)
-local ConfigurationWidget = require(script.Parent.ConfigurationWidget)
 
 --[[
 
@@ -97,9 +95,6 @@ function MainToolBar:initialize(plg, gui)
 		end
 	end)
 
-	self.AssetsWidget = AssetsWidget:new(self.Plugin, self.MainScreenGUI)
-	self.ConfigurationWidget = ConfigurationWidget:new(self.Plugin)
-
 	local function updateButtons()
 		local assets = AssetsUtil:GetMany(self.AssetsToInstall)
 		self:Debug("Assets installed: " .. #assets .. " Number of assets to install: " .. #self.AssetsToInstall)
@@ -139,8 +134,6 @@ end
 function MainToolBar:Destroy()
 	self:Trace("Destroy called")
 	self.CreationWidget:Destroy()
-	self.AssetsWidget:Destroy()
-	self.ConfigurationWidget:Destroy()
 end
 
 return MainToolBar

@@ -1,5 +1,9 @@
 local BaseObject = require(script.Parent.BaseObject)
 local MainToolBar = require(script.MainToolBar)
+local ConfigurationWidget = require(script.ConfigurationWidget)
+local AssetsWidget = require(script.AssetsWidget)
+local UI = require(script.Parent.UI)
+local Roact = require(script.Parent.lib.Roact)
 
 local BTKPlugin = BaseObject:subclass(script.Name)
 
@@ -11,12 +15,26 @@ function BTKPlugin:initialize(plug)
 
 	plug:Activate(false)
 
+	self._plugin = plug
 	self._mainScreenGUI = Instance.new("ScreenGui", game.CoreGui)
 	self._mainScreenGUI.Name = "BTKMainScreenGUI"
 
 	self._mainToolBar = MainToolBar:new(plug, self._mainScreenGUI)
+	self._configurationWidget = ConfigurationWidget:new(plug)
+	self._assetsWidget = AssetsWidget:new(plug, self._mainScreenGUI)
+
+	self:AssetsWidget()
 
 	plug.Deactivation:Connect(self:Deactivate())
+end
+
+function BTKPlugin:AssetsWidget()
+	local dockWidget = UI.DockWidget({
+		Name = "Assets",
+		Plugin = self._plugin,
+	})
+	local assetsWidget = Roact.createElement(UI.AssetsWidget)
+	Roact.mount(assetsWidget, dockWidget)
 end
 
 function BTKPlugin:Deactivate()
@@ -24,6 +42,8 @@ function BTKPlugin:Deactivate()
 		self:Trace("Plugin deactivating")
 		self._mainScreenGUI:Destroy()
 		self._mainToolBar:Destroy()
+		self._configurationWidget:Destroy()
+		self._assetsWidget:Destroy()
 		self:Trace("Plugin deactivation complete")
 	end
 end

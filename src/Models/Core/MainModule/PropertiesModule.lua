@@ -42,7 +42,6 @@ local PropertiesModule = {
             )
             self:Debug("Adding new property", {
                 Name = input.Name,
-                Defs = self._property_defs,
             })
             self._property_defs[input.Name] = input
             self:_addPropertyHelpers(input)
@@ -52,7 +51,6 @@ local PropertiesModule = {
             Return all property definitions
         ]]
         Properties = function(self)
-            self:Debug("Returning properties", self._property_defs)
             return self._property_defs
         end,
 
