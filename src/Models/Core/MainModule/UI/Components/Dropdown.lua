@@ -41,6 +41,7 @@ function Dropdown:render()
 			})
 		end,
 	}, {
+		--[[
 		Icon = c("ImageLabel", {
 			Image = IMAGE,
 			BackgroundTransparency = 1,
@@ -49,6 +50,7 @@ function Dropdown:render()
 			AnchorPoint = Vector2.new(1, 0.5),
 			ImageColor3 = Color3.new(0, 0, 0),
 		}),
+		--]]
 		Label = c("TextLabel", {
 			BackgroundTransparency = 1,
 			Size = UDim2.new(1, -56, 1, 0),
