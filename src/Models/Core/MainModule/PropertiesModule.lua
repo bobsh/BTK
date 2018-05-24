@@ -19,8 +19,6 @@ local PropertiesModule = {
                 end)
             end
 
-            self:Debug("self is", self)
-
             self:AddMember("Get" .. input.Name, function(self2)
                 return self2:GetProperty(input.Name)
             end)

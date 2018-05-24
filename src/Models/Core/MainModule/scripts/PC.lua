@@ -5,10 +5,7 @@ local PC = Character:subclass(script.Name)
 PC:AddProperty({
 	Name = "Player",
     Type = "ObjectValue",
-    ValueFn = function(self2)
-        return game.Players:GetPlayerFromCharacter(self2:GetModel())
-    end,
-	SchemaFn = Schema:IsA("Player"),
+	SchemaFn = Schema.Optional(Schema:IsA("Player")),
 	AllowOverride = false,
 })
 PC:AddProperty({
@@ -27,15 +24,15 @@ PC:AddProperty({
 PC:AddProperty({
 	Name = "CollectAttachment",
     Type = "ObjectValue",
-    ValueFn = function(self2)
-        return Instance.new("Attachment", self2:GetRootPart())
-    end,
-	SchemaFn = Schema:IsA("Attachment"),
+	SchemaFn = Schema.Optional(Schema:IsA("Attachment")),
 	AllowOverride = true,
 })
 
 function PC:initialize(input)
-    Character.initialize(self, input)
+	Character.initialize(self, input)
+
+	self:SetPlayer(game.Players:GetPlayerFromCharacter(self:GetModel()))
+	self:SetCollectAttachment(Instance.new("Attachment", self:GetRootPart()))
 
     local zeroMaterial = PhysicalProperties.new(0,0,0)
 

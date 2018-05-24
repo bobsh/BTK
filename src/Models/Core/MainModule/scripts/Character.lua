@@ -12,24 +12,20 @@ Character:AddProperty({
 Character:AddProperty({
 	Name = "Humanoid",
     Type = "ObjectValue",
-    ValueFn = function(self2)
-        return self2:GetModel():FindFirstChildOfClass("Humanoid")
-    end,
-	SchemaFn = Schema:IsA("Humanoid"),
+	SchemaFn = Schema.Optional(Schema:IsA("Humanoid")),
 	AllowOverride = true,
 })
 Character:AddProperty({
 	Name = "RootPart",
     Type = "ObjectValue",
-    ValueFn = function(self2)
-        return self2:GetHumanoid().RootPart
-    end,
-	SchemaFn = Schema:IsA("BasePart"),
+	SchemaFn = Schema.Optional(Schema:IsA("BasePart")),
 	AllowOverride = true,
 })
 
 function Character:initialize(input)
-    Model.initialize(self, input)
+	Model.initialize(self, input)
+	self:SetHumanoid(self:GetModel():FindFirstChildOfClass("Humanoid"))
+	self:SetRootPart(self:GetHumanoid().RootPart)
 
     local humanoid = self:GetHumanoid()
 	local inputEventData = self:GetInputEvent()

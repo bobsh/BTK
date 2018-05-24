@@ -7,18 +7,15 @@ BaseScript:include(PropertiesModule)
 BaseScript:AddProperty({
 	Name = "Script",
 	Type = "ObjectValue",
-	SchemaFn = Schema.OneOf(
+	SchemaFn = Schema.Optional(Schema.OneOf(
 		Schema:IsA("Script"),
 		Schema:IsA("LocalScript")
-	),
+	)),
 	AllowOverride = false,
 })
 BaseScript:AddProperty({
 	Name = "ConfigurationFolder",
 	Type = "ObjectValue",
-	ValueFn = function(self)
-		return self:GetScript():FindFirstChild("Configuration", false)
-	end,
 	SchemaFn = Schema.Optional(
 		Schema:IsA("Folder")
 	),
@@ -37,6 +34,9 @@ function BaseScript:initialize(input)
 
 	-- Initialize all the runtime instances for our properties
 	self:InitProperties(input)
+
+	self:SetScript(input.Script)
+	self:SetConfigurationFolder(self:GetScript():FindFirstChild("Configuration", false))
 end
 
 return BaseScript
