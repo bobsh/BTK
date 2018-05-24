@@ -57,21 +57,28 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 	local curY = 0
 	local function addY(v) curY = curY + v end
 
+	local scrollingFrame = UI:CreateScrollingFrame(
+		"Scrolling",
+		UDim2.new(0, 0, 0, 0),
+		UDim2.new(1.0, 0, 1.0, 0),
+		self.pluginGUI
+	)
+
 	local createLabel = UI:CreateStandardLabel(
 		"Selection",
 		UDim2.new(0, 0, 0, curY),
 		UDim2.new(0, 128, 0, 16),
-		"Selected script: " .. f.Name,
-		self.pluginGUI
+		"Script: " .. f.Name,
+		scrollingFrame
 	)
 	createLabel.TextColor3 = Color3.new(0,0,0)
-	addY(16)
+	addY(32)
 
 	local propsFrame = UI:CreateFrame(
 		"PropertiesFrame",
 		UDim2.new(0,0,0,curY),
 		UDim2.new(0.9,0,0,128),
-		self.pluginGUI
+		scrollingFrame
 	)
 
 	local uiLayout = Instance.new("UITableLayout", propsFrame)
@@ -80,7 +87,7 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 	uiLayout.FillDirection = Enum.FillDirection.Vertical
 
 	local uiSize = Instance.new("UISizeConstraint", propsFrame)
-	uiSize.MaxSize = Vector2.new(200, 32)
+	uiSize.MaxSize = Vector2.new(400, 32)
 
 	--[[
 		HEADER
@@ -88,17 +95,18 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 	local cFrame = UI:CreateFrame(
 		"1",
 		UDim2.new(0,0,0,0),
-		UDim2.new(0,100,0,16),
+		UDim2.new(0,128,0,16),
 		propsFrame
 	)
 	local kLabel = UI:CreateStandardLabel(
 		"1",
 		UDim2.new(0, 0, 0, 0),
-		UDim2.new(0, 64, 0, 16),
+		UDim2.new(0, 96, 0, 16),
 		"Name",
 		cFrame
 	)
 	kLabel.TextColor3 = Color3.new(0,0,0)
+	kLabel.Font = Enum.Font.SourceSansBold
 
 	local tLabel = UI:CreateStandardLabel(
 		"2",
@@ -108,6 +116,17 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 		cFrame
 	)
 	tLabel.TextColor3 = Color3.new(0,0,0)
+	tLabel.Font = Enum.Font.SourceSansBold
+
+	local oLabel = UI:CreateStandardLabel(
+		"3",
+		UDim2.new(0, 0, 0, 0),
+		UDim2.new(0, 64, 0, 16),
+		"Overridable",
+		cFrame
+	)
+	oLabel.TextColor3 = Color3.new(0,0,0)
+	oLabel.Font = Enum.Font.SourceSansBold
 
 	--[[
 		ROWS
@@ -118,13 +137,13 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 		local columnFrame = UI:CreateFrame(
 			tostring(idx),
 			UDim2.new(0,0,0,0),
-			UDim2.new(0,100,0,16),
+			UDim2.new(0,128,0,16),
 			propsFrame
 		)
 		local keyLabel = UI:CreateStandardLabel(
 			"1",
 			UDim2.new(0, 0, 0, 0),
-			UDim2.new(0, 64, 0, 16),
+			UDim2.new(0, 96, 0, 16),
 			key,
 			columnFrame
 		)
