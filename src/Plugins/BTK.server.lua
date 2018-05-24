@@ -1,7 +1,8 @@
 local btkDev = game.ReplicatedStorage:FindFirstChild("BTK", false)
 local btk
 if btkDev then
-	btk = require(btkDev.Models.Core.MainModule:Clone())
+	local core = btkDev.Models.Core:Clone()
+	btk = require(core.MainModule)
 else
 	btk = require(1815138614)
 end

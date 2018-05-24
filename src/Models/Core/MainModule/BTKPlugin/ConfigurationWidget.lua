@@ -89,7 +89,7 @@ function ConfigurationWidget:PopulateConfiguration(f, btkScript)
 		"1",
 		UDim2.new(0,0,0,0),
 		UDim2.new(0,100,0,16),
-		"ColumnFrame"
+		propsFrame
 	)
 	local kLabel = UI:CreateStandardLabel(
 		"1",
