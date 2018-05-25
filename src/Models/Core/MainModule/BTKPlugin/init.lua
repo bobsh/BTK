@@ -24,6 +24,7 @@ function BTKPlugin:initialize(plug)
 	self._assetsWidget = AssetsWidget:new(plug, self._mainScreenGUI)
 
 	self:AssetsWidget()
+	self:ConfigurationWidget()
 
 	plug.Deactivation:Connect(self:Deactivate())
 end
@@ -35,6 +36,15 @@ function BTKPlugin:AssetsWidget()
 	})
 	local assetsWidget = Roact.createElement(UI.AssetsWidget)
 	Roact.mount(assetsWidget, dockWidget)
+end
+
+function BTKPlugin:ConfigurationWidget()
+	local dockWidget = UI.DockWidget({
+		Name = "Configuration",
+		Plugin = self._plugin,
+	})
+	local widget = Roact.createElement(UI.ConfigurationWidget)
+	Roact.mount(widget, dockWidget)
 end
 
 function BTKPlugin:Deactivate()

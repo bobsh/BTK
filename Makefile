@@ -11,3 +11,6 @@ lint: ## Lint
 
 test: ## Test
 	lua -lluacov spec.lua
+
+docs-api: ## Build Lua API docs
+	ldoc -v .

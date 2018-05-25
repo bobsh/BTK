@@ -18,6 +18,7 @@ pages:
   - Usage: usage.md
   - Support: support.md
   - Development: development.md
+  - 'API Reference': api.md
 
 extra:
   social:
