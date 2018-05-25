@@ -391,29 +391,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#content" title="Content" class="md-nav__link">
-    Content
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#core" title="Core" class="md-nav__link">
     Core
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#helper" title="Helper" class="md-nav__link">
-    Helper
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plugin" title="Plugin" class="md-nav__link">
-    Plugin
   </a>
   
 </li>
@@ -467,29 +446,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#content" title="Content" class="md-nav__link">
-    Content
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#core" title="Core" class="md-nav__link">
     Core
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#helper" title="Helper" class="md-nav__link">
-    Helper
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plugin" title="Plugin" class="md-nav__link">
-    Plugin
   </a>
   
 </li>
@@ -515,25 +473,19 @@
 <p>See <a href="../development/">Development Environment</a> on how to get setup first.</p>
 <p>This really needs automation, see <a href="https://github.com/bobsh/BTK/issues/12">this github issue</a>
 for status on this.</p>
-<h2 id="content">Content<a class="headerlink" href="#content" title="Permanent link">&para;</a></h2>
-<p>This is located in:</p>
-<div class="codehilite"><pre><span></span>ReplicatedStorage.BTKContent
-</pre></div>
-
-
-<p>Right-click and select <code>Publish to roblox ...</code>.</p>
-<p>Group is <code>BTK</code> model is <code>Content</code>.</p>
 <h2 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h2>
 <p>This is located in:</p>
-<div class="codehilite"><pre><span></span>ReplicatedStorage.BTK.Models.Core
+<div class="codehilite"><pre><span></span>ReplicatedStorage.BTK.Models.Core.MainModule
 </pre></div>
 
 
 <p>Right-click and select <code>Publish to roblox ...</code>.</p>
 <p>Group is <code>BTK</code> model is <code>Core</code>.</p>
+<h1 id="rare-deployments">Rare Deployments<a class="headerlink" href="#rare-deployments" title="Permanent link">&para;</a></h1>
+<p>Most of the code is in Core, so it should be rare to need a Helper or Plugin upgrade.</p>
 <h2 id="helper">Helper<a class="headerlink" href="#helper" title="Permanent link">&para;</a></h2>
 <p>This is located in:</p>
-<div class="codehilite"><pre><span></span>ReplicatedStorage.BTK.Models.Helper
+<div class="codehilite"><pre><span></span>ReplicatedStorage.BTK.Models.Helper.MainModule
 </pre></div>
 
 
@@ -547,6 +499,16 @@ for status on this.</p>
 
 <p>Right-click and select <code>Publish as plugin ...</code>. Choose <code>BTK</code>
 to overwrite.</p>
+<h2 id="content">Content<a class="headerlink" href="#content" title="Permanent link">&para;</a></h2>
+<p><code>Content</code> I hope to remove or consolidate to Core, so we don't add things to it very often
+so it should rarely need deployment.</p>
+<p>This is located in:</p>
+<div class="codehilite"><pre><span></span>ReplicatedStorage.BTKContent
+</pre></div>
+
+
+<p>Right-click and select <code>Publish to roblox ...</code>.</p>
+<p>Group is <code>BTK</code> model is <code>Content</code>.</p>
                 
                   
                 
