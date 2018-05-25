@@ -45,11 +45,12 @@ local function AssetItem(props)
     })
 end
 
-function AssetsWidget:init(props)
+function AssetsWidget:init(_)
     self.state = {}
 end
 
 function AssetsWidget:render()
+    local _ = self -- lint
     return c("Frame", {
         Position = UDim2.new(0, 0, 0, 0),
         Size = UDim2.new(1.0, 0, 1.0, 0),

@@ -13,6 +13,7 @@ function ConfigurationWidget:init(_)
 end
 
 function ConfigurationWidget:render()
+    local _ = self -- lint
     return c("Frame", {})
 end
 

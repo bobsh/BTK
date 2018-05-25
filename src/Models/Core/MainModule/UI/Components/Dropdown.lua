@@ -3,7 +3,7 @@
 	@classmod UI.Dropdown
 --]]
 
-local IMAGE = "rbxassetid://1267570372"
+--local IMAGE = "rbxassetid://1267570372"
 
 local Roact = require(script.Parent.Parent.Parent.lib.Roact)
 local c = Roact.createElement
@@ -27,7 +27,7 @@ function Dropdown:render()
 			Text = item,
 			Size = UDim2.new(1, 0, 0, 20),
 
-			[Roact.Event.MouseButton1Click] = function(rbx)
+			[Roact.Event.MouseButton1Click] = function(_)
 				self:setState({
 					CurrentItem = item,
 					Open = false,
@@ -40,7 +40,7 @@ function Dropdown:render()
 		Size = UDim2.new(0, 200, 0, 30),
 		Text = "",
 
-		[Roact.Event.MouseButton1Click] = function(rbx)
+		[Roact.Event.MouseButton1Click] = function(_)
 			self:setState({
 				Open = not self.state.Open,
 			})
