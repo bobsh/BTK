@@ -13,7 +13,7 @@ local AssetsWidget = Roact.Component:extend("AssetsWidget")
 function AssetsWidget:init(props)
     self.state = {
         Plugin = props.Plugin,
-        CurrentCategory = "NPC",
+        CurrentCategory = nil,
         Assets = {
             NPC = {
                 -- Frog
@@ -37,17 +37,21 @@ end
 
 function AssetsWidget:render()
     local items = {}
+
     local propsType = "Model"
     if self.state.CurrentCategory == "Tools" then
         propsType = "Tool"
     end
 
-    for _, v in pairs(self.state.Assets[self.state.CurrentCategory]) do
-        table.insert(items, c(AssetItem, {
-            ID = v,
-            Plugin = self.Plugin,
-            Type = propsType,
-        }))
+    -- Only add try to add asset items if a category is chosen
+    if self.state.CurrentCategory then
+        for _, v in pairs(self.state.Assets[self.state.CurrentCategory]) do
+            table.insert(items, c(AssetItem, {
+                ID = v,
+                Plugin = self.Plugin,
+                Type = propsType,
+            }))
+        end
     end
 
     return c("Frame", {
@@ -66,7 +70,11 @@ function AssetsWidget:render()
                     "Utilities",
                     "Tools",
                 },
-                CurrentItem = self.state.CurrentCategory,
+                ChangeFn = function(item)
+                    self:setState({
+                        CurrentCategory = item,
+                    })
+                end
             })
         }),
         AssetList = c("ScrollingFrame", {
