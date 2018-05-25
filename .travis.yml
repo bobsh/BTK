@@ -4,34 +4,9 @@ jobs:
   include:
 
   - env:
-    - DESCRIPTION="lua lint and test"
+    - DESCRIPTION="lua lint, test and docs deploy"
     - LUA="lua=5.1"
-    stage: test
-    language: python
-    sudo: false
-    branches:
-      only:
-        - master
-    before_install:
-      - pip install hererocks
-      - hererocks lua_install -r^ --$LUA
-      - export PATH=$PATH:$PWD/lua_install/bin
-    install:
-      - luarocks install luafilesystem
-      - luarocks install busted
-      - luarocks install luacov
-      - luarocks install luacov-coveralls
-      - luarocks install luacheck
-    script:
-      - luacheck src
-      - lua -lluacov spec.lua
-    after_success:
-      - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install
-
-  - env:
-    - DESCRIPTION="mkdocs generation and deploy"
-    - LUA="lua=5.1"
-    stage: docs
+    stage: build
     language: python
     sudo: false
     branches:
@@ -43,9 +18,18 @@ jobs:
       - hererocks lua_install -r^ --$LUA
       - export PATH=$PATH:$PWD/lua_install/bin
     install:
+      - luarocks install luafilesystem
+      - luarocks install busted
+      - luarocks install luacov
+      - luarocks install luacov-coveralls
+      - luarocks install luacheck
       - luarocks install ldoc
     script:
+      - make lint
+      - make test
       - make docs
+    after_success:
+      - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install
     deploy:
       provider: pages
       fqdn: btk.bob.sh
@@ -55,7 +39,6 @@ jobs:
       keep-history: true
       on:
         branch: master
-
 
 
 notifications:
