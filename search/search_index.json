@@ -84,6 +84,36 @@
             "location": "/development/#automated-testing", 
             "text": "TravisCI:  bobsh/BTK \nCoveralls:  bobsh/BTK", 
             "title": "Automated testing"
+        }, 
+        {
+            "location": "/api/", 
+            "text": "Your own extensions\n\n\nBaseObject\n\n\nTODO\n\n\nBaseInstance\n\n\nTODO\n\n\nBaseScript\n\n\nTODO\n\n\nBaseUtil", 
+            "title": "API Reference"
+        }, 
+        {
+            "location": "/api/#your-own-extensions", 
+            "text": "", 
+            "title": "Your own extensions"
+        }, 
+        {
+            "location": "/api/#baseobject", 
+            "text": "TODO", 
+            "title": "BaseObject"
+        }, 
+        {
+            "location": "/api/#baseinstance", 
+            "text": "TODO", 
+            "title": "BaseInstance"
+        }, 
+        {
+            "location": "/api/#basescript", 
+            "text": "TODO", 
+            "title": "BaseScript"
+        }, 
+        {
+            "location": "/api/#baseutil", 
+            "text": "", 
+            "title": "BaseUtil"
         }
     ]
 }
