@@ -13,6 +13,7 @@
 *.BMP filter=lfs diff=lfs merge=lfs -crlf
 *.gif filter=lfs diff=lfs merge=lfs -crlf
 *.GIF filter=lfs diff=lfs merge=lfs -crlf
+*.ico filter=lfs diff=lfs merge=lfs -crlf
 # Mac icon format
 *.icns filter=lfs diff=lfs merge=lfs -crlf
 *.ICNS filter=lfs diff=lfs merge=lfs -crlf
