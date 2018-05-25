@@ -1,9 +1,11 @@
+--[[--
+	BaseInstance represents anything abstractly in the game world.
+	@classmod BaseInstance
+--]]
+
 local BaseObject = require(script.Parent.BaseObject)
 local SentryLogger = require(script.Parent.SentryLogger)
 
---[[
-	BaseInstance represents anything abstractly in the game world.
---]]
 local BaseInstance = BaseObject:subclass(script.Name)
 
 --[[

@@ -1,3 +1,5 @@
+--- @classmod scripts.PlaceTeleporter
+
 local Model = require(script.Parent.Model)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 local Schema = require(script.Parent.Parent.Schema)

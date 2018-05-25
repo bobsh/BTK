@@ -1,3 +1,5 @@
+--- @classmod scripts.PC
+
 local Character = require(script.Parent.Character)
 local Schema = require(script.Parent.Parent.Schema)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)

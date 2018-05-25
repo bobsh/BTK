@@ -1,22 +1,31 @@
+--[[--
+	Schema related utilities
+	@module Schema
+--]]
+
 local class = require(script.Parent.lib.middleclass)
 local s = require(script.Parent.lib.schema)
 
---[[--------------------------------------------
-
-	ENUMS
-
-----------------------------------------------]]
-
+--[[--
+	Represents an item
+	@type EnumerationItem
+--]]
 local EnumerationItem = class("EnumerationItem")
 
+--- Init
 function EnumerationItem:initialize(input)
 	self.Name = input.Name
 	self.Value = input.Value
 	self.EnumType = input.EnumType
 end
 
+--[[--
+	An eneumeration
+	@type Enumeration
+--]]
 local Enumeration = class("Enumeration")
 
+--- Init
 function Enumeration:initialize(input)
 	self._data = {}
 	for key, idx in pairs(input) do
@@ -31,27 +40,24 @@ function Enumeration:initialize(input)
 	end
 end
 
+--- Get all enum items
+-- @treturn {table}
 function EnumerationItem:GetEnumItems()
 	return self._data
 end
 
+--[[--
+	Schema utility class
+	@type Schema
+--]]
 local Schema = class(script.Name)
 
---[[--------------------------------------------
-
-	ENUMS
-
-----------------------------------------------]]
-
---[[
-	All enums get placed in this table
---]]
+--- All enums get placed in this table
 Schema.static.Enums = {}
 
 --[[--------------------------------------------
-
-	PROXIES
-
+	Proxies
+	@section proxies
 ----------------------------------------------]]
 
 Schema.static.Record = s.Record
@@ -63,11 +69,14 @@ Schema.static.OneOf = s.OneOf
 Schema.static.NonNegativeNumber = s.NonNegativeNumber
 
 --[[--------------------------------------------
-
-	SIMPLE
-
+	Simple
+	@section simple
 ----------------------------------------------]]
 
+--- Match a range from and to
+-- @tparam int min
+-- @tparam int max
+-- @treturn func
 Schema.static.IntegerFrom = function(min, max)
 	return s.AllOf(
 		s.Integer,
@@ -75,15 +84,20 @@ Schema.static.IntegerFrom = function(min, max)
 	)
 end
 
---[[
-	Matches camelcase pretty poorly, lua has crap
-	regexp support
+--[[--
+	Matches camelcase pretty poorly
+	Lua has crap regexp support
+	@treturn func
 --]]
 Schema.static.CamelCase = s.AllOf(
 	s.String,
 	s.Pattern("%u[%l%d%u]+")
 )
 
+--- StringLength matching
+-- @tparam int min
+-- @tparam int max
+-- @treturn func
 Schema.static.StringLength = function(min, max)
 	min = min or 0
 	max = max or 128
@@ -105,11 +119,11 @@ Schema.static.StringLength = function(min, max)
 end
 
 --[[--------------------------------------------
-
-	ROBLOX
-
+	Roblox
+	@section roblox
 ----------------------------------------------]]
 
+--- Type of roblox instance
 function Schema.static:TypeOf(className)
 	local _ = self
 	return function(obj, path)
@@ -134,9 +148,7 @@ function Schema.static:TypeOf(className)
 	end
 end
 
---[[
-	Ref<SchemaError> function(obj, path) Schema:IsA(className)
---]]
+--- IsA like for roblox instances
 function Schema.static:IsA(className)
 	local _ = self
 	return function(obj, path)
@@ -163,9 +175,7 @@ function Schema.static:IsA(className)
 	end
 end
 
---[[
-	Matches the instance name provided
---]]
+--- Matches instance name
 function Schema.static:InstanceName(name)
 	local _ = self
 	return function(obj, path)
@@ -187,14 +197,15 @@ function Schema.static:InstanceName(name)
 	end
 end
 
+--- PlaceId is a number
 Schema.static.PlaceId = s.Number
 
 --[[--------------------------------------------
-
-	LOGGING
-
+	Logging
+	@section logging
 ----------------------------------------------]]
 
+--- Logging level
 Schema.static.Enums.LogLevel = Enumeration({
 	None = 0,
 	Fatal = 1,
@@ -205,6 +216,7 @@ Schema.static.Enums.LogLevel = Enumeration({
 	Trace = 6,
 })
 
+--- Represents a log entry
 Schema.static.LogEntry = Schema.Record {
 	Level = Schema.IntegerFrom(1, 6),
 	Message = Schema.StringLength(3, 128),
@@ -212,6 +224,7 @@ Schema.static.LogEntry = Schema.Record {
 	Player = Schema.Optional(Schema:IsA("Player")),
 }
 
+--- Logging initialization data
 Schema.static.LogInit = Schema.Record {
 	Config = Schema.Optional(Schema.Table),
 	Player = Schema.Optional(Schema:IsA("Player")),
@@ -219,22 +232,17 @@ Schema.static.LogInit = Schema.Record {
 }
 
 --[[--------------------------------------------
-
-	COMPONENTS
-
+	Components
+	@section components
 ----------------------------------------------]]
 
---[[
-	IsARoot Instance
---]]
+---	IsARoot Instance
 Schema.static.IsARoot = s.OneOf(
 	Schema:IsA("Model"),
 	Schema:IsA("Tool")
 )
 
---[[
-	Does the object have a component attached.
---]]
+--- Does the object have a component attached.
 Schema.static.Component = function(obj, path)
 	if not obj then
 		return s.Error("Checked component is nil", path)
@@ -246,17 +254,13 @@ Schema.static.Component = function(obj, path)
 	end
 end
 
---[[
-	Is this a character model?
---]]
+--- Is this a character model?
 Schema.static.CharacterModel = s.AllOf(
 	Schema.Component,
 	Schema:IsA("Model")
 )
 
---[[
-	Is the data a valid component name?
---]]
+--- Is the data a valid component name?
 Schema.static.ComponentName = s.OneOf(
 	"Area",
 	"Currency",
@@ -270,50 +274,49 @@ Schema.static.ComponentName = s.OneOf(
 	"Weapon"
 )
 
---[[
-	A calling component script
---]]
+--- A calling component script
 Schema.static.ComponentScript = s.AllOf(
 	Schema:IsA("Script"),
 	Schema:InstanceName("BTKComponent")
 )
 
---[[
-	Is this a valid root object, and does it have a component
-	attached.
---]]
+--- Component Query
+Schema.static.ComponentQuery = Schema.Record({
+	Inst = Schema:IsA("Instance"),
+})
+
+--- Is this a valid root object, and does it have a component attached.
 Schema.static.Root = s.AllOf(
 	Schema.IsARoot,
 	Schema.Component
 )
 
 --[[--------------------------------------------
-
-	SCRIPTS
-
+	Scripts
+	@section scripts
 ----------------------------------------------]]
 
+--- Is this a script
 Schema.static.Script = Schema.OneOf(
 	Schema:IsA("Script"),
 	Schema:IsA("LocalScript")
 )
 
 --[[--------------------------------------------
-
-	DATA
-
+	Data
+	@section data
 ----------------------------------------------]]
 
---[[
-	A valid data key
---]]
+---	A valid data key
 Schema.static.DataFolder = Schema:IsA("Folder")
 
+--- Data key
 Schema.static.DataKey = s.AllOf(
 	Schema.StringLength(3,32),
 	Schema.CamelCase
 )
 
+--- Type
 Schema.static.DataType = s.OneOf(
 	"BoolValue",
 	"BrickColorValue",
@@ -326,11 +329,10 @@ Schema.static.DataType = s.OneOf(
 	"Vector3Value"
 )
 
+--- Value
 Schema.static.DataValue = s.Any
 
---[[
-	Data definition
---]]
+--- Data definition
 Schema.static.DataDefinition = Schema.Record {
 	Name = Schema.DataKey,
 	Type = Schema.DataType,
@@ -346,11 +348,11 @@ Schema.static.DataDefinition = Schema.Record {
 }
 
 --[[--------------------------------------------
-
-	PROPERTIES
-
+	Properties
+	@section properties
 ----------------------------------------------]]
 
+--- Property definition
 Schema.static.PropertyDefinition = Schema.Record {
 	Name = Schema.DataKey,
 	Type = Schema.DataType,
@@ -369,31 +371,30 @@ Schema.static.PropertyDefinition = Schema.Record {
 }
 
 --[[--------------------------------------------
-
-	CONFIGURATION
-
+	Configuraton
+	@section configuration
 ----------------------------------------------]]
 
+--- key
 Schema.static.ConfigurationKey = Schema.DataKey
 
+--- folder
 Schema.static.ConfigurationFolder = s.OneOf(
 	Schema:IsA("Folder"),
 	Schema:IsA("Configuration")
 )
 
 --[[--------------------------------------------
-
-	EVENTS
-
+	Events
+	@section events
 ----------------------------------------------]]
 
+--- Input event type
 Schema.static.Enums.InputEventType = Enumeration({
 	Damage = 1,
 })
 
---[[
-	An general message
---]]
+--- An general message
 Schema.static.Message = s.OneOf(
 	Schema.Record {
 		Type = Schema.Enums.InputEventType.Damage,
@@ -401,32 +402,26 @@ Schema.static.Message = s.OneOf(
 	}
 )
 
---[[
-	A damage message
---]]
+---	A damage message
 Schema.static.DamagePayload = Schema.Record {
 	Damage = Schema.DamageAmount,
 }
 
+--- max
 Schema.static.DamageMax = 99
 
---[[
-	A damage amount
---]]
+--- amount
 Schema.static.DamageAmount = Schema.IntegerFrom(
 	0,
 	Schema.DamageMax
 )
 
 --[[--------------------------------------------
-
-	ASSETS
-
+	Assets
+	@section assets
 ----------------------------------------------]]
 
---[[
-	Asset table
---]]
+--- data
 Schema.static.AssetData = Schema.Record {
 	Name = s.String,
 	ID = Schema.Optional(s.NonNegativeNumber),
@@ -442,52 +437,57 @@ Schema.static.AssetData = Schema.Record {
 }
 
 --[[--------------------------------------------
-
 	URL
-
+	@section url
 ----------------------------------------------]]
 
+--- http url
 Schema.static.HttpURL = s.AllOf(
 	s.String,
 	s.Pattern("^http://.*")
 )
 
+--- https
 Schema.static.HttpsURL = s.AllOf(
 	s.String,
 	s.Pattern("^https://.*")
 )
 
 --[[--------------------------------------------
-
-	CURRENCY
-
+	Currency
+	@section currency
 ----------------------------------------------]]
 
+--- max
 Schema.static.MaximumCurrency = 1000000
 
+--- currency
 Schema.static.Currency = Schema.IntegerFrom(
 	0,
 	Schema.MaximumCurrency
 )
 
 --[[--------------------------------------------
-
-	WEAPONS
-
+	Weapons
+	@section weapons
 ----------------------------------------------]]
 
+--- type
 Schema.static.Enums.WeaponType = Enumeration({
 	Melee = 1,
 	Ranged = 2,
 })
 
+--- type
 Schema.static.WeaponType = s.OneOf(
 	"Melee",
 	"Ranged"
 )
 
+--- max attack dist
 Schema.static.MaxAttackDistance = 999.0
 
+--- attack dist
 Schema.static.AttackDistance = s.NumberFrom(
 	0.0, Schema.MaxAttackDistance
 )

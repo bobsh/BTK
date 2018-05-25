@@ -1,3 +1,8 @@
+--[[--
+	Dropdown
+	@classmod UI.Dropdown
+--]]
+
 local IMAGE = "rbxassetid://1267570372"
 
 local Roact = require(script.Parent.Parent.Parent.lib.Roact)

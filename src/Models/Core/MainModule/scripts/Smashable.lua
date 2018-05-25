@@ -1,3 +1,5 @@
+--- @classmod Sscripts.mashable
+
 local Model = require(script.Parent.Model)
 local Schema = require(script.Parent.Parent.Schema)
 

@@ -7,6 +7,7 @@ docs-deploy: docs-api ## Build and deploy docs from current repo
 	mkdocs gh-deploy
 
 docs-api: ## Build Lua API docs
+	rm -r docs/ldoc || true
 	ldoc -v .
 
 lint: ## Lint

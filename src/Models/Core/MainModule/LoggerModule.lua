@@ -1,3 +1,5 @@
+--- @classmod LoggerModule
+
 local BaseLogger = require(script.Parent.BaseLogger)
 local Schema = require(script.Parent.Schema)
 
@@ -7,6 +9,7 @@ local LoggerModule = {
 			_registered = {},
 		},
 
+		--- Add logger
 		AddLogger = function(self, input)
 			assert(input, 'No input for AddLoger()')
 			assert(input.Class:isSubclassOf(BaseLogger),

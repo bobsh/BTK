@@ -1,3 +1,5 @@
+--- @classmod scripts.Player
+
 local BaseScript = require(script.Parent.Parent.BaseScript)
 
 local UserInputService = game:GetService("UserInputService")

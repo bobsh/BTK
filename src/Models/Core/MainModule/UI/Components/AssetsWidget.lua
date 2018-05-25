@@ -1,3 +1,8 @@
+--[[--
+    Assets widget
+    @classmod UI.AssetsWidget
+--]]
+
 local Roact = require(script.Parent.Parent.Parent.lib.Roact)
 local Dropdown = require(script.Parent.Dropdown)
 local c = Roact.createElement

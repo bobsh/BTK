@@ -1,19 +1,12 @@
+--[[--
+	Schema checking and helper module
+	@module SchemaModule
+--]]
+
 local s = require(script.Parent.lib.schema)
 
 local Schema = {
-	--[[
-		Variant self:AssertSchema(Variant input, ? schema)
-
-		Throws error if validation fails, otherwise returns
-		the input so you can do things like:
-
-			return self:AssertSchema(
-				output,
-				s.String
-			)
-
-		At the end of a function.
-	--]]
+	--- Assert Schema
 	AssertSchema = function(self, input, schema)
 		local err = s.CheckSchema(input, schema)
 		if err then
@@ -25,6 +18,7 @@ local Schema = {
 	static = {}
 }
 
+--- Assert schema
 Schema.static.AssertSchema = Schema.AssertSchema
 
 return Schema

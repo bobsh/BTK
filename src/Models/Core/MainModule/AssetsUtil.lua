@@ -1,3 +1,8 @@
+--[[--
+	Utilities for asserts
+	@classmod AssetsUtils
+--]]
+
 local BaseUtil = require(script.Parent.BaseUtil)
 local Schema = require(script.Parent.Schema)
 
@@ -5,6 +10,7 @@ local InsertService = game:GetService("InsertService")
 
 local Assets = BaseUtil:subclass(script.Name)
 
+--- Get
 function Assets.static:Get(input)
 	self:AssertSchema(
 		input,
@@ -13,6 +19,7 @@ function Assets.static:Get(input)
 	return input.Parent:FindFirstChild(input.Name, false)
 end
 
+--- Get many
 function Assets.static:GetMany(assets)
 	local list = {}
 	for _, value in pairs(assets) do
@@ -24,6 +31,7 @@ function Assets.static:GetMany(assets)
 	return list
 end
 
+--- install
 function Assets.static:Install(input)
 	self:AssertSchema(
 		input,
@@ -113,12 +121,14 @@ function Assets.static:Install(input)
 	))
 end
 
+--- install many
 function Assets.static:InstallMany(assets)
 	for _, value in pairs(assets) do
 		self:Install(value)
 	end
 end
 
+--- uninstall
 function Assets.static:Uninstall(input)
 	self:AssertSchema(
 		input,
@@ -147,6 +157,7 @@ function Assets.static:Uninstall(input)
 	self:Debug(("Uninstalled %s from %s"):format(input.Name, input.Parent.Name))
 end
 
+--- uninstall many
 function Assets.static:UninstallMany(assets)
 	self:Trace("Uninstalling many")
 	for _, value in pairs(assets) do

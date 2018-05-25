@@ -1,3 +1,5 @@
+--- @classmod scripts.Tool
+
 local BaseScript = require(script.Parent.Parent.BaseScript)
 local Schema = require(script.Parent.Parent.Schema)
 

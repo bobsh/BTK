@@ -1,3 +1,5 @@
+--- @classmod BTKPlugin
+
 local BaseObject = require(script.Parent.BaseObject)
 local MainToolBar = require(script.MainToolBar)
 local ConfigurationWidget = require(script.ConfigurationWidget)

@@ -1,3 +1,5 @@
+--- @classmod scripts.PlatformMover
+
 local Model = require(script.Parent.Model)
 local Schema = require(script.Parent.Parent.Schema)
 
@@ -39,7 +41,7 @@ function PlatformMover:initialize(input)
 	self:GetStartPositionMarker().Transparency = 1
 	self:EndStartPositionMarker().Transparency = 1
 
-	--- Begin moving, an infinite loop
+	-- Begin moving, an infinite loop
 	self:Debug("Beginning cycle")
 	while true do
 		self:MovePart(self:EndStartPositionMarker().Position)

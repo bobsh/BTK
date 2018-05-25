@@ -1,3 +1,5 @@
+--- @classmod ScriptHelper
+
 local BaseObject = require(script.Parent.BaseObject)
 local Schema = require(script.Parent.Schema)
 local scriptsFolder = script.Parent.scripts
@@ -8,8 +10,12 @@ end
 
 local ScriptHelper = BaseObject:subclass(script.Name)
 
+--- Pattern to match for the script name
 ScriptHelper.static.Pattern = "^BTK:(%u[%u%l%d]+)$"
 
+--- Get a script
+-- @tparam Schema.Script s
+-- @treturn BaseScript
 function ScriptHelper.static:Get(s)
 	self:AssertSchema(
 		s,

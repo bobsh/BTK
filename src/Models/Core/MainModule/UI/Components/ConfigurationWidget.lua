@@ -1,5 +1,9 @@
+--[[--
+    widget
+    @classmod UI.ConfigurationWidget
+--]]
+
 local Roact = require(script.Parent.Parent.Parent.lib.Roact)
-local Dropdown = require(script.Parent.Dropdown)
 local c = Roact.createElement
 
 local ConfigurationWidget = Roact.Component:extend("ConfigurationWidget")

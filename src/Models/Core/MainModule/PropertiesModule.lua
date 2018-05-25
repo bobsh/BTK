@@ -1,3 +1,5 @@
+--- @module PropertiesModule
+
 local Schema = require(script.Parent.Schema)
 
 local PropertiesModule = {
@@ -32,9 +34,7 @@ local PropertiesModule = {
             end)
         end,
 
-        --[[
-            Add property using a definition.
-        --]]
+        --- Add property using a definition
         AddProperty = function(self, input)
             self:AssertSchema(
                 input,
@@ -47,9 +47,7 @@ local PropertiesModule = {
             self:_addPropertyHelpers(input)
         end,
 
-        --[[
-            Return all property definitions
-        ]]
+        --- Return all property definitions
         Properties = function(self)
             return self._property_defs
         end,
@@ -109,6 +107,7 @@ local PropertiesModule = {
         end
     end,
 
+    --- Init
     InitProperties = function(self, input)
         self:AssertSchema(
             input,
@@ -143,6 +142,7 @@ local PropertiesModule = {
 		)
 	end,
 
+    --- Get property
 	GetProperty = function(self, key)
 		local propertyPart = self:_getPropertyValue(key)
 
@@ -168,6 +168,7 @@ local PropertiesModule = {
 		return conf.Value
 	end,
 
+    --- Set property
 	SetProperty = function(self, key, value)
 		local part = self:_getPropertyValue(key)
 		part.Value = self:AssertSchema(
@@ -176,6 +177,7 @@ local PropertiesModule = {
 		)
 	end,
 
+    --- Watch property
 	WatchProperty = function(self, key, fn)
 		local part = self:_getPropertyValue(key)
 		self:AssertSchema(fn, Schema.Function)

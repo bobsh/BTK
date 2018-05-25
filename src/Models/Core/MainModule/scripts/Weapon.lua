@@ -1,3 +1,5 @@
+--- @classmod scripts.Weapon
+
 local Tool = require(script.Parent.Tool)
 local Schema = require(script.Parent.Parent.Schema)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)

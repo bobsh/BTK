@@ -1,5 +1,9 @@
+--[[--
+	UI
+	@classmod UI
+--]]
+
 local BaseUtil = require(script.Parent.BaseUtil)
-local Roact = require(script.Parent.lib.Roact)
 
 local UI = BaseUtil:subclass(script.Name)
 

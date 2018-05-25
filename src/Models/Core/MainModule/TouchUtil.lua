@@ -1,9 +1,24 @@
+--[[---
+	Touch utilities
+
+	TouchUtil class which contains a series of static functions
+	that you can utilise.
+
+	@classmod TouchUtil
+--]]
+
 local BaseUtil = require(script.Parent.BaseUtil)
 local Schema = require(script.Parent.Schema)
 local ComponentHandle = require(script.Parent.ComponentHandle)
 
 local TouchUtil = BaseUtil:subclass(script.Name)
 
+--[[---
+	A debounce implementation.
+
+	@tparam func func
+	@treturn func
+--]]
 function TouchUtil.static:Debounce(func)
 	self:Trace("Debounce")
     local isRunning = false    -- Create a local debounce variable
@@ -18,6 +33,12 @@ function TouchUtil.static:Debounce(func)
     end
 end
 
+--[[---
+	An enahanced hit wrapper that adds BTK context.
+
+	@tparam func func
+	@treturn func
+--]]
 function TouchUtil.static:EnhancedFn(func)
 	self:Trace("EnhancedFn")
 	return function(hit)
@@ -32,16 +53,14 @@ function TouchUtil.static:EnhancedFn(func)
 	end
 end
 
---[[
+--[[---
 	GetComponentData from an instance
+
+	@tparam Schema.ComponentQuery input
+	@treturn ComponentHandle
 --]]
 function TouchUtil.static:GetComponentData(input)
-	self:AssertSchema(
-		input,
-		Schema.Record {
-			Inst = Schema:IsA("Instance"),
-		}
-	)
+	self:AssertSchema(input, Schema.ComponentQuery)
 
 	local output = {}
 	if input.Inst:IsA("Model") or input.Inst:IsA("Tool") then

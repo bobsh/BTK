@@ -1,3 +1,5 @@
+--- @classmod scripts.Currency
+
 local Collectable = require(script.Parent.Collectable)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 --local CurrencyManager = require(script.Parent.Parent.Services.CurrencyManager)

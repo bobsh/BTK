@@ -1,13 +1,11 @@
+--- @classmod ComponentHandle
+
 local BaseObject = require(script.Parent.BaseObject)
 local Schema = require(script.Parent.Schema)
 
 local ComponentHandle = BaseObject:subclass(script.Name)
 
---[[
-	Ref<ComponentHandle> ComponentHandle.new({
-		Root = <.. model of the component ..>,
-	})
---]]
+--- init
 function ComponentHandle:initialize(input)
 	BaseObject.initialize(self, input)
 
@@ -21,25 +19,17 @@ function ComponentHandle:initialize(input)
 	self.Root = input.Root
 end
 
---[[
-	string ComponentHandle:GetComponent()
---]]
+--- get
 function ComponentHandle:GetComponent()
 	return self:GetRoot().BTKComponent.Configuration.Component.Value
 end
 
---[[
-	Ref<Model, Tool> ComponentHandle:GetRoot()
---]]
+--- get root
 function ComponentHandle:GetRoot()
 	return self.Root
 end
 
---[[
-	Any GetData(
-		string key
-	)
---]]
+--- get data
 function ComponentHandle:GetData(key)
 	self:AssertSchema(key, Schema.DataKey)
 
@@ -54,12 +44,7 @@ function ComponentHandle:GetData(key)
 	return dataPart.Value
 end
 
---[[
-	void SendMessage({
-		MessageType Type,
-		table Payload,
-	})
---]]
+--- send message
 function ComponentHandle:SendMessage(input)
 	self:AssertSchema(input, Schema.Message)
 
@@ -67,11 +52,7 @@ function ComponentHandle:SendMessage(input)
 	inputEvent:Fire(input)
 end
 
---[[
-	void SendDamage({
-		Number Damage,
-	})
---]]
+--- send damage
 function ComponentHandle:SendDamage(input)
 	self:AssertSchema(input, Schema.DamagePayload)
 

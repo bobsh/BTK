@@ -1,3 +1,5 @@
+--- @classmod scripts.Area
+
 local Schema = require(script.Parent.Parent.Schema)
 local Model = require(script.Parent.Model)
 

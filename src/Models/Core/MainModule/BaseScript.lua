@@ -1,3 +1,5 @@
+--- @classmod BaseScript
+
 local BaseInstance = require(script.Parent.BaseObject)
 local PropertiesModule = require(script.Parent.PropertiesModule)
 local Schema = require(script.Parent.Schema)

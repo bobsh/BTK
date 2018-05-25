@@ -1,3 +1,5 @@
+--- @classmod scripts.Server
+
 local BaseScript = require(script.Parent.Parent.BaseScript)
 local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
 

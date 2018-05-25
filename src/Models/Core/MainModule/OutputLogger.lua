@@ -1,12 +1,12 @@
+--- @classmod OutputLogger
 local BaseLogger = require(script.Parent.BaseLogger)
 local Schema = require(script.Parent.Schema)
 local inspect = require(script.Parent.lib.inspect)
 
---[[
-	OutputLogger outputs to the standard text output
---]]
 local OutputLogger = BaseLogger:subclass(script.Name)
 
+--- Log
+-- @tparam Schema.LogEntry input
 function OutputLogger:Log(input)
 	BaseLogger.Log(self, input)
 

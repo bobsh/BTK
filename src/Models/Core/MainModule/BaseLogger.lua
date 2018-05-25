@@ -1,10 +1,13 @@
+--[[--
+	Base logging abstract class
+	@classmod BaseLogger
+--]]
+
 local class = require(script.Parent.lib.middleclass)
 
---[[
-	BaseLogger for creating logging extensions.
---]]
 local BaseLogger = class(script.Name)
 
+--- @tparam Schema.LogInit input
 function BaseLogger:initialize(input)
 	assert(input, 'No input for new(input)')
 	assert(input.ClassName, 'ClassName not provided to new()')
@@ -14,6 +17,8 @@ function BaseLogger:initialize(input)
 	self.Config = input.Config or {}
 end
 
+--- Log
+-- @tparam Schema.LogEntry input
 function BaseLogger:Log(input)
 	assert(input, 'No input to Log()')
 	assert(input.Message, 'Message not provided to Log()')

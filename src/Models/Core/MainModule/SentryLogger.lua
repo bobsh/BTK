@@ -1,14 +1,17 @@
+--[[--
+	SentryLogger outputs to sentry
+	@classmod SentryLogger
+--]]
+
 local BaseLogger = require(script.Parent.BaseLogger)
 local Schema = require(script.Parent.Schema)
 local Raven = require(script.Parent.lib.Raven)
 
 local RunService = game:GetService("RunService")
 
---[[
-	SentryLogger outputs to sentry
---]]
 local SentryLogger = BaseLogger:subclass(script.Name)
 
+--- @tparam Schema.LogInit input
 function SentryLogger:initialize(input)
 	BaseLogger.initialize(self, input)
 
@@ -66,6 +69,8 @@ local _levelToRaven = {
 	[Schema.Enums.LogLevel.Fatal] = Raven.EventLevel.Fatal,
 }
 
+--- Log
+-- @tparam Schema.LogEntry input
 function SentryLogger:Log(input)
 	if not self._raventClient then
 		return

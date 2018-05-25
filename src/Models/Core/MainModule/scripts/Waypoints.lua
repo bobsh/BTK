@@ -1,3 +1,5 @@
+--- @classmod scripts.Waypoints
+
 local Model = require(script.Parent.Model)
 
 local Waypoints = Model:subclass(script.Name)
