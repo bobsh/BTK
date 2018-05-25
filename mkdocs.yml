@@ -28,6 +28,7 @@ pages:
   - Support: support.md
   - Development:
     - Environment: development.md
+    - Deployment: deployment.md
     - 'API Reference': 'ldoc/index.html'
 
 extra:
