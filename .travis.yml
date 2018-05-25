@@ -1,28 +1,63 @@
-language: python
-sudo: false
+group: travis_latest
 
-branches:
-  only:
-    - master
+jobs:
+  include:
 
-env:
-  - LUA="lua=5.1"
+  - env:
+    - DESCRIPTION="lua lint and test"
+    - LUA="lua=5.1"
+    stage: test
+    language: python
+    sudo: false
+    branches:
+      only:
+        - master
+    before_install:
+      - pip install hererocks
+      - hererocks lua_install -r^ --$LUA
+      - export PATH=$PATH:$PWD/lua_install/bin
+    install:
+      - luarocks install luafilesystem
+      - luarocks install busted
+      - luarocks install luacov
+      - luarocks install luacov-coveralls
+      - luarocks install luacheck
+    script:
+      - luacheck src
+      - lua -lluacov spec.lua
+    after_success:
+      - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install
 
-before_install:
-  - pip install hererocks
-  - hererocks lua_install -r^ --$LUA
-  - export PATH=$PATH:$PWD/lua_install/bin
+  - env:
+    - DESCRIPTION="mkdocs generation and deploy"
+    - LUA="lua=5.1"
+    stage: docs
+    language: python
+    sudo: false
+    branches:
+      only:
+        - master
+    before_install:
+      - pip install mkdocs mkdocs-material
+      - pip install hererocks
+      - hererocks lua_install -r^ --$LUA
+      - export PATH=$PATH:$PWD/lua_install/bin
+    install:
+      - luarocks install ldoc
+    script:
+      - make docs
+    deploy:
+      provider: pages
+      fqdn: btk.bob.sh
+      local-dir: site
+      skip-cleanup: true
+      github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+      keep-history: true
+      on:
+        branch: master
 
-install:
-  - luarocks install luafilesystem
-  - luarocks install busted
-  - luarocks install luacov
-  - luarocks install luacov-coveralls
-  - luarocks install luacheck
 
-script:
-  - luacheck src
-  - lua -lluacov spec.lua
 
-after_success:
-  - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install
+notifications:
+  email: false
+
