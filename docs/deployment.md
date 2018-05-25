@@ -1,6 +1,6 @@
 # Manual Deployment
 
-See [Development Environment] on how to get setup first.
+See [Development Environment](development.md) on how to get setup first.
 
 This really needs automation, see [this github issue](https://github.com/bobsh/BTK/issues/12)
 for status on this.
