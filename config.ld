@@ -11,7 +11,7 @@ format = 'markdown'
 use_markdown_titles = true
 
 file = {
-    'src/Models/Core/MainModule/', exclude = {'src/Models/Core/MainModule/lib/'},
+    'src/', exclude = {'src/Models/Core/MainModule/lib/'},
 }
 
 dir = 'docs/ldoc'

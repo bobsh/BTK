@@ -1,3 +1,7 @@
+--[[--
+	BTK plugin
+	@script BTK
+--]]
 local btkDev = game.ReplicatedStorage:FindFirstChild("BTK", false)
 local btk
 if btkDev then

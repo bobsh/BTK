@@ -1,7 +1,9 @@
---[[
-    BTKScriptHelper bootstraps the BTK script handling
-	code
+--[[--
+    BTKScriptHelper bootstraps the BTK script handling code
+	@module Helper
+	@export
 --]]
+
 local function BTKScriptHelper(s)
 	--[[
 		Here we lookup a development version of the code
