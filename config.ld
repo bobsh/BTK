@@ -15,3 +15,6 @@ file = {
 }
 
 dir = 'docs/ldoc'
+
+style = "!pale"
+style = "!fixed"
