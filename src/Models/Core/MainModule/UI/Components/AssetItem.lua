@@ -1,6 +1,7 @@
 --[[--
     Assets widget item
     @classmod UI.AssetItem
+    @export
 --]]
 
 local Roact = require(script.Parent.Parent.Parent.lib.Roact)
@@ -89,5 +90,4 @@ function AssetItem:_createFunction()
     end
 end
 
---- @export
 return AssetItem

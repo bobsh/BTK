@@ -1,3 +1,9 @@
+--[[--
+	Load plugins
+	@module BTKPluginDev.LoadPlugins
+	@export
+--]]
+
 local loaded = {}
 
 --[[

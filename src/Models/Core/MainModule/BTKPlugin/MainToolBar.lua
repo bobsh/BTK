@@ -1,3 +1,4 @@
+--- @module BTKPlugin.MainToolBar
 local BaseObject = require(script.Parent.Parent.BaseObject)
 local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
 local CreationWidget = require(script.Parent.CreationWidget)

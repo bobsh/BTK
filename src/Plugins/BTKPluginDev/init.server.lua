@@ -1,3 +1,7 @@
+--[[--
+	Plugin development plugin
+	@script BTKPluginDev
+--]]
 local storage = game.ReplicatedStorage
 local BTKContent = storage:WaitForChild("BTKContent", 2)
 

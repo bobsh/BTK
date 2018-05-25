@@ -1,3 +1,4 @@
+--- @module BTKPlugin.CreationWidget
 local BaseObject = require(script.Parent.Parent.BaseObject)
 local UI = require(script.Parent.UI)
 local ConfirmationPopup = require(script.Parent.ConfirmationPopup)

@@ -1,9 +1,13 @@
+--[[--
+	@script BTKDev
+]]
 assert(plugin, "BTKPlugin: Code not running as plugin, stopping")
 
 local insertService = game:GetService("InsertService")
 
---[[
+--[[--
 	Assets
+	@type Assets
 --]]
 local Assets = {}
 
@@ -138,7 +142,6 @@ function DevToolBar:Init()
 		"Attach Component",
 		"Will attach a generic component to the selected instance.",
 		"rbxassetid://133293265"
-		---"rbxassetid://1606339973"
 	)
 
 	componentButton.Click:connect(Assets:AttachOnClick({
@@ -153,7 +156,6 @@ function DevToolBar:Init()
 		"Diags",
 		"Diags",
 		"rbxassetid://133293265"
-		---"rbxassetid://1606339973"
 	)
 	diagsButton.Click:connect(function()
 		local coreGUIChildren = game.CoreGui:GetChildren()

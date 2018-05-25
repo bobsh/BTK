@@ -1,3 +1,4 @@
+--- @module BTKPlugin.UI
 local BaseObject = require(script.Parent.Parent.BaseObject)
 local RbxGui = LoadLibrary("RbxGui")
 
