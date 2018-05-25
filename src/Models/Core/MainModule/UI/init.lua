@@ -23,7 +23,7 @@ function UI.static.DockWidget(props)
 	)
 
 	local pluginGUI = props.Plugin:CreateDockWidgetPluginGui(props.Name, info)
-	pluginGUI.Title = "Testies"
+	pluginGUI.Title = props.Name
 	pluginGUI.Name = props.Name
 
 	return pluginGUI

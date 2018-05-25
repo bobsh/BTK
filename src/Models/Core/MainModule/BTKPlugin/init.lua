@@ -3,7 +3,6 @@
 local BaseObject = require(script.Parent.BaseObject)
 local MainToolBar = require(script.MainToolBar)
 local ConfigurationWidget = require(script.ConfigurationWidget)
-local AssetsWidget = require(script.AssetsWidget)
 local UI = require(script.Parent.UI)
 local Roact = require(script.Parent.lib.Roact)
 
@@ -23,7 +22,6 @@ function BTKPlugin:initialize(plug)
 
 	self._mainToolBar = MainToolBar:new(plug, self._mainScreenGUI)
 	self._configurationWidget = ConfigurationWidget:new(plug)
-	self._assetsWidget = AssetsWidget:new(plug, self._mainScreenGUI)
 
 	self:AssetsWidget()
 	self:ConfigurationWidget()
@@ -55,7 +53,6 @@ function BTKPlugin:Deactivate()
 		self._mainScreenGUI:Destroy()
 		self._mainToolBar:Destroy()
 		self._configurationWidget:Destroy()
-		self._assetsWidget:Destroy()
 		self:Trace("Plugin deactivation complete")
 	end
 end
