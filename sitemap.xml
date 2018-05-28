@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://btk.bob.sh//</loc>
-     <lastmod>2018-05-25</lastmod>
+     <lastmod>2018-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>https://btk.bob.sh//installation/</loc>
-     <lastmod>2018-05-25</lastmod>
+     <lastmod>2018-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
      <loc>https://btk.bob.sh//usage/</loc>
-     <lastmod>2018-05-25</lastmod>
+     <lastmod>2018-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
      <loc>https://btk.bob.sh//support/</loc>
-     <lastmod>2018-05-25</lastmod>
+     <lastmod>2018-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -37,19 +37,19 @@
         
     <url>
      <loc>https://btk.bob.sh//development/</loc>
-     <lastmod>2018-05-25</lastmod>
+     <lastmod>2018-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://btk.bob.sh//deployment/</loc>
-     <lastmod>2018-05-25</lastmod>
+     <lastmod>2018-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://btk.bob.sh//ldoc/</loc>
-     <lastmod>2018-05-25</lastmod>
+     <lastmod>2018-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
