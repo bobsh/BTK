@@ -1,7 +1,7 @@
 # luacov
 /luacov.*.out*
 
-# mkdocs
+# mkdocs published dir
 /site/
 
 # ldocs - we don't want to commit these, generate anew each time
