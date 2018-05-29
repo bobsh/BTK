@@ -32,4 +32,4 @@ test: ## Test
 	lua -lluacov spec.lua
 
 report-coveralls: ## Report to coveralls
-	luacov-coveralls -e $(TRAVIS_BUILD_DIR)/lua_install -e src/Models/Core/MainModule/lib/Roact --dryrun
+	luacov-coveralls -e $(TRAVIS_BUILD_DIR)/lua_install -e src/Models/Core/MainModule/lib/Roact
