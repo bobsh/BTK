@@ -9,5 +9,10 @@ return function()
         it("should new ok", function()
             expect(TextLabel:init({})).never.to.be.ok()
         end)
+
+        it("should render", function()
+            expect(TextLabel:render()).to.be.ok()
+        end)
+
     end)
 end

@@ -6,10 +6,12 @@ return function()
             expect(ConfigurationWidget).to.be.ok()
         end)
 
-        --[[ @TODO no support for selection
-        it("should new ok", function()
+        it("should init", function()
             expect(ConfigurationWidget:init({})).never.to.be.ok()
         end)
-        --]]
+
+        it("should render", function()
+            expect(ConfigurationWidget:render()).to.be.ok()
+        end)
     end)
 end

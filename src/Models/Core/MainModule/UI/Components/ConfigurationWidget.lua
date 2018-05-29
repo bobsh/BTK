@@ -15,7 +15,12 @@ function ConfigurationWidget:init(_)
         CurrentSelection = nil,
     }
 
-    self:HandleSelectionChange(game.Selection.SelectionChanged)
+    local sel = game:FindFirstChild("Selection")
+    if sel then
+        self:HandleSelectionChange(sel.SelectionChanged)
+    else
+        warn("No selection service found")
+    end
 end
 
 function ConfigurationWidget:render()

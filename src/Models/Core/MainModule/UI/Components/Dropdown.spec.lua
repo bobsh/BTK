@@ -9,5 +9,9 @@ return function()
         it("should new ok", function()
             expect(Dropdown:init({})).never.to.be.ok()
         end)
+
+        it("should render", function()
+            expect(Dropdown:render()).to.be.ok()
+        end)
     end)
 end

@@ -11,5 +11,9 @@ return function()
                 Plugin = "foo",
             })).never.to.be.ok()
         end)
+
+        it("should render", function()
+            expect(AssetsWidget:render()).to.be.ok()
+        end)
     end)
 end
