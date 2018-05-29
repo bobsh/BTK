@@ -8,13 +8,13 @@ hererocks: ## Install a local copy of lua
 	hererocks lua_install -r^ --$(LUA)
 
 deps-lua: ## Install dependencies for lua
-	luarocks install luafilesystem
-	luarocks install busted
-	luarocks install luacov
-	luarocks install luacov-coveralls
-	luarocks install luacov-console
-	luarocks install luacheck
-	luarocks install ldoc
+	luarocks show luafilesystem || luarocks install luafilesystem
+	luarocks show busted || luarocks install busted
+	luarocks show luacov || luarocks install luacov
+	luarocks show luacov-coveralls || luarocks install luacov-coveralls
+	luarocks show luacov-console || luarocks install luacov-console
+	luarocks show luacheck || luarocks install luacheck
+	luarocks show ldoc || luarocks install ldoc
 
 docs: docs-api ## Build all docs locally
 	mkdocs build
