@@ -1,4 +1,6 @@
 group: travis_latest
+git:
+  depth: 3
 
 jobs:
   include:
