@@ -25,5 +25,25 @@ return function()
             })
             expect(a:GetScript()).to.equal(s)
         end)
+
+        it("GetConfigurationFolder should work", function()
+            local s = Instance.new("Script")
+            local f = Instance.new("Folder", s)
+            f.Name = "Configuration"
+            local a = BaseScript:new({
+                Script = s,
+            })
+            expect(a:GetConfigurationFolder()).to.equal(f)
+        end)
+
+        it("GetInputEvent should work", function()
+            local s = Instance.new("Script")
+            local a = BaseScript:new({
+                Script = s,
+            })
+            local e = a:GetInputEvent()
+            expect(e).to.be.a("userdata")
+            expect(e.Name).to.equal("InputEvent")
+        end)
     end)
 end
