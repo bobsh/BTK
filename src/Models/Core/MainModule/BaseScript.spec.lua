@@ -1,5 +1,3 @@
-local inspect = require(script.Parent.lib.inspect)
-
 return function()
     local BaseScript = require(script.Parent.BaseScript)
 
