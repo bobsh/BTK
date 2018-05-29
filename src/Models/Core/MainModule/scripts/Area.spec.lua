@@ -7,10 +7,11 @@ return function()
         end)
 
         --[[
-        --- @TODO this fails now
         it("should new ok", function()
+            local p = Instance.new("Model")
+            local s = Instance.new("Script", p)
             expect(Area:new({
-                Script = Instance.new("Script"),
+                Script = s,
             })).to.be.ok()
         end)
         --]]

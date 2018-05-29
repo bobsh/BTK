@@ -6,13 +6,12 @@ return function()
             expect(Model).to.be.ok()
         end)
 
-        --[[
-        --- @TODO this fails now
         it("should new ok", function()
+            local p = Instance.new("Model")
+            local s = Instance.new("Script", p)
             expect(Model:new({
-                Script = Instance.new("Script"),
+                Script = s,
             })).to.be.ok()
         end)
-        --]]
     end)
 end

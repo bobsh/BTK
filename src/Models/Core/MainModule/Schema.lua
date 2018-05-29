@@ -361,7 +361,15 @@ Schema.static.PropertyDefinition = Schema.Record {
 		s.Function
 	),
 	ValueInstance = Schema.Optional(
-		Schema:IsA("ValueBase")
+		Schema.OneOf(
+			Schema:IsA("ValueBase"),
+			--- @TODO lemur doesn't populate the IsA handling properly
+			Schema:IsA("NumberValue"),
+			Schema:IsA("ObjectValue"),
+			Schema:IsA("StringValue"),
+			Schema:IsA("Vector3Value"),
+			Schema:IsA("BoolValue")
+		)
 	),
 	SchemaFn = s.Function,
 	WatchFn = Schema.Optional(

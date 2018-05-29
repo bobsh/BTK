@@ -21,7 +21,7 @@ local function BTKScriptHelper(s)
 		bootstrap in the central code area.
 	--]]
 	local scriptModule = btk.ScriptHelper:Get(s)
-	scriptModule:new({
+	return scriptModule:new({
 		Script = s,
 	})
 end

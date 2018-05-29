@@ -136,6 +136,13 @@ local PropertiesModule = {
 
 		local def = self._properties._definitions[key]
 
+        --[[
+        if def == nil then
+            self:Error("Unable to find property key", {
+                Key = key,
+            })
+        end
+        --]]
 		return self:AssertSchema(
 			def.ValueInstance,
 			Schema:IsA(def.Type)

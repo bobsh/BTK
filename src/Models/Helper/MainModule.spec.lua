@@ -11,7 +11,7 @@ return function()
         end)
 
         --- @TODO there is a bug with all script instances
-        itSKIP("should work", function()
+        it("should work", function()
             local newscript = Instance.new("Script")
             newscript.Name = "BTK:Terrain"
             local s = Helper(newscript)
