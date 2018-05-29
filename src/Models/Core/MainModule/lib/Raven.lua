@@ -145,12 +145,12 @@ local Http = game:GetService("HttpService")
 local GenerateUUID
 do
 	local hexTable = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'}
-	local rand = Random.new()
+	math.randomseed(tick())
 
 	local function RandomHex(length)
 		local s = ""
 		for _ = 1, length do
-			s = s .. hexTable[rand:NextInteger(1, 16)]
+			s = s .. hexTable[math.random(16)]
 		end
 		return s
 	end

@@ -11,7 +11,8 @@ local BaseInstance = BaseObject:subclass(script.Name)
 --[[
 	Install the raven logger if there is a DSN configured in our config
 ]]
-if game.ServerStorage.BTKServerConfig:FindFirstChild("Raven") and
+local ss = game:FindFirstChild("ServerStorage")
+if ss and ss.BTKServerConfig:FindFirstChild("Raven") and
 	game.ServerStorage.BTKServerConfig.Raven:FindFirstChild("DSN") then
 	BaseInstance:AddLogger({
 		Class = SentryLogger,
