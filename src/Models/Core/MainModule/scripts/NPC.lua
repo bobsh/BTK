@@ -22,7 +22,9 @@ NPC:AddProperty({
 		NPCState.AttackTarget
 	),
 	WatchFn = function(self, value)
-		self:Debug("State is now " .. value)
+		self:Debug("State at the moment", {
+			StateValue = value,
+		})
 		if     value == NPCState.Idle then
 			self.Waypoints = {}
 			self.GetHumanoid().PlatformStand = true

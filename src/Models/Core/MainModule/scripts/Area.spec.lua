@@ -6,14 +6,12 @@ return function()
             expect(Area).to.be.ok()
         end)
 
-        --[[
-        it("should new ok", function()
+        itSKIP("should new ok", function()
             local p = Instance.new("Model")
             local s = Instance.new("Script", p)
             expect(Area:new({
                 Script = s,
             })).to.be.ok()
         end)
-        --]]
     end)
 end

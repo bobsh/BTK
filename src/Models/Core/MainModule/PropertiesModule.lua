@@ -7,7 +7,25 @@ local PropertiesModule = {
         --[[
             A dictionary of our properties
         --]]
-        _property_defs = {},
+        _property_defs = {
+            ConfigurationFolder = {
+                Name = "ConfigurationFolder",
+                Type = "ObjectValue",
+                SchemaFn = Schema.Optional(
+                    Schema:IsA("Folder")
+                ),
+                AllowOverride = false,
+            },
+            Script = {
+                Name = "Script",
+                Type = "ObjectValue",
+                SchemaFn = Schema.Optional(Schema.OneOf(
+                        Schema:IsA("Script"),
+                        Schema:IsA("LocalScript")
+                )),
+                AllowOverride = false,
+            },
+        },
 
         _addPropertyHelpers = function(self, input)
             self:AssertSchema(
@@ -62,6 +80,14 @@ local PropertiesModule = {
             self._property_defs = new
         end,
     },
+
+    GetScript = function(self)
+        return self:GetProperty("Script")
+    end,
+
+    GetConfigurationFolder = function(self)
+        return self:GetProperty("ConfigurationFolder")
+    end,
 
     _properties = {
         _data_folder = nil,
@@ -124,6 +150,10 @@ local PropertiesModule = {
         end
         self:AssertSchema(self._properties._data_folder, Schema.DataFolder)
 
+        -- Load up the values for config folder and script
+        self.class._property_defs.Script.Value = input.Script
+        self.class._property_defs.ConfigurationFolder.Value = input.Script:FindFirstChild("Configuration", false)
+
         -- Iterate through all our properties and create the ValueBase
         -- for each
         for _, val in pairs(self.class:Properties()) do
@@ -136,14 +166,13 @@ local PropertiesModule = {
 
 		local def = self._properties._definitions[key]
 
-        --[[
-        if def == nil then
-            self:Error("Unable to find property key", {
-                Key = key,
-            })
-        end
-        --]]
-		return self:AssertSchema(
+--        if def == nil then
+--            self:Error("Unable to find property key", {
+--                Key = key,
+--            })
+--        end
+
+        return self:AssertSchema(
 			def.ValueInstance,
 			Schema:IsA(def.Type)
 		)
@@ -187,9 +216,13 @@ local PropertiesModule = {
     --- Watch property
 	WatchProperty = function(self, key, fn)
 		local part = self:_getPropertyValue(key)
-		self:AssertSchema(fn, Schema.Function)
+        self:AssertSchema(fn, Schema.Function)
 
-		return part.Changed:Connect(fn)
+        local wrap = function(val)
+            fn(self, val)
+        end
+
+		return part.Changed:Connect(wrap)
 	end,
 }
 
