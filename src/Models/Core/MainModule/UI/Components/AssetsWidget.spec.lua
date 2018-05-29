@@ -1,3 +1,5 @@
+local Roact = require(script.Parent.Parent.Parent.lib.Roact)
+
 return function()
     local AssetsWidget = require(script.Parent.AssetsWidget)
 
@@ -6,14 +8,13 @@ return function()
             expect(AssetsWidget).to.be.ok()
         end)
 
-        it("should new ok", function()
-            expect(AssetsWidget:init({
+        --- @TODO needs support for UITextSizeConstrainer in lemur
+        itSKIP("should mount and unmount", function()
+            local d = Roact.createElement(AssetsWidget, {
                 Plugin = "foo",
-            })).never.to.be.ok()
-        end)
-
-        it("should render", function()
-            expect(AssetsWidget:render()).to.be.ok()
+            })
+            local h = Roact.mount(d)
+            Roact.unmount(h)
         end)
     end)
 end

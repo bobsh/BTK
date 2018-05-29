@@ -1,3 +1,5 @@
+local Roact = require(script.Parent.Parent.Parent.lib.Roact)
+
 return function()
     local AssetItem = require(script.Parent.AssetItem)
 
@@ -6,18 +8,11 @@ return function()
             expect(AssetItem).to.be.ok()
         end)
 
-        it("should init", function()
-            --- @TODO we currently can't emulate marketplace service
-            expect(function()
-                AssetItem:init()
-            end).to.throw()
-        end)
-
-        it("should render", function()
-            --- @TODO we need init to work first
-            expect(function()
-                AssetItem:render()
-            end).to.throw()
+        --- @TODO breaks trying to get MarketplaceService
+        itSKIP("should mount and unmount", function()
+            local d = Roact.createElement(AssetItem)
+            local h = Roact.mount(d)
+            Roact.unmount(h)
         end)
     end)
 end

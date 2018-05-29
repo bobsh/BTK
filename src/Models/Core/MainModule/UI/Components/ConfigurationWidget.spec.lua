@@ -1,3 +1,5 @@
+local Roact = require(script.Parent.Parent.Parent.lib.Roact)
+
 return function()
     local ConfigurationWidget = require(script.Parent.ConfigurationWidget)
 
@@ -6,12 +8,10 @@ return function()
             expect(ConfigurationWidget).to.be.ok()
         end)
 
-        it("should init", function()
-            expect(ConfigurationWidget:init({})).never.to.be.ok()
-        end)
-
-        it("should render", function()
-            expect(ConfigurationWidget:render()).to.be.ok()
+        it("should mount and unmount", function()
+            local d = Roact.createElement(ConfigurationWidget)
+            local h = Roact.mount(d)
+            Roact.unmount(h)
         end)
     end)
 end

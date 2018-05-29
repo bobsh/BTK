@@ -27,7 +27,6 @@ function Dropdown:render()
 			BorderSizePixel = 0,
 			Text = item,
 			Size = UDim2.new(1, 0, 0, 20),
-			ZIndex = 5,
 
 			[Roact.Event.MouseButton1Click] = function(_)
 				if self.state.ChangeFn ~= nil then
@@ -45,7 +44,6 @@ function Dropdown:render()
 	return c("TextButton", {
 		Size = UDim2.new(0, 200, 0, 30),
 		Text = "",
-		ZIndex = 5,
 
 		[Roact.Event.MouseButton1Click] = function(_)
 			self:setState({
@@ -70,8 +68,6 @@ function Dropdown:render()
 			Text = self.state.CurrentItem or "select an item",
 			Font = Enum.Font.SourceSans,
 			TextSize = 18,
-			TextScaled = true,
-			ZIndex = 6,
 		}, {
 			c("UITextSizeConstraint", {
 				MaxTextSize = 18,
@@ -81,7 +77,6 @@ function Dropdown:render()
 			Visible = self.state.Open,
 			Size = UDim2.new(1, 0, 0, 100),
 			Position = UDim2.new(0, 0, 1, 0),
-			ZIndex = 5,
 		}, {
 			c("UIListLayout"),
 			unpack(items),

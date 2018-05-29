@@ -1,3 +1,5 @@
+local Roact = require(script.Parent.Parent.Parent.lib.Roact)
+
 return function()
     local TextLabel = require(script.Parent.TextLabel)
 
@@ -6,13 +8,13 @@ return function()
             expect(TextLabel).to.be.ok()
         end)
 
-        it("should new ok", function()
-            expect(TextLabel:init({})).never.to.be.ok()
+        it("should mount and unmount", function()
+            local d = Roact.createElement(TextLabel, {
+                Size = UDim2.new(0,0,0,0),
+                Text = "foo",
+            })
+            local h = Roact.mount(d)
+            Roact.unmount(h)
         end)
-
-        it("should render", function()
-            expect(TextLabel:render()).to.be.ok()
-        end)
-
     end)
 end

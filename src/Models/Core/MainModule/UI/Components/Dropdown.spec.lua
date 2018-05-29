@@ -1,3 +1,5 @@
+local Roact = require(script.Parent.Parent.Parent.lib.Roact)
+
 return function()
     local Dropdown = require(script.Parent.Dropdown)
 
@@ -6,12 +8,13 @@ return function()
             expect(Dropdown).to.be.ok()
         end)
 
-        it("should new ok", function()
-            expect(Dropdown:init({})).never.to.be.ok()
-        end)
-
-        it("should render", function()
-            expect(Dropdown:render()).to.be.ok()
+        --- @TODO Support UITextSizeConstraint in lemur
+        itSKIP("should mount and unmount", function()
+            local d = Roact.createElement(Dropdown, {
+                Items = {"foo"},
+            })
+            local h = Roact.mount(d)
+            Roact.unmount(h)
         end)
     end)
 end
