@@ -33,10 +33,10 @@ jobs:
       on:
         branch: master
     cache:
-      - directories:
-          # Cache our hererocks installs
-          - lua_install
-      - pip
+      pip: true
+      directories:
+      - lua_install # Cache our hererocks installs
+
 
 
 
