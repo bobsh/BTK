@@ -33,9 +33,11 @@ jobs:
       on:
         branch: master
     cache:
-      directories:
-        # Cache our hererocks installs
-        - lua_install
+      - directories:
+          # Cache our hererocks installs
+          - lua_install
+      - pip
+
 
 
 notifications:
