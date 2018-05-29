@@ -3,7 +3,7 @@ local BaseObject = require(script.Parent.Parent.BaseObject)
 local UI = require(script.Parent.UI)
 local ConfirmationPopup = require(script.Parent.ConfirmationPopup)
 local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
-local RbxGui = LoadLibrary("RbxGui")
+
 
 --[[
 	CreationWidget
@@ -73,6 +73,8 @@ function CreationWidget:initialize(gui)
 
 	self.MainScreenGUI = gui
 
+	-- @TODO loadlibrary and rbxgui are deprecated
+	local RbxGui = LoadLibrary("RbxGui")
 	local entire, container, _, event = RbxGui.CreatePluginFrame(
 		"Create Object",
 		UDim2.new(0,320,0,200),

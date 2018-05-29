@@ -6,3 +6,6 @@
 
 # ldocs - we don't want to commit these, generate anew each time
 /docs/ldoc
+
+# lua local
+/lua_install

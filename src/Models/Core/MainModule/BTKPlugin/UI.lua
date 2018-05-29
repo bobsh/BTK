@@ -1,6 +1,5 @@
 --- @module BTKPlugin.UI
 local BaseObject = require(script.Parent.Parent.BaseObject)
-local RbxGui = LoadLibrary("RbxGui")
 
 --[[
 	UI Functions
@@ -120,6 +119,9 @@ function UI.static:CreateStandardSlider(name,
 
 	self:Trace("create")
 
+	-- @TODO rbxgui is deprecated
+	local RbxGui = LoadLibrary("RbxGui")
+
 	local sliderGui, sliderPosition = RbxGui.CreateSlider(steps, 0, UDim2.new(0,0,0,0))
 
 	sliderGui.Name = name
@@ -161,6 +163,9 @@ function UI.static:CreateStandardDropdown(name,
 	self:Trace("create")
 
 	-- Create a dropdown selection for the modes to fill in a river
+	-- @TODO rbxgui is deprecated, so is loadlibrary
+	local RbxGui = LoadLibrary("RbxGui")
+
 	local dropdown, updateSelection=RbxGui.CreateDropDownMenu(values, funcOnChange);
 	dropdown.Name = name
 	dropdown.Position = pos
@@ -177,7 +182,7 @@ end
 -- These are the default properties to use for a button.
 local buttonTextColor = Color3.new(1, 1, 1);
 local buttonFont = Enum.Font.ArialBold;
-local buttonFontSize = Enum.FontSize.Size18;
+local buttonFontSize = 18;
 
 -- Create a standard dropdown.  Use this for all dropdowns in the popup so it is easy to standardize.
 -- name - What to use.

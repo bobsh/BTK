@@ -6,8 +6,6 @@
 local BaseUtil = require(script.Parent.BaseUtil)
 local Schema = require(script.Parent.Schema)
 
-local InsertService = game:GetService("InsertService")
-
 local Assets = BaseUtil:subclass(script.Name)
 
 --- Get
@@ -68,6 +66,8 @@ function Assets.static:Install(input)
 
 		newAsset = file:Clone()
 	else
+		local InsertService = game:GetService("InsertService")
+
 		versionID = InsertService:GetLatestAssetVersionAsync(input.ID)
 		self:Debug(("Found version %d for asset ID %d"):format(versionID, input.ID))
 

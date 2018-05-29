@@ -9,9 +9,8 @@ local AssetsUtil = require(script.Parent.Parent.Parent.AssetsUtil)
 local AssetItem = Roact.Component:extend("AssetItem")
 local c = Roact.createElement
 
-local MarketplaceService = game:GetService("MarketplaceService")
-
 function AssetItem:init(props)
+    local MarketplaceService = game:GetService("MarketplaceService")
     local productInfo = MarketplaceService:GetProductInfo(props.ID, Enum.InfoType.Asset)
 
     local asset = {

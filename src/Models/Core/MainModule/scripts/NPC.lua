@@ -2,7 +2,6 @@
 
 local Character = require(script.Parent.Character)
 local Schema = require(script.Parent.Parent.Schema)
-local PathfindingService = game:GetService("PathfindingService")
 
 local NPCState = {
 	Dead = "Dead",
@@ -133,6 +132,7 @@ function NPC:RefreshPathToEnemy()
 		local start = self.Humanoid.RootPart
 		local finish = self:GetEnemyTarget().PrimaryPart
 
+		local PathfindingService = game:GetService("PathfindingService")
 		local path = PathfindingService:FindPathAsync(start.Position, finish.Position)
 		self.Waypoints = path:GetWaypoints()
 		self.LastWaypointCalc = time()

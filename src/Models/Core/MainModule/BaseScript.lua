@@ -4,7 +4,7 @@ local BaseInstance = require(script.Parent.BaseObject)
 local PropertiesModule = require(script.Parent.PropertiesModule)
 local Schema = require(script.Parent.Schema)
 
-local BaseScript = BaseInstance:subclass(script.name)
+local BaseScript = BaseInstance:subclass(script.Name)
 BaseScript:include(PropertiesModule)
 BaseScript:AddProperty({
 	Name = "Script",

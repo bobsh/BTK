@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "rojo",
+            "type": "shell",
+            "command": "make rojo"
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "make test"
+        },
+        {
+            "label": "lint",
+            "type": "shell",
+            "command": "make lint"
+        }
+    ]
+}

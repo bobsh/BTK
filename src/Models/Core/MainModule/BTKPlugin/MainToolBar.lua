@@ -10,6 +10,8 @@ local CreationWidget = require(script.Parent.CreationWidget)
 --]]
 local MainToolBar = BaseObject:subclass(script.Name)
 
+local starterPlayer = game:FindFirstChild("StarterPlayer")
+
 MainToolBar.AssetsToInstall = {
 	{
 		Parent = game.ReplicatedStorage,
@@ -19,7 +21,9 @@ MainToolBar.AssetsToInstall = {
 		NoDelete = true
 	},
 	{
-		Parent = game.ServerScriptService,
+		-- @TODO this is a lookup, not absolute because lemr doesn't
+		-- handle it yet
+		Parent = game:FindFirstChild("ServerScriptService"),
 		Name = "BTK:Server",
 		Type = "Script",
 		Local = {
@@ -28,7 +32,8 @@ MainToolBar.AssetsToInstall = {
 		}
 	},
 	{
-		Parent = game.StarterPlayer.StarterCharacterScripts,
+		-- @TODO
+		Parent = starterPlayer and starterPlayer:FindFirstChild("StarterCharacterScripts"),
 		Name = "Animate",
 		Type = "LocalScript",
 		Local = {
@@ -37,7 +42,7 @@ MainToolBar.AssetsToInstall = {
 		}
 	},
 	{
-		Parent = game.StarterPlayer.StarterCharacterScripts,
+		Parent = starterPlayer and starterPlayer:FindFirstChild("StarterCharacterScripts"),
 		Name = "BTK:PC",
 		Type = "Script",
 		Local = {
@@ -46,7 +51,7 @@ MainToolBar.AssetsToInstall = {
 		}
 	},
 	{
-		Parent = game.StarterPlayer.StarterPlayerScripts,
+		Parent = starterPlayer and starterPlayer:FindFirstChild("StarterPlayerScripts"),
 		Name = "BTK:Player",
 		Type = "LocalScript",
 		Local = {

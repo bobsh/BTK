@@ -14,16 +14,9 @@ jobs:
         - master
     before_install:
       - pip install mkdocs mkdocs-material
-      - pip install hererocks
-      - hererocks lua_install -r^ --$LUA
-      - export PATH=$PATH:$PWD/lua_install/bin
+      - make hererocks
     install:
-      - luarocks install luafilesystem
-      - luarocks install busted
-      - luarocks install luacov
-      - luarocks install luacov-coveralls
-      - luarocks install luacheck
-      - luarocks install ldoc
+      - make deps-lua
     script:
       - make lint
       - make test

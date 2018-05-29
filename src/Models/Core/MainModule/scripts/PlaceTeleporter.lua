@@ -4,8 +4,6 @@ local Model = require(script.Parent.Model)
 local TouchUtil = require(script.Parent.Parent.TouchUtil)
 local Schema = require(script.Parent.Parent.Schema)
 
-local TeleportService = game:GetService("TeleportService")
-
 local PlaceTeleporter = Model:subclass(script.Name)
 PlaceTeleporter:AddProperty({
 	Name = "TeleportPlaceId",
@@ -34,7 +32,9 @@ end
 
 function PlaceTeleporter:CreateOnTouched()
 	return function(input)
-	    if input.Player then
+		if input.Player then
+			local TeleportService = game:GetService("TeleportService")
+
 			if self:IsReserveInstance() then
 				local reserveId = TeleportService:ReserveServer(
 					self:GetTeleportPlaceId()
