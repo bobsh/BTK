@@ -8,8 +8,7 @@ return function()
             expect(AssetsWidget).to.be.ok()
         end)
 
-        --- @TODO needs support for UITextSizeConstrainer in lemur
-        itSKIP("should mount and unmount", function()
+        it("should mount and unmount", function()
             local d = Roact.createElement(AssetsWidget, {
                 Plugin = "foo",
             })

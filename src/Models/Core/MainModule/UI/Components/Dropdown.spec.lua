@@ -8,8 +8,7 @@ return function()
             expect(Dropdown).to.be.ok()
         end)
 
-        --- @TODO Support UITextSizeConstraint in lemur
-        itSKIP("should mount and unmount", function()
+        it("should mount and unmount", function()
             local d = Roact.createElement(Dropdown, {
                 Items = {"foo"},
             })
