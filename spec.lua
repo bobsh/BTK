@@ -45,24 +45,27 @@ end
 -- Create a virtual Roblox tree
 local habitat = lemur.Habitat.new()
 
+-- Get replicated storage
+local ReplicatedStorage = habitat.game:GetService("ReplicatedStorage")
+
 -- We'll put all of our library code and dependencies here
 local Root = lemur.Instance.new("Folder")
 Root.Name = "Root"
 
 -- Load all of the modules specified above
 for _, module in ipairs(LOAD_MODULES) do
-	local container = habitat:loadFromFs(module[1])
+	local container = habitat:loadFromFs(module[1], ReplicatedStorage)
 	container.Name = module[2]
-	container.Parent = Root
+	container.Parent = ReplicatedStorage
 end
 
-collapse(Root)
+collapse(ReplicatedStorage)
 
 -- Load TestEZ and run our tests
-local TestEZ = habitat:require(Root.TestEZ)
+local TestEZ = habitat:require(ReplicatedStorage.TestEZ)
 
 local results = TestEZ.TestBootstrap:run(
-	Root.BTK,
+	ReplicatedStorage.BTK,
 	TestEZ.Reporters.TextReporter,
 	true
 )
