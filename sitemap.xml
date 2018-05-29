@@ -11,48 +11,10 @@
 
     
     <url>
-     <loc>https://btk.bob.sh//installation/</loc>
-     <lastmod>2018-05-29</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>https://btk.bob.sh//usage/</loc>
-     <lastmod>2018-05-29</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>https://btk.bob.sh//support/</loc>
-     <lastmod>2018-05-29</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-        
-    <url>
      <loc>https://btk.bob.sh//development/</loc>
      <lastmod>2018-05-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    <url>
-     <loc>https://btk.bob.sh//deployment/</loc>
-     <lastmod>2018-05-29</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://btk.bob.sh//ldoc/</loc>
-     <lastmod>2018-05-29</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
     
 
 </urlset>

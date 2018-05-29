@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Overview\n\n\nA toolkit for Roblox.", 
+            "text": "Overview\n\n\n \n\n\nA toolkit for Roblox.\n\n\nPlugin Installation\n\n\nInstall the plugin into your Roblox Studio:\n\n\n\n\nhttps://www.roblox.com/library/1606500837/BTK\n\n\n\n\nAnd while focused on the place, go to the \nPlugins\n ribbon and\nclick \nInstall\n for Bob's Toolkit.\n\n\nAdding Scripts\n\n\nTODO\n\n\nConfiguring Scripts\n\n\nTODO\n\n\nRaising bugs\n\n\nRaise issues on github: \nBug report\n\n\nFeature requests\n\n\nRaise requests on github: \nFeature request", 
             "title": "Home"
         }, 
         {
@@ -11,49 +11,39 @@
             "title": "Overview"
         }, 
         {
-            "location": "/installation/", 
-            "text": "Plugin Installation\n\n\nInstall the plugin into your Roblox Studio:\n\n\n\n\nhttps://www.roblox.com/library/1606500837/BTK\n\n\n\n\nAnd while focused on the place, go to the \nPlugins\n ribbon and\nclick \nInstall\n for Bob's Toolkit.", 
-            "title": "Installation"
-        }, 
-        {
-            "location": "/installation/#plugin-installation", 
+            "location": "/#plugin-installation", 
             "text": "Install the plugin into your Roblox Studio:   https://www.roblox.com/library/1606500837/BTK   And while focused on the place, go to the  Plugins  ribbon and\nclick  Install  for Bob's Toolkit.", 
             "title": "Plugin Installation"
         }, 
         {
-            "location": "/usage/", 
-            "text": "Adding Scripts\n\n\nTODO\n\n\nConfiguring Scripts\n\n\nTODO", 
-            "title": "Usage"
-        }, 
-        {
-            "location": "/usage/#adding-scripts", 
+            "location": "/#adding-scripts", 
             "text": "TODO", 
             "title": "Adding Scripts"
         }, 
         {
-            "location": "/usage/#configuring-scripts", 
+            "location": "/#configuring-scripts", 
             "text": "TODO", 
             "title": "Configuring Scripts"
         }, 
         {
-            "location": "/support/", 
-            "text": "Raising bugs\n\n\nRaise issues on github: \nBug report\n\n\nFeature requests\n\n\nRaise requests on github: \nFeature request", 
-            "title": "Support"
-        }, 
-        {
-            "location": "/support/#raising-bugs", 
+            "location": "/#raising-bugs", 
             "text": "Raise issues on github:  Bug report", 
             "title": "Raising bugs"
         }, 
         {
-            "location": "/support/#feature-requests", 
+            "location": "/#feature-requests", 
             "text": "Raise requests on github:  Feature request", 
             "title": "Feature requests"
         }, 
         {
             "location": "/development/", 
-            "text": "Source Control\n\n\nGithub repo: \nbobsh/BTK\n\n\nLocal Development\n\n\nThe project uses \"Rojo\" to sync up the source with Roblox Studio,\nmake sure this is running and you setup synchronisation for a solid development workflow.\n\n\nTo run rojo:\n\n\n# make dev\n\n\n\n\n\nTests\n\n\nRun\n\n\n# make test\n\n\n\n\n\nLint\n\n\nOr for lint:\n\n\n# make lint\n\n\n\n\n\nProject Management\n\n\nGithub project: \nBTK\n\n\nAutomated testing\n\n\nTravisCI: \nbobsh/BTK\n\nCoveralls: \nbobsh/BTK", 
-            "title": "Environment"
+            "text": "API Reference\n\n\nAPI Docs \n\n\nSource Control\n\n\nGithub repo: \nbobsh/BTK\n\n\nLocal Development\n\n\nThe project uses \"Rojo\" to sync up the source with Roblox Studio,\nmake sure this is running and you setup synchronisation for a solid development workflow.\n\n\nTo run rojo:\n\n\n# make dev\n\n\n\n\n\nTests\n\n\nRun\n\n\n# make test\n\n\n\n\n\nLint\n\n\nOr for lint:\n\n\n# make lint\n\n\n\n\n\nProject Management\n\n\nGithub project: \nBTK\n\n\nAutomated testing\n\n\nTravisCI: \nbobsh/BTK\n\nCoveralls: \nbobsh/BTK\n\n\nManual Deployment\n\n\nSee \nDevelopment Environment\n on how to get setup first.\n\n\nThis really needs automation, see \nthis github issue\n\nfor status on this.\n\n\nCore\n\n\nThis is located in:\n\n\nReplicatedStorage.BTK.Models.Core.MainModule\n\n\n\n\n\nRight-click and select \nPublish to roblox ...\n.\n\n\nGroup is \nBTK\n model is \nCore\n.\n\n\nRare Deployments\n\n\nMost of the code is in Core, so it should be rare to need a Helper or Plugin upgrade.\n\n\nHelper\n\n\nThis is located in:\n\n\nReplicatedStorage.BTK.Models.Helper.MainModule\n\n\n\n\n\nRight-click and select \nPublish to roblox ...\n.\n\n\nGroup is \nBTK\n model is \nHelper\n.\n\n\nPlugin\n\n\nThis is located in:\n\n\nReplicatedStorage.BTK.Plugins.BTK\n\n\n\n\n\nRight-click and select \nPublish as plugin ...\n. Choose \nBTK\n\nto overwrite.\n\n\nContent\n\n\nContent\n I hope to remove or consolidate to Core, so we don't add things to it very often\nso it should rarely need deployment.\n\n\nThis is located in:\n\n\nReplicatedStorage.BTKContent\n\n\n\n\n\nRight-click and select \nPublish to roblox ...\n.\n\n\nGroup is \nBTK\n model is \nContent\n.", 
+            "title": "Development"
+        }, 
+        {
+            "location": "/development/#api-reference", 
+            "text": "API Docs", 
+            "title": "API Reference"
         }, 
         {
             "location": "/development/#source-control", 
@@ -86,44 +76,34 @@
             "title": "Automated testing"
         }, 
         {
-            "location": "/deployment/", 
-            "text": "Manual Deployment\n\n\nSee \nDevelopment Environment\n on how to get setup first.\n\n\nThis really needs automation, see \nthis github issue\n\nfor status on this.\n\n\nCore\n\n\nThis is located in:\n\n\nReplicatedStorage.BTK.Models.Core.MainModule\n\n\n\n\n\nRight-click and select \nPublish to roblox ...\n.\n\n\nGroup is \nBTK\n model is \nCore\n.\n\n\nRare Deployments\n\n\nMost of the code is in Core, so it should be rare to need a Helper or Plugin upgrade.\n\n\nHelper\n\n\nThis is located in:\n\n\nReplicatedStorage.BTK.Models.Helper.MainModule\n\n\n\n\n\nRight-click and select \nPublish to roblox ...\n.\n\n\nGroup is \nBTK\n model is \nHelper\n.\n\n\nPlugin\n\n\nThis is located in:\n\n\nReplicatedStorage.BTK.Plugins.BTK\n\n\n\n\n\nRight-click and select \nPublish as plugin ...\n. Choose \nBTK\n\nto overwrite.\n\n\nContent\n\n\nContent\n I hope to remove or consolidate to Core, so we don't add things to it very often\nso it should rarely need deployment.\n\n\nThis is located in:\n\n\nReplicatedStorage.BTKContent\n\n\n\n\n\nRight-click and select \nPublish to roblox ...\n.\n\n\nGroup is \nBTK\n model is \nContent\n.", 
-            "title": "Deployment"
-        }, 
-        {
-            "location": "/deployment/#manual-deployment", 
+            "location": "/development/#manual-deployment", 
             "text": "See  Development Environment  on how to get setup first.  This really needs automation, see  this github issue \nfor status on this.", 
             "title": "Manual Deployment"
         }, 
         {
-            "location": "/deployment/#core", 
+            "location": "/development/#core", 
             "text": "This is located in:  ReplicatedStorage.BTK.Models.Core.MainModule  Right-click and select  Publish to roblox ... .  Group is  BTK  model is  Core .", 
             "title": "Core"
         }, 
         {
-            "location": "/deployment/#rare-deployments", 
+            "location": "/development/#rare-deployments", 
             "text": "Most of the code is in Core, so it should be rare to need a Helper or Plugin upgrade.", 
             "title": "Rare Deployments"
         }, 
         {
-            "location": "/deployment/#helper", 
+            "location": "/development/#helper", 
             "text": "This is located in:  ReplicatedStorage.BTK.Models.Helper.MainModule  Right-click and select  Publish to roblox ... .  Group is  BTK  model is  Helper .", 
             "title": "Helper"
         }, 
         {
-            "location": "/deployment/#plugin", 
+            "location": "/development/#plugin", 
             "text": "This is located in:  ReplicatedStorage.BTK.Plugins.BTK  Right-click and select  Publish as plugin ... . Choose  BTK \nto overwrite.", 
             "title": "Plugin"
         }, 
         {
-            "location": "/deployment/#content", 
+            "location": "/development/#content", 
             "text": "Content  I hope to remove or consolidate to Core, so we don't add things to it very often\nso it should rarely need deployment.  This is located in:  ReplicatedStorage.BTKContent  Right-click and select  Publish to roblox ... .  Group is  BTK  model is  Content .", 
             "title": "Content"
-        }, 
-        {
-            "location": "/ldoc/", 
-            "text": "BTK API Docs\n\n    \n\n\n\n\n\n\n\n\n\n\n\n    \n\n    \n\n    \n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBTK\n\n\n\n\n\n\nModules\n\n\n\n  \nBTKPlugin.CreationWidget\n\n  \nBTKPlugin.MainToolBar\n\n  \nBTKPlugin.UI\n\n  \nClassyModule\n\n  \nPropertiesModule\n\n  \nSchema\n\n  \nSchemaModule\n\n  \nHelper\n\n  \nBTKPluginDev.LoadPlugins\n\n\n\n\nScripts\n\n\n\n  \nBTK\n\n  \nBTKDev\n\n  \nBTKPluginDev\n\n\n\n\nClasses\n\n\n\n  \nAssetsUtils\n\n  \nBTKPlugin\n\n  \nBaseInstance\n\n  \nBaseLogger\n\n  \nBaseObject\n\n  \nBaseScript\n\n  \nBaseUtil\n\n  \nComponentHandle\n\n  \nLoggerModule\n\n  \nOutputLogger\n\n  \nScriptHelper\n\n  \nSentryLogger\n\n  \nTouchUtil\n\n  \nUI.AssetItem\n\n  \nUI.AssetsWidget\n\n  \nUI.ConfigurationWidget\n\n  \nUI.Dropdown\n\n  \nUI.TextLabel\n\n  \nUI\n\n  \nbtk\n\n  \nscripts.Area\n\n  \nscripts.Character\n\n  \nscripts.Collectable\n\n  \nscripts.Currency\n\n  \nscripts.Model\n\n  \nscripts.NPC\n\n  \nscripts.PC\n\n  \nscripts.PlaceTeleporter\n\n  \nscripts.PlatformMover\n\n  \nscripts.Player\n\n  \nscripts.Server\n\n  \nSscripts.mashable\n\n  \nscripts.Teleporter\n\n  \nscripts.Terrain\n\n  \nscripts.Tool\n\n  \nscripts.Waypoints\n\n  \nscripts.Weapon\n\n\n\n\n\n\n\n\n\n\n\n  \nBTK A toolkit for Roblox\n\n  \nThis toolkit provides a framework on top of\nRoblox for better game development.\n\n\n\nModules\n\n\n\n    \n\n        \nBTKPlugin.CreationWidget\n\n        \n\n\n\n\n    \n\n    \n\n        \nBTKPlugin.MainToolBar\n\n        \n\n\n\n\n    \n\n    \n\n        \nBTKPlugin.UI\n\n        \n\n\n\n\n    \n\n    \n\n        \nClassyModule\n\n        \n\n\n\n\n    \n\n    \n\n        \nPropertiesModule\n\n        \n\n\n\n\n    \n\n    \n\n        \nSchema\n\n        \nSchema related utilities\n\n    \n\n    \n\n        \nSchemaModule\n\n        \nSchema checking and helper module\n\n    \n\n    \n\n        \nHelper\n\n        \nBTKScriptHelper bootstraps the BTK script handling code\n\n    \n\n    \n\n        \nBTKPluginDev.LoadPlugins\n\n        \nLoad plugins\n\n    \n\n\n\n\nScripts\n\n\n\n    \n\n        \nBTK\n\n        \nBTK plugin\n\n    \n\n    \n\n        \nBTKDev\n\n        \n\n\n\n\n    \n\n    \n\n        \nBTKPluginDev\n\n        \nPlugin development plugin\n\n    \n\n\n\n\nClasses\n\n\n\n    \n\n        \nAssetsUtils\n\n        \nUtilities for asserts\n\n    \n\n    \n\n        \nBTKPlugin\n\n        \n\n\n\n\n    \n\n    \n\n        \nBaseInstance\n\n        \nBaseInstance represents anything abstractly in the game world.\n\n    \n\n    \n\n        \nBaseLogger\n\n        \nBase logging abstract class\n\n    \n\n    \n\n        \nBaseObject\n\n        \nBaseObject is an abstract object that is at the root of the BTK class hierachy.\n\n    \n\n    \n\n        \nBaseScript\n\n        \n\n\n\n\n    \n\n    \n\n        \nBaseUtil\n\n        \n\n\n\n\n    \n\n    \n\n        \nComponentHandle\n\n        \n\n\n\n\n    \n\n    \n\n        \nLoggerModule\n\n        \n\n\n\n\n    \n\n    \n\n        \nOutputLogger\n\n        \n\n\n\n\n    \n\n    \n\n        \nScriptHelper\n\n        \n\n\n\n\n    \n\n    \n\n        \nSentryLogger\n\n        \nSentryLogger outputs to sentry\n\n    \n\n    \n\n        \nTouchUtil\n\n        \nTouch utilities\n\n    \n\n    \n\n        \nUI.AssetItem\n\n        \nAssets widget item\n\n    \n\n    \n\n        \nUI.AssetsWidget\n\n        \nAssets widget\n\n    \n\n    \n\n        \nUI.ConfigurationWidget\n\n        \nwidget\n\n    \n\n    \n\n        \nUI.Dropdown\n\n        \nDropdown\n\n    \n\n    \n\n        \nUI.TextLabel\n\n        \nwidget\n\n    \n\n    \n\n        \nUI\n\n        \nUI\n\n    \n\n    \n\n        \nbtk\n\n        \nCore utility entry point for BTK\n\n    \n\n    \n\n        \nscripts.Area\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Character\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Collectable\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Currency\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Model\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.NPC\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.PC\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.PlaceTeleporter\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.PlatformMover\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Player\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Server\n\n        \n\n\n\n\n    \n\n    \n\n        \nSscripts.mashable\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Teleporter\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Terrain\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Tool\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Waypoints\n\n        \n\n\n\n\n    \n\n    \n\n        \nscripts.Weapon\n\n        \n\n\n\n\n    \n\n\n\n\n\n \n\n\n \n\n\n\n\ngenerated by \nLDoc 1.4.6\n\n\nLast updated 2018-05-29 09:10:44", 
-            "title": "API Reference"
         }
     ]
 }
