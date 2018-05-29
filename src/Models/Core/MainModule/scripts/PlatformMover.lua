@@ -7,11 +7,6 @@ local PlatformMover = Model:subclass(script.Name)
 PlatformMover:AddProperty({
 	Name = "PlatformPart",
 	Type = "ObjectValue",
-	ValueFn = function(self)
-		local a = self:GetPrimaryPart()
-		a.Anchored = true
-		return a
-	end,
 	SchemaFn = Schema:IsA("BasePart"),
 })
 PlatformMover:AddProperty({
@@ -37,6 +32,9 @@ PlatformMover:AddProperty({
 
 function PlatformMover:initialize(input)
 	Model.initialize(self, input)
+	local a = self:GetPrimaryPart()
+	a.Anchored = true
+	self:SetPlatformPart(a)
 
 	self:GetStartPositionMarker().Transparency = 1
 	self:EndStartPositionMarker().Transparency = 1

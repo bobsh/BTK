@@ -8,23 +8,19 @@ local Collectable = Model:subclass(script.Name)
 Collectable:AddProperty({
     Name = "CollectablePart",
     Type = "ObjectValue",
-    ValueFn = function(self2)
-        return self2:GetPrimaryPart()
-    end,
-    SchemaFn = Schema:IsA("BasePart"),
+    SchemaFn = Schema.Optional(Schema:IsA("BasePart")),
 })
 
 Collectable:AddProperty({
     Name = "CollectableAttachment",
     Type = "ObjectValue",
-    ValueFn = function(self2)
-        return Instance.new("Attachment", self2:GetCollectablePart())
-    end,
-    SchemaFn = Schema:IsA("Attachment"),
+    SchemaFn = Schema.Optional(Schema:IsA("Attachment")),
 })
 
 function Collectable:initialize(input)
     Model.initialize(self, input)
+    self:SetCollectableAttachment(self:GetPrimaryPart())
+    self:SetCollectableAttachment(Instance.new("Attachment", self:GetCollectablePart()))
 end
 
 return Collectable

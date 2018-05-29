@@ -10,9 +10,6 @@ local Tool = BaseScript:subclass(script.Name)
 Tool:AddProperty({
 	Name = "Owner",
 	Type = "ObjectValue",
-	ValueFn = function(self)
-		self:_getOwner()
-	end,
 	SchemaFn = Schema.Optional(
 		Schema.CharacterModel
 	),
@@ -27,6 +24,7 @@ Tool:AddProperty({
 
 function Tool:initialize(input)
 	BaseScript.initialize(self, input)
+	self:SetOwner(self:_getOwner())
 
 	self:AssertSchema(input.Root, Schema:IsA("Tool"))
 

@@ -11,6 +11,7 @@ local c = Roact.createElement
 local AssetsWidget = Roact.Component:extend("AssetsWidget")
 
 function AssetsWidget:init(props)
+    assert(props)
     self.state = {
         Plugin = props.Plugin,
         CurrentCategory = nil,

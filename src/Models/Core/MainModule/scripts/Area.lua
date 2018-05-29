@@ -7,14 +7,12 @@ local Area = Model:subclass(script.Name)
 Area:AddProperty({
 	Name = "AreaPart",
 	Type = "ObjectValue",
-	ValueFn = function(self2)
-		return self2:GetPrimaryPart()
-	end,
-	SchemaFn = Schema:IsA("BasePart"),
+	SchemaFn = Schema.Optional(Schema:IsA("BasePart")),
 })
 
 function Area:initialize(input)
 	Model.initialize(self, input)
+	self:SetAreaPart(self:GetPrimaryPart())
 
 	local partValue = self:GetAreaPart()
 	partValue.Anchored = true
