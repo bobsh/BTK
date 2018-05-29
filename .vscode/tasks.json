@@ -9,11 +9,19 @@
         {
             "label": "test",
             "type": "shell",
+            "group": "test",
             "command": "make test"
+        },
+        {
+            "label": "testcurrent",
+            "type": "shell",
+            "group": "test",
+            "command": "lua spec.lua",
         },
         {
             "label": "lint",
             "type": "shell",
+            "group": "test",
             "command": "make lint"
         }
     ]

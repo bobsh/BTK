@@ -4,5 +4,6 @@ return {
         },
         exclude = {
                 "%.spec$",
+                "^src/Models/Core/MainModule/lib",
         },
 }

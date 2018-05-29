@@ -12,13 +12,14 @@ deps-lua: ## Install dependencies for lua
 	luarocks install busted
 	luarocks install luacov
 	luarocks install luacov-coveralls
+	luarocks install luacov-console
 	luarocks install luacheck
 	luarocks install ldoc
 
 docs: docs-api ## Build all docs locally
 	mkdocs build
 
-docs-clean:
+docs-clean: ## Remove all docs builds
 	rm -r docs/ldoc || true
 	rm -r site || true
 
@@ -30,6 +31,8 @@ lint: ## Lint
 
 test: ## Test
 	lua -lluacov spec.lua
+	luacov-console src
+	luacov-console -s
 
 report-coveralls: ## Report to coveralls
 	luacov-coveralls -e $(TRAVIS_BUILD_DIR)/lua_install -e src/Models/Core/MainModule/lib/Roact

@@ -4,7 +4,7 @@
 
 -- If you add any dependencies, add them to this table so they'll be loaded!
 local LOAD_MODULES = {
-	{"src/Models/Core/MainModule", "Core"},
+	{"src", "BTK"},
 	{"modules/testez/lib", "TestEZ"},
 }
 
@@ -61,7 +61,11 @@ collapse(Root)
 -- Load TestEZ and run our tests
 local TestEZ = habitat:require(Root.TestEZ)
 
-local results = TestEZ.TestBootstrap:run(Root.Core, TestEZ.Reporters.TextReporter)
+local results = TestEZ.TestBootstrap:run(
+	Root.BTK,
+	TestEZ.Reporters.TextReporter,
+	true
+)
 
 -- Did something go wrong?
 if results.failureCount > 0 then

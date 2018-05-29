@@ -1,6 +1,5 @@
 # luacov
-/luacov.stats.out
-/luacov.report.out
+/luacov.*.out*
 
 # mkdocs
 /site/
