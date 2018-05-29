@@ -30,3 +30,6 @@ lint: ## Lint
 
 test: ## Test
 	lua -lluacov spec.lua
+
+report-coveralls: ## Report to coveralls
+	luacov-coveralls -e $(TRAVIS_BUILD_DIR)/lua_install

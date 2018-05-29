@@ -22,7 +22,7 @@ jobs:
       - make test
       - make docs
     after_success:
-      - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install
+      - make report-coveralls
     deploy:
       provider: pages
       fqdn: btk.bob.sh
