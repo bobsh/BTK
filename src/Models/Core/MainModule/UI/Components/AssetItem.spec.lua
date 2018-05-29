@@ -8,8 +8,7 @@ return function()
             expect(AssetItem).to.be.ok()
         end)
 
-        --- @TODO breaks trying to get MarketplaceService
-        itSKIP("should mount and unmount", function()
+        it("should mount and unmount", function()
             local d = Roact.createElement(AssetItem)
             local h = Roact.mount(d)
             Roact.unmount(h)
