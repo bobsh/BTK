@@ -1,10 +1,10 @@
-# Overview
+# BTK
 
 [![Build Status](https://travis-ci.org/bobsh/BTK.svg?branch=master)](https://travis-ci.org/bobsh/BTK) [![Coverage Status](https://coveralls.io/repos/github/bobsh/BTK/badge.svg?branch=master)](https://coveralls.io/github/bobsh/BTK?branch=master)
 
 A toolkit for Roblox.
 
-# Plugin Installation
+## Plugin Installation
 
 Install the plugin into your Roblox Studio:
 
@@ -13,18 +13,18 @@ Install the plugin into your Roblox Studio:
 And while focused on the place, go to the *Plugins* ribbon and
 click *Install* for Bob's Toolkit.
 
-# Adding Scripts
+## Adding Scripts
 
 TODO
 
-# Configuring Scripts
+## Configuring Scripts
 
 TODO
 
-# Raising bugs
+## Raising bugs
 
 Raise issues on github: [Bug report](https://github.com/bobsh/BTK/issues/new?template=bug_report.md)
 
-# Feature requests
+## Feature requests
 
 Raise requests on github: [Feature request](https://github.com/bobsh/BTK/issues/new?template=feature_request.md)
