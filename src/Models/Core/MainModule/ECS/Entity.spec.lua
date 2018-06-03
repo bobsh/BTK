@@ -6,6 +6,8 @@ return function()
     end)
 
     it("should new ok", function()
-        expect(ECS.Entity:new()).to.be.ok()
+        expect(ECS.Entity:new({
+            Script = Instance.new("Script"),
+        })).to.be.ok()
     end)
 end

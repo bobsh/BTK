@@ -3,12 +3,13 @@
 -- @classmod Components.Character
 
 local ECS = require(script.Parent.Parent.ECS)
-local Components = require(script.Parent)
-local Schema = require(script.Parent.Schema)
+local Model = require(script.Parent.Model)
+local InputEvent = require(script.Parent.InputEvent)
+local Schema = require(script.Parent.Parent.Schema)
 
 local Character = ECS.BaseComponent:subclass(script.Name)
-Character:RequireComponent(Components.Model)
-Character:RequireComponent(Components.InputEvent)
+Character:RequireComponent(Model)
+Character:RequireComponent(InputEvent)
 Character:AddProperty({
 	Name = "AttackDistance",
     Type = "NumberValue",

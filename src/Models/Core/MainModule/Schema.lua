@@ -500,4 +500,32 @@ Schema.static.AttackDistance = s.NumberFrom(
 	0.0, Schema.MaxAttackDistance
 )
 
+--[[--------------------------------------------
+	Middleclass
+	@section middleclass
+----------------------------------------------]]
+
+function Schema.static.IsSubclassOf(klass)
+	return function(obj, path)
+		if not obj then
+			return s.Error("Checked component is nil", path)
+		end
+
+		-- If it is, return nothing
+		if obj:isSubclassOf(klass) then
+			return nil
+		end
+
+		-- Otherwise a nice message
+		local err = (
+			"Instance %s with class name %s is not a subclass of %s"
+		):format(
+			obj.Name,
+			obj.ClassName,
+			klass.Name
+		)
+		return s.Error(err, path)
+	end
+end
+
 return Schema

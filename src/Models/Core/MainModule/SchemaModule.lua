@@ -15,6 +15,10 @@ local Schema = {
 		return input
 	end,
 
+	--- Schema class
+	-- @see {Schema}
+	Schema = require(script.Parent.Schema),
+
 	static = {}
 }
 

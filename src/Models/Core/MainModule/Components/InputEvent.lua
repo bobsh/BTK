@@ -3,7 +3,7 @@
 -- @classmod Components.InputEvent
 
 local ECS = require(script.Parent.Parent.ECS)
-local Schema = require(script.Parent.Schema)
+local Schema = require(script.Parent.Parent.Schema)
 
 local InputEvent = ECS.BaseComponent:subclass(script.Name)
 InputEvent:AddProperty({

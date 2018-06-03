@@ -1,10 +1,10 @@
 --[[--
-    BTKScriptHelper bootstraps the BTK script handling code
+    EntityHelper bootstraps the Entity handling code
 	@module Helper
 	@export
 --]]
 
-local function BTKScriptHelper(s)
+local function EntityHelper(s)
 	--[[
 		Here we lookup a development version of the code
 		or fallback to the hosted version.
@@ -17,13 +17,11 @@ local function BTKScriptHelper(s)
 		btk = require(1815138614)
 	end
 	--[[
-		Call out to whatever ScriptHelper we found to continue
-		bootstrap in the central code area.
+		Return the instantiated entity
 	--]]
-	local scriptModule = btk.ScriptHelper:Get(s)
-	return scriptModule:new({
+	return btk.ECS.Entity:new({
 		Script = s,
 	})
 end
 
-return BTKScriptHelper
+return EntityHelper

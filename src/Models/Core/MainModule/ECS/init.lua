@@ -1,13 +1,12 @@
 --- ECS Library
 --
 -- @classmod ECS
+local ECS = {}
 
-local ECS = {
-    --- @{ECS.BaseComponent}
-    BaseComponent = require(script.BaseComponent),
+--- @{ECS.BaseComponent}
+ECS.BaseComponent = require(script.BaseComponent)
 
-    --- @{ECS.Entity}
-    Entity = require(script.Entity),
-}
+--- @{ECS.Entity}
+ECS.Entity = require(script.Entity)
 
 return ECS

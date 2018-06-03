@@ -4,8 +4,10 @@
 
 local Components = {}
 
-for _, v in ipairs(script:GetChildren()) do
-    Components[v.Name] = require(v)
-end
+Components.Character = require(script.Character)
+
+Components.InputEvent = require(script.InputEvent)
+
+Components.Model = require(script.Model)
 
 return Components

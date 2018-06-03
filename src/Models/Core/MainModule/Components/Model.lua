@@ -3,7 +3,7 @@
 -- @classmod Components.Model
 
 local ECS = require(script.Parent.Parent.ECS)
-local Schema = require(script.Parent.Schema)
+local Schema = require(script.Parent.Parent.Schema)
 
 local Model = ECS.BaseComponent:subclass(script.Name)
 Model:AddProperty({
