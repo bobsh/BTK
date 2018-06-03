@@ -1,16 +1,16 @@
---[[--
-	Core utility entry point for BTK
+---	Core utility entry point for BTK
+--
+-- @classmod btk
 
-	@classmod btk
---]]
-local BaseObject = require(script.BaseObject)
+local btk = {
+    --- @{BTKPlugin}
+    BTKPlugin = require(script.BTKPlugin),
 
-local btk = BaseObject:subclass('btk')
+    --- @{ScriptHelper}
+    ScriptHelper = require(script.ScriptHelper),
 
---- A link to @{BTKPlugin}
-btk.static.BTKPlugin = require(script.BTKPlugin)
-
---- A link to @{ScriptHelper}
-btk.static.ScriptHelper = require(script.ScriptHelper)
+    --- @{ECS}
+    ECS = require(script.ECS),
+}
 
 return btk

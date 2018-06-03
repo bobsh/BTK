@@ -6,8 +6,8 @@ return function()
             expect(btk).to.be.ok()
         end)
 
-        it("should new ok", function()
-            expect(btk:new()).to.be.ok()
+        it("should link to ecs", function()
+            expect(btk.ECS).to.be.ok()
         end)
     end)
 end
