@@ -6,8 +6,10 @@ return function()
     end)
 
     it("should new ok", function()
+        local s = Instance.new("Script")
+        s.Name = "BTK:SomeValidName"
         expect(ECS.Entity:new({
-            Script = Instance.new("Script"),
+            Script = s,
         })).to.be.ok()
     end)
 end

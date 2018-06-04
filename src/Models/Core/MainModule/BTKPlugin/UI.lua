@@ -216,7 +216,7 @@ function UI.static:CreateStandardButton(name,
 
 	button.TextColor3 = buttonTextColor
 	button.Font = buttonFont
-	button.FontSize = buttonFontSize
+	button.TextSize = buttonFontSize
 
 	button.MouseButton1Click:connect(funcOnPress)
 

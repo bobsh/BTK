@@ -58,9 +58,6 @@ local PropertiesModule = {
                 input,
                 Schema.PropertyDefinition
             )
-            self:Debug("Adding new property", {
-                Name = input.Name,
-            })
             self._property_defs[input.Name] = input
             self:_addPropertyHelpers(input)
         end,
@@ -70,8 +67,7 @@ local PropertiesModule = {
             return self._property_defs
         end,
 
-        subclassed = function(self, other)
-            self:Debug("Subclassed by " .. other:GetClassName())
+        subclassed = function(self, _)
             local props = self:Properties()
             local new = {}
             for key, val in pairs(props) do

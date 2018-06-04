@@ -11,6 +11,9 @@ local btk = {
 
     --- @{ECS}
     ECS = require(script.ECS),
+
+    --- @{UI}
+    UI = require(script.UI),
 }
 
 return btk

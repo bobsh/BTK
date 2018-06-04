@@ -4,7 +4,7 @@
 --]]
 
 local Roact = require(script.Parent.Parent.Parent.lib.Roact)
-local ScriptHelper = require(script.Parent.Parent.Parent.ScriptHelper)
+local ECS = require(script.Parent.Parent.Parent.ECS)
 local TextLabel = require(script.Parent.TextLabel)
 local c = Roact.createElement
 
@@ -26,79 +26,84 @@ end
 function ConfigurationWidget:render()
     local active
     if self.state.CurrentSelection then
-        -- Build up the table and headers
-        local props = {
-            c("UITableLayout", {
-                FillEmptySpaceColumns = true,
-                FillEmptySpaceRows = false,
-                FillDirection = Enum.FillDirection.Vertical,
-            }),
-            c("UISizeConstraint", {
-                MaxSize = Vector2.new(400, 32),
-            }),
-            ["1"] = c("Frame", {
-                Size = UDim2.new(0, 128, 1.0, 16),
-                BackgroundTransparency = 1,
-            }, {
-                c(TextLabel, {
-                    Size = UDim2.new(0, 128, 1.0, 16),
-                    Text = "Name",
-                }),
-                c(TextLabel, {
-                    Size = UDim2.new(0, 64, 1.0, 16),
-                    Text = "Type",
-                }),
-                c(TextLabel, {
-                    Size = UDim2.new(0, 64, 1.0, 16),
-                    Text = "Overridable",
-                })
-            })
-        }
+        for _, component in pairs(self.state.CurrentSelection:GetComponents()) do
 
-        -- Now iterate across the props and add rows
-        local idx = 2
-        for key, val in pairs(self.state.CurrentSelection:Properties()) do
-            local trans = 1.0
-            if not(idx % 2) then
-                trans = 0.9
+            -- Build up the table and headers
+            local props = {
+                c("UITableLayout", {
+                    FillEmptySpaceColumns = true,
+                    FillEmptySpaceRows = false,
+                    FillDirection = Enum.FillDirection.Vertical,
+                }),
+                c("UISizeConstraint", {
+                    MaxSize = Vector2.new(400, 32),
+                }),
+                ["1"] = c("Frame", {
+                    Size = UDim2.new(0, 128, 1.0, 16),
+                    BackgroundTransparency = 1,
+                }, {
+                    c(TextLabel, {
+                        Size = UDim2.new(0, 128, 1.0, 16),
+                        Text = "Name",
+                    }),
+                    c(TextLabel, {
+                        Size = UDim2.new(0, 64, 1.0, 16),
+                        Text = "Type",
+                    }),
+                    c(TextLabel, {
+                        Size = UDim2.new(0, 64, 1.0, 16),
+                        Text = "Overridable",
+                    })
+                })
+            }
+
+            -- Now iterate across the props and add rows
+            local idx = 2
+            for key, val in pairs(component:Properties()) do
+                local trans = 1.0
+                if not(idx % 2) then
+                    trans = 0.9
+                end
+
+                props[tostring(idx)] = c("Frame", {
+                    Size = UDim2.new(0, 128, 0, 16),
+                    BackgroundTransparency = trans,
+                }, {
+                    c(TextLabel, {
+                        Size = UDim2.new(0, 96, 0, 16),
+                        Text = key,
+                    }),
+                    c(TextLabel, {
+                        Size = UDim2.new(0, 64, 0, 16),
+                        Text = val.Type,
+                    }),
+                    c(TextLabel, {
+                        Size = UDim2.new(0, 64, 0, 16),
+                        Text = "TODO",
+                }),
+                })
+
+                idx = idx + 1
             end
 
-            props[tostring(idx)] = c("Frame", {
-                Size = UDim2.new(0, 128, 0, 16),
-                BackgroundTransparency = trans,
+            -- Now wrap it in a scrolling frame
+            active = c("ScrollingFrame", {
+                Size = UDim2.new(1.0, 0, 1.0, 0),
+                BackgroundTransparency = 1,
             }, {
-                c(TextLabel, {
-                    Size = UDim2.new(0, 96, 0, 16),
-                    Text = key,
+                c("UIListLayout"),
+                c(TextLabel,{
+                    Size = UDim2.new(0, 128, 1.0, 16),
+                    Text = "Script: " .. self.state.CurrentSelection:GetClassName(),
                 }),
-                c(TextLabel, {
-                    Size = UDim2.new(0, 64, 0, 16),
-                    Text = val.Type,
-                }),
-                c(TextLabel, {
-                    Size = UDim2.new(0, 64, 0, 16),
-                    Text = "TODO",
-               }),
+                c("Frame", {
+                    Size = UDim2.new(0.9, 0, 0, 128),
+                    BackgroundTransparency = 1,
+                }, props)
             })
-
-            idx = idx + 1
         end
 
-        -- Now wrap it in a scrolling frame
-        active = c("ScrollingFrame", {
-            Size = UDim2.new(1.0, 0, 1.0, 0),
-            BackgroundTransparency = 1,
-        }, {
-            c("UIListLayout"),
-            c(TextLabel,{
-                Size = UDim2.new(0, 128, 1.0, 16),
-                Text = "Script: " .. self.state.CurrentSelection:GetClassName(),
-            }),
-            c("Frame", {
-                Size = UDim2.new(0.9, 0, 0, 128),
-                BackgroundTransparency = 1,
-            }, props)
-        })
+
     else
         active = c(TextLabel, {
             Size = UDim2.new(0, 128, 0, 16),
@@ -136,17 +141,10 @@ function ConfigurationWidget:HandleSelectionChange(signal)
 			return
 		end
 
-		local scriptName = f.Name:match(ScriptHelper.Pattern)
-        if not scriptName then
-            self:setState({
-                CurrentSelection = nil,
-            })
-
-			return
-		end
-
-		local btkScript = ScriptHelper:Get(f)
-        if not btkScript then
+		local entity = ECS.Entity:new({
+            Script = f,
+        })
+        if not entity then
             self:setState({
                 CurrentSelection = nil,
             })
@@ -155,7 +153,7 @@ function ConfigurationWidget:HandleSelectionChange(signal)
         end
 
         self:setState({
-            CurrentSelection = btkScript,
+            CurrentSelection = entity,
         })
 	end)
 end

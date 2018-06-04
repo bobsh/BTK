@@ -29,4 +29,7 @@ function UI.static.DockWidget(props)
 	return pluginGUI
 end
 
+--- @{RunDemo}
+UI.static.RunDemo = require(script.RunDemo)
+
 return UI
