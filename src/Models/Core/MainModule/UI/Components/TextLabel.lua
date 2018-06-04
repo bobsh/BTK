@@ -12,22 +12,27 @@ function TextLabel:init(props)
     self.state = {
         Size = props.Size,
         Text = props.Text,
+        Bold = props.Bold,
     }
 end
 
 function TextLabel:render()
+    local f = Enum.Font.Arial
+    if self.state.Bold then
+        f = Enum.Font.ArialBold
+    end
     return c("TextLabel", {
         Size = self.state.Size,
         Text = self.state.Text,
 
-        Font = Enum.Font.Legacy,
+        Font = f,
         Position = UDim2.new(0,0,0,0),
-        TextSize = 8,
+        TextSize = 12,
         TextColor3 = Color3.new(0,0,0),
-        TextYAlignment = Enum.TextYAlignment.Top,
+        TextYAlignment = Enum.TextYAlignment.Center,
         TextXAlignment = Enum.TextXAlignment.Left,
         BackgroundTransparency = 1,
-    })
+    }, self.state[Roact.Children])
 end
 
 return TextLabel
