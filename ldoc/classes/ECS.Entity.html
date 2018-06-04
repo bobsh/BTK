@@ -30,12 +30,19 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
 
 
 <h2>Classes</h2>
 <ul class="nowrap">
   <li><a href="../classes/AssetsUtils.html">AssetsUtils</a></li>
-  <li><strong>BTKPlugin</strong></li>
+  <li><a href="../classes/BTKPlugin.html">BTKPlugin</a></li>
   <li><a href="../classes/BaseInstance.html">BaseInstance</a></li>
   <li><a href="../classes/BaseLogger.html">BaseLogger</a></li>
   <li><a href="../classes/BaseObject.html">BaseObject</a></li>
@@ -47,7 +54,7 @@
   <li><a href="../classes/Components.Model.html">Components.Model</a></li>
   <li><a href="../classes/Components.html">Components</a></li>
   <li><a href="../classes/ECS.BaseComponent.html">ECS.BaseComponent</a></li>
-  <li><a href="../classes/ECS.Entity.html">ECS.Entity</a></li>
+  <li><strong>ECS.Entity</strong></li>
   <li><a href="../classes/ECS.html">ECS</a></li>
   <li><a href="../classes/LoggerModule.html">LoggerModule</a></li>
   <li><a href="../classes/OutputLogger.html">OutputLogger</a></li>
@@ -107,20 +114,175 @@
 
 <div id="content">
 
-<h1>Class <code>BTKPlugin</code></h1>
-<p>
-
-</p>
-<p>
-
-</p>
+<h1>Class <code>ECS.Entity</code></h1>
+<p>Entity represents an instanced entity that can contain components.</p>
+<p> Parent: <a href="../classes/BaseInstance.html#">BaseInstance</a></p>
 
 
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#ECS.Entity:new">ECS.Entity:new (input)</a></td>
+	<td class="summary">Initialize entity</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#ECS.Entity.initializeInput">ECS.Entity.initializeInput</a></td>
+	<td class="summary">Input schema</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Entity.static.Pattern">Entity.static.Pattern</a></td>
+	<td class="summary">Pattern to match for the script name</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#ECS.Entity:GetScript">ECS.Entity:GetScript ()</a></td>
+	<td class="summary">Get script instance this entity points at</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ECS.Entity:GetComponents">ECS.Entity:GetComponents ()</a></td>
+	<td class="summary">Get components</td>
+	</tr>
+</table>
 
 <br/>
 <br/>
 
 
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+    Methods
+    <dl class="function">
+    <dt>
+    <a name = "ECS.Entity:new"></a>
+    <strong>ECS.Entity:new (input)</strong>
+    </dt>
+    <dd>
+    Initialize entity
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">input</span>
+            <span class="types"><a class="type" href="../classes/ECS.Entity.html#ECS.Entity.initializeInput">initializeInput</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Placed in a roblox script, this turns it into an entity
+</span><span class="keyword">local</span> entity = ECS.Entity:new({
+  Script = script,
+})</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "ECS.Entity.initializeInput"></a>
+    <strong>ECS.Entity.initializeInput</strong>
+    </dt>
+    <dd>
+    Input schema
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">Script</span>
+            <span class="types"><a class="type" href="../modules/Schema.html#Schema.static.Script">Schema.Script</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Entity.static.Pattern"></a>
+    <strong>Entity.static.Pattern</strong>
+    </dt>
+    <dd>
+    Pattern to match for the script name
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "ECS.Entity:GetScript"></a>
+    <strong>ECS.Entity:GetScript ()</strong>
+    </dt>
+    <dd>
+    Get script instance this entity points at
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="../modules/Schema.html#Schema.static.Script">Schema.Script</a></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ECS.Entity:GetComponents"></a>
+    <strong>ECS.Entity:GetComponents ()</strong>
+    </dt>
+    <dd>
+    Get components
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">{BaseComponent....}</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->

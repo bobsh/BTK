@@ -30,12 +30,17 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods">Methods</a></li>
+<li><a href="#Properties">Properties </a></li>
+</ul>
 
 
 <h2>Classes</h2>
 <ul class="nowrap">
   <li><a href="../classes/AssetsUtils.html">AssetsUtils</a></li>
-  <li><strong>BTKPlugin</strong></li>
+  <li><a href="../classes/BTKPlugin.html">BTKPlugin</a></li>
   <li><a href="../classes/BaseInstance.html">BaseInstance</a></li>
   <li><a href="../classes/BaseLogger.html">BaseLogger</a></li>
   <li><a href="../classes/BaseObject.html">BaseObject</a></li>
@@ -46,7 +51,7 @@
   <li><a href="../classes/Components.InputEvent.html">Components.InputEvent</a></li>
   <li><a href="../classes/Components.Model.html">Components.Model</a></li>
   <li><a href="../classes/Components.html">Components</a></li>
-  <li><a href="../classes/ECS.BaseComponent.html">ECS.BaseComponent</a></li>
+  <li><strong>ECS.BaseComponent</strong></li>
   <li><a href="../classes/ECS.Entity.html">ECS.Entity</a></li>
   <li><a href="../classes/ECS.html">ECS</a></li>
   <li><a href="../classes/LoggerModule.html">LoggerModule</a></li>
@@ -107,20 +112,108 @@
 
 <div id="content">
 
-<h1>Class <code>BTKPlugin</code></h1>
+<h1>Class <code>ECS.BaseComponent</code></h1>
+<p>Base for all components</p>
 <p>
 
 </p>
-<p>
-
-</p>
 
 
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#ECS.BaseComponent:Awake">ECS.BaseComponent:Awake ()</a></td>
+	<td class="summary">Awake is called when the component is awoken
+ A subclass should override it if you need something
+ to run at this time.</td>
+	</tr>
+</table>
+<h2><a href="#Properties">Properties </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#BaseComponent.static:AddProperty">BaseComponent.static:AddProperty (input)</a></td>
+	<td class="summary">Add property using a definition</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#BaseComponent.static:RequireComponent">BaseComponent.static:RequireComponent (input)</a></td>
+	<td class="summary">Require a component to operate</td>
+	</tr>
+</table>
 
 <br/>
 <br/>
 
 
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "ECS.BaseComponent:Awake"></a>
+    <strong>ECS.BaseComponent:Awake ()</strong>
+    </dt>
+    <dd>
+    Awake is called when the component is awoken
+ A subclass should override it if you need something
+ to run at this time.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Properties"></a>Properties </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "BaseComponent.static:AddProperty"></a>
+    <strong>BaseComponent.static:AddProperty (input)</strong>
+    </dt>
+    <dd>
+    Add property using a definition
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">input</span>
+            <span class="types"><a class="type" href="../modules/Schema.html#Schema.static.PropertyDefinition">Schema.PropertyDefinition</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "BaseComponent.static:RequireComponent"></a>
+    <strong>BaseComponent.static:RequireComponent (input)</strong>
+    </dt>
+    <dd>
+    Require a component to operate
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">input</span>
+            <span class="types"><a class="type" href="../classes/ECS.BaseComponent.html">BaseComponent</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
