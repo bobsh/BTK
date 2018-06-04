@@ -3,6 +3,7 @@
 -- Parent: @{BaseInstance}
 -- @classmod ECS.Entity
 local BaseInstance = require(script.Parent.Parent.BaseInstance)
+local BaseComponent = require(script.Parent.BaseComponent)
 local Entity = BaseInstance:subclass(script.Name)
 
 --- Input schema
@@ -60,7 +61,9 @@ Entity._components = {}
 function Entity:GetComponents()
 	return self:AssertSchema(
 		self._components,
-		self.Schema.Collection(self.Schema.Boolean)
+		self.Schema.Collection(
+			self.Schema.IsSubclassOf(BaseComponent)
+		)
 	)
 end
 

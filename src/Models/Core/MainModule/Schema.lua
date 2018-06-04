@@ -67,6 +67,7 @@ Schema.static.Boolean = s.Boolean
 Schema.static.NumberFrom = s.NumberFrom
 Schema.static.OneOf = s.OneOf
 Schema.static.NonNegativeNumber = s.NonNegativeNumber
+Schema.static.Collection = s.Collection
 
 --[[--------------------------------------------
 	Simple

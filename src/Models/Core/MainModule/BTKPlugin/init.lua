@@ -22,7 +22,7 @@ function BTKPlugin:initialize(plug)
 	self._mainToolBar = MainToolBar:new(plug, self._mainScreenGUI)
 
 	self:AssetsWidget()
-	self:ConfigurationWidget()
+	self:EntityEditor()
 
 	plug.Deactivation:Connect(self:Deactivate())
 end
@@ -36,12 +36,12 @@ function BTKPlugin:AssetsWidget()
 	Roact.mount(widget, dockWidget)
 end
 
-function BTKPlugin:ConfigurationWidget()
+function BTKPlugin:EntityEditor()
 	local dockWidget = UI.DockWidget({
-		Name = "Configuration",
+		Name = "Entity Editor",
 		Plugin = self._plugin,
 	})
-	local widget = Roact.createElement(UI.ConfigurationWidget)
+	local widget = Roact.createElement(UI.EntityEditor)
 	Roact.mount(widget, dockWidget)
 end
 
