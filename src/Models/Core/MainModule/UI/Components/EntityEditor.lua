@@ -13,6 +13,7 @@ local widgetBackground = Color3.fromRGB(255, 255, 255)
 
 function EntityEditor:init(props)
     self.state = {
+        Script = props.Script,
     }
 end
 
