@@ -6,6 +6,13 @@ local BaseInstance = require(script.Parent.Parent.BaseInstance)
 local BaseComponent = require(script.Parent.BaseComponent)
 local Entity = BaseInstance:subclass(script.Name)
 
+--- @TODO make this dynamic, stupid loading issues
+local _components = {
+	Character = require(script.Parent.Parent.Components.Character),
+	InputEvent = require(script.Parent.Parent.Components.InputEvent),
+	Model = require(script.Parent.Parent.Components.Model),
+}
+
 --- Input schema
 -- @table initializeInput
 -- @tfield Schema.Script Script
@@ -54,17 +61,76 @@ function Entity:GetScript()
 	)
 end
 
-Entity._components = {}
-
 --- Get components
 -- @treturn {BaseComponent....}
 function Entity:GetComponents()
+	local comps = {}
+	local folders = self:GetComponentsFolder():GetChildren()
+	for _, v in ipairs(folders) do
+		local c = _components[v.Name]
+		table.insert(comps, c)
+	end
+	self:Debug("GetComponents", {
+		Amount = #comps,
+	})
 	return self:AssertSchema(
-		self._components,
+		comps,
 		self.Schema.Collection(
 			self.Schema.IsSubclassOf(BaseComponent)
 		)
 	)
+end
+
+--- Get storage area
+function Entity:GetStorageFolder()
+	local f = self:GetScript():FindFirstChild("_btk")
+	if f ~= nil then
+		return f
+	end
+	f = Instance.new("Folder", self:GetScript())
+	f.Name = "_btk"
+	return f
+end
+
+function Entity:GetComponentsFolder()
+	local cf = self:GetStorageFolder():FindFirstChild("Components")
+	if cf ~= nil then
+		return cf
+	end
+	cf = Instance.new("Folder", self:GetStorageFolder())
+	cf.Name = "Components"
+	return cf
+end
+
+function Entity:GetComponentFolder(input)
+	self:AssertSchema(
+		input,
+		self.Schema.Record {
+			Component = self.Schema.IsSubclassOf(BaseComponent),
+		}
+	)
+
+	local f = self:GetComponentsFolder():FindFirstChild(input.Component:GetClassName())
+	if f ~= nil then
+		return f
+	end
+	f = Instance.new("Folder", self:GetComponentsFolder())
+	f.Name = input.Component:GetClassName()
+	return f
+end
+
+--- Add component
+function Entity:AddComponent(input)
+	self:AssertSchema(
+		input,
+		self.Schema.Record {
+			Component = self.Schema.IsSubclassOf(BaseComponent),
+		}
+	)
+
+	local _ = self:GetComponentFolder({
+		Component = input.Component
+	})
 end
 
 return Entity

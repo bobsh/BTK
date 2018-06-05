@@ -2,12 +2,12 @@
 --
 -- @classmod Components.Character
 
-local ECS = require(script.Parent.Parent.ECS)
+local BaseComponent = require(script.Parent.Parent.ECS.BaseComponent)
 local Model = require(script.Parent.Model)
 local InputEvent = require(script.Parent.InputEvent)
 local Schema = require(script.Parent.Parent.Schema)
 
-local Character = ECS.BaseComponent:subclass(script.Name)
+local Character = BaseComponent:subclass(script.Name)
 Character:RequireComponent(Model)
 Character:RequireComponent(InputEvent)
 Character:AddProperty({

@@ -1,11 +1,10 @@
 --- InputEvent component
 --
 -- @classmod Components.InputEvent
-
-local ECS = require(script.Parent.Parent.ECS)
+local BaseComponent = require(script.Parent.Parent.ECS.BaseComponent)
 local Schema = require(script.Parent.Parent.Schema)
 
-local InputEvent = ECS.BaseComponent:subclass(script.Name)
+local InputEvent = BaseComponent:subclass(script.Name)
 InputEvent:AddProperty({
 	Name = "InputEvent",
 	Type = "ObjectValue",

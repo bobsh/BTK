@@ -43,7 +43,10 @@ function BaseComponent.static:AddProperty(input)
 		})
 	end
 	self._properties[input.Name] = input
+end
 
+function BaseComponent.static:GetProperties()
+	return self._properties
 end
 
 BaseComponent.static._required_components = {}

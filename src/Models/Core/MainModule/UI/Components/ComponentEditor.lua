@@ -11,7 +11,7 @@ local c = Roact.createElement
 
 function ComponentEditor:init(props)
     self.state = {
-        Name = props.Name,
+        Component = props.Component,
         Expanded = props.Expanded or true,
     }
 end
@@ -25,10 +25,21 @@ local tableBorderColor = Color3.fromRGB(214, 214, 214)
 local textColor = Color3.new(0, 0, 0)
 
 function ComponentEditor:render()
-    local _ = self
+    local properties = {}
+    for _, v in pairs(self.state.Component:GetProperties()) do
+        local background = propertyBackground1
+        if #properties % 2 then
+            background = propertyBackground2
+        end
+        table.insert(properties, c(PropertyRow, {
+            BackgroundColor = background,
+            Name = v.Name,
+            Value = v.Value,
+            Type = v.Type,
+        }))
+    end
 
-    local numOfProperties = 2
-    local compHeight = ((numOfProperties + 1) * 24) + 2
+    local compHeight = ((#properties + 1) * 24) + 2
     if not self.state.Expanded then
         compHeight = 26
     end
@@ -102,7 +113,7 @@ function ComponentEditor:render()
                     TextYAlignment = Enum.TextYAlignment.Center,
                     BackgroundTransparency = 1,
                     BorderSizePixel = 0,
-                    Text = self.state.Name,
+                    Text = self.state.Component:GetClassName(),
                 }, {
                     c("UISizeConstraint", {
                         MaxSize = Vector2.new(128, 24),
@@ -141,18 +152,7 @@ function ComponentEditor:render()
                 HorizontalAlignment = Enum.HorizontalAlignment.Left,
                 VerticalAlignment = Enum.VerticalAlignment.Top,
             }),
-            ["1_Property"] = c(PropertyRow, {
-                BackgroundColor = propertyBackground1,
-                Name = "Humanoid",
-                Value = "",
-                Type = "StringValue",
-            }),
-            ["2_Property"] = c(PropertyRow, {
-                BackgroundColor = propertyBackground2,
-                Name = "CanAttack",
-                Value = false,
-                Type = "BoolValue"
-            }),
+            unpack(properties),
         }),
     })
 end

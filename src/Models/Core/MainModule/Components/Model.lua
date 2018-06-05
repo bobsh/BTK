@@ -2,10 +2,10 @@
 --
 -- @classmod Components.Model
 
-local ECS = require(script.Parent.Parent.ECS)
+local BaseComponent = require(script.Parent.Parent.ECS.BaseComponent)
 local Schema = require(script.Parent.Parent.Schema)
 
-local Model = ECS.BaseComponent:subclass(script.Name)
+local Model = BaseComponent:subclass(script.Name)
 Model:AddProperty({
 	Name = "Model",
 	Type = "ObjectValue",
