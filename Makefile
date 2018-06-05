@@ -3,8 +3,6 @@ include make/*.mk
 rojo: deps-rust ## Start rojo and any other dev necessary process
 	rojo serve
 
-deps: deps-py deps-hererocks deps-lua deps-rust ## Install all dependencies
-
 deps-hererocks: deps-py ## Install a local copy of lua
 	hererocks lua_install -r^ --$(LUA)
 
@@ -46,3 +44,5 @@ test: deps-lua ## Test
 
 report-coveralls: deps-lua ## Report to coveralls
 	luacov-coveralls -e $(TRAVIS_BUILD_DIR)/lua_install -e src/Models/Core/MainModule/lib/Roact
+
+travis-script: lint test docs report-coveralls ## Install step for travis

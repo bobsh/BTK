@@ -14,14 +14,7 @@ jobs:
     branches:
       only:
         - master
-    install:
-      - make deps
-    script:
-      - make lint
-      - make test
-      - make docs
-    after_success:
-      - make report-coveralls
+    script: make travis-script
     deploy:
       provider: pages
       fqdn: btk.bob.sh
