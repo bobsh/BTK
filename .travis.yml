@@ -14,11 +14,8 @@ jobs:
     branches:
       only:
         - master
-    before_install:
-      - pip install mkdocs mkdocs-material
-      - make hererocks
     install:
-      - make deps-lua
+      - make deps
     script:
       - make lint
       - make test

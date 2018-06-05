@@ -1,0 +1,7 @@
+[package]
+name = "BTK"
+version = "0.1.0"
+authors = ["Ken Barber <ken@bob.sh>"]
+
+[dependencies]
+rojo = "^0.4.10"

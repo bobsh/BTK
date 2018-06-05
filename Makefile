@@ -1,38 +1,48 @@
 include make/*.mk
 
-rojo: ## Start rojo and any other dev necessary process
+rojo: deps-rust ## Start rojo and any other dev necessary process
 	rojo serve
 
-hererocks: ## Install a local copy of lua
-	pip install hererocks
+deps: deps-py deps-hererocks deps-lua deps-rust ## Install all dependencies
+
+deps-hererocks: deps-py ## Install a local copy of lua
 	hererocks lua_install -r^ --$(LUA)
 
-deps-lua: ## Install dependencies for lua
-	luarocks show luafilesystem || luarocks install luafilesystem
-	luarocks show busted || luarocks install busted
-	luarocks show luacov || luarocks install luacov
-	luarocks show luacov-coveralls || luarocks install luacov-coveralls
-	luarocks show luacov-console || luarocks install luacov-console
-	luarocks show luacheck || luarocks install luacheck
-	luarocks show ldoc || luarocks install ldoc
+deps-rust: ## Install rust based tools
+	cargo update
 
-docs: docs-api ## Build all docs locally
+deps-py: ## Installs all python requirements
+	pip install -r requirements.txt
+
+deps-lua: deps-hererocks ## Install dependencies for lua
+	luarocks build --only-deps btk-scm-1.rockspec
+
+docs: docs-ldoc docs-mkdocs ## Build all docs locally
+
+docs-mkdocs: deps-py docs-mkdocs-clean ## Build mkdocs output
 	mkdocs build
 
-docs-clean: ## Remove all docs builds
-	rm -r docs/ldoc || true
+docs-mkdocs-clean: ## Remove all docs builds
 	rm -r site || true
 
-docs-api: docs-clean ## Build Lua API docs
+docs-ldoc: deps-lua docs-ldoc-clean ## Build Lua API docs
 	ldoc -v .
 
-lint: ## Lint
+docs-ldoc-clean: ## Remove all ldoc build files
+	rm -r docs/ldoc || true
+
+lint: lint-rock lint-lua ## Lint
+
+lint-lua: deps-lua ## Lint lua code
 	luacheck src
 
-test: ## Test
+lint-rock: deps-lua ## Lint rockspec
+	luarocks lint btk-scm-1.rockspec
+
+test: deps-lua ## Test
 	lua -lluacov spec.lua
 	luacov-console src
 	luacov-console -s
 
-report-coveralls: ## Report to coveralls
+report-coveralls: deps-lua ## Report to coveralls
 	luacov-coveralls -e $(TRAVIS_BUILD_DIR)/lua_install -e src/Models/Core/MainModule/lib/Roact

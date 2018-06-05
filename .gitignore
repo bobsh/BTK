@@ -9,3 +9,10 @@
 
 # lua local
 /lua_install
+
+# Ignore extra rust files
+/target
+**/*.rs.bk
+
+# Do not commit Cargo lock
+/Cargo.lock
