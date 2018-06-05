@@ -145,11 +145,13 @@ function ComponentEditor:render()
                 BackgroundColor = propertyBackground1,
                 Name = "Humanoid",
                 Value = "",
+                Type = "StringValue",
             }),
             ["2_Property"] = c(PropertyRow, {
                 BackgroundColor = propertyBackground2,
-                Name = "AttackDistance",
-                Value = "",
+                Name = "CanAttack",
+                Value = false,
+                Type = "BoolValue"
             }),
         }),
     })

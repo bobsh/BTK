@@ -14,3 +14,6 @@
 [submodule "modules/roact-animate"]
 	path = modules/roact-animate
 	url = https://github.com/AmaranthineCodices/roact-animate
+[submodule "modules/RoactStudioWidgets"]
+	path = modules/RoactStudioWidgets
+	url = https://github.com/tiffany352/RoactStudioWidgets.git

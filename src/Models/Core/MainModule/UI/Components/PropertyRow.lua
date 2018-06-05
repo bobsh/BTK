@@ -5,6 +5,7 @@
 --]]
 
 local Roact = require(script.Parent.Parent.Parent.lib.Roact)
+local RoactStudioWidgets = require(script.Parent.Parent.Parent.lib.RoactStudioWidgets)
 local PropertyRow = Roact.Component:extend("PropertyRow")
 local c = Roact.createElement
 
@@ -47,6 +48,31 @@ function PropertyRow:init(props)
 end
 
 function PropertyRow:render()
+    local fieldEditor
+    if self.state.Type == "StringValue" then
+        fieldEditor = c(TextBox, {
+            Text = self.state.Value,
+        })
+    elseif self.state.Type == "NumerValue" then
+        fieldEditor = c(TextBox, {
+            Text = self.state.Value,
+        })
+    elseif self.state.Type == "IntValue" then
+        fieldEditor = c(TextBox, {
+            Text = self.state.Value,
+        })
+    elseif self.state.Type == "ObjectValue" then
+        fieldEditor = c(TextBox, {
+            Text = self.state.Value,
+        })
+    elseif self.state.Type == "Vector3Value" then
+        fieldEditor = c(TextBox, {
+            Text = self.state.Value,
+        })
+    elseif self.state.Type == "BoolValue" then
+        fieldEditor = c(RoactStudioWidgets.Checkbox, {})
+    end
+
     return c("Frame", {
         Size = UDim2.new(0, 128, 0, 24),
         BackgroundTransparency = 0,
@@ -118,9 +144,7 @@ function PropertyRow:render()
             c("UIPadding", {
                 PaddingLeft = UDim.new(0,5),
             }),
-            c(TextBox, {
-                Text = self.state.Value,
-            }),
+            fieldEditor,
         }),
     })
 end

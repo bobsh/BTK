@@ -24,6 +24,8 @@ function Dropdown:render()
 
 	for _, item in ipairs(self.state.Items) do
 		table.insert(items, c("TextButton", {
+			Font = Enum.Font.Arial,
+			TextSize = 12,
 			BorderSizePixel = 0,
 			Text = item,
 			Size = UDim2.new(1, 0, 0, 20),
@@ -41,8 +43,13 @@ function Dropdown:render()
 		}))
 	end
 
+	local containerHeight = #items * 20
+
 	return c("TextButton", {
 		Size = UDim2.new(0, 200, 0, 30),
+		Font = Enum.Font.Arial,
+		TextSize = 12,
+
 		Text = "",
 
 		[Roact.Event.MouseButton1Click] = function(_)
@@ -51,23 +58,14 @@ function Dropdown:render()
 			})
 		end,
 	}, {
-		--[[
-		Icon = c("ImageLabel", {
-			Image = IMAGE,
-			BackgroundTransparency = 1,
-			Size = UDim2.new(0, 18, 0, 18),
-			Position = UDim2.new(1, 0, 0.5, 0),
-			AnchorPoint = Vector2.new(1, 0.5),
-			ImageColor3 = Color3.new(0, 0, 0),
-		}),
-		--]]
 		Label = c("TextLabel", {
+			Font = Enum.Font.Arial,
+			TextSize = 12,
+
 			BackgroundTransparency = 1,
 			Size = UDim2.new(1, -56, 1, 0),
 			Position = UDim2.new(0, 20, 0, 0),
 			Text = self.state.CurrentItem or "select an item",
-			Font = Enum.Font.SourceSans,
-			TextSize = 18,
 		}, {
 			c("UITextSizeConstraint", {
 				MaxTextSize = 18,
@@ -75,7 +73,7 @@ function Dropdown:render()
 		}),
 		ChildContainer = c("Frame", {
 			Visible = self.state.Open,
-			Size = UDim2.new(1, 0, 0, 100),
+			Size = UDim2.new(1, 0, 0, containerHeight),
 			Position = UDim2.new(0, 0, 1, 0),
 		}, {
 			c("UIListLayout"),

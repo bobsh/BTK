@@ -1,7 +1,6 @@
 --- @module BTKPlugin.MainToolBar
 local BaseObject = require(script.Parent.Parent.BaseObject)
 local AssetsUtil = require(script.Parent.Parent.AssetsUtil)
-local CreationWidget = require(script.Parent.CreationWidget)
 
 --[[
 
@@ -70,11 +69,6 @@ function MainToolBar:initialize(plg, gui)
 	local installToolbar = self.Plugin:CreateToolbar("Bob's Toolkit")
 
 	self.Buttons = {
-		CreateButton = installToolbar:CreateButton(
-			"Create",
-			"Create an object",
-			"rbxassetid://1587492522"
-		),
 		InstallButton = installToolbar:CreateButton(
 			"Install",
 			"Install BTK runtime services into this place",
@@ -87,29 +81,13 @@ function MainToolBar:initialize(plg, gui)
 		)
 	}
 
-	self.CreationWidget = CreationWidget:new(self.MainScreenGUI)
-
-	self.Buttons.CreateButton.Click:connect(function()
-		self:Trace("CreateButton pushed")
-
-		if self.CreationWidget:Status() then
-			self.CreationWidget:Off()
-			self.Buttons.CreateButton:SetActive(false)
-		else
-			self.CreationWidget:On()
-			self.Buttons.CreateButton:SetActive(true)
-		end
-	end)
-
 	local function updateButtons()
 		local assets = AssetsUtil:GetMany(self.AssetsToInstall)
 		self:Debug("Assets installed: " .. #assets .. " Number of assets to install: " .. #self.AssetsToInstall)
 		if #assets < #self.AssetsToInstall then
-			self.Buttons.CreateButton.Enabled = false
 			self.Buttons.InstallButton.Enabled = true
 			self.Buttons.UninstallButton.Enabled = false
 		else
-			self.Buttons.CreateButton.Enabled = true
 			self.Buttons.InstallButton.Enabled = false
 			self.Buttons.UninstallButton.Enabled = true
 		end
@@ -139,7 +117,6 @@ end
 
 function MainToolBar:Destroy()
 	self:Trace("Destroy called")
-	self.CreationWidget:Destroy()
 end
 
 return MainToolBar

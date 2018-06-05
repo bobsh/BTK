@@ -14,7 +14,7 @@ local AssetItem = require(script.Parent.AssetItem)
 local EntityEditor = require(script.Parent.EntityEditor)
 local ComponentEditor = require(script.Parent.ComponentEditor)
 local PropertyRow = require(script.Parent.PropertyRow)
-local AddComponent = require(script.Parent.AddComponent)
+
 
 function Demo:init(_)
     self.state = {
@@ -179,8 +179,16 @@ Demo._demos = {
     }),
     EntityEditor = c(EntityEditor, {
     }),
-    AddComponent = c(AddComponent, {
-    })
+    DockWidgetPluginGui = c("TextLabel", {
+        Font = Enum.Font.Arial,
+        Text = "TODO",
+        TextSize = 18,
+        TextXAlignment = Enum.TextXAlignment.Center,
+        TextYAlignment = Enum.TextYAlignment.Center,
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        Size = UDim2.new(1, 0, 1, 0),
+    }),
 }
 
 return Demo
