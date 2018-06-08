@@ -3,7 +3,6 @@
 -- Parent: @{BaseInstance}
 -- @classmod ECS.Entity
 local BaseInstance = require(script.Parent.Parent.BaseInstance)
-local BaseComponent = require(script.Parent.BaseComponent)
 local Entity = BaseInstance:subclass(script.Name)
 
 --- @TODO make this dynamic, stupid loading issues
@@ -62,7 +61,7 @@ function Entity:GetScript()
 end
 
 --- Get components
--- @treturn {BaseComponent....}
+-- @treturn {BaseInstance....}
 function Entity:GetComponents()
 	local comps = {}
 	local folders = self:GetComponentsFolder():GetChildren()

@@ -3,8 +3,8 @@
 -- @classmod ECS
 local ECS = {}
 
---- @{ECS.BaseComponent}
-ECS.BaseComponent = require(script.BaseComponent)
+--- @{ECS.Component}
+ECS.Component = require(script.Component)
 
 --- @{ECS.Entity}
 ECS.Entity = require(script.Entity)

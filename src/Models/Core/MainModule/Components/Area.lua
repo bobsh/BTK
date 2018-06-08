@@ -1,13 +1,21 @@
 --- @classmod scripts.Area
 
+local BaseInstance = require(script.Parent.Parent.ECS.BaseInstance)
+local Component = require(script.Parent.Parent.ECS.Component)
 local Schema = require(script.Parent.Parent.Schema)
 local Model = require(script.Parent.Model)
 
-local Area = Model:subclass(script.Name)
-Area:AddProperty({
-	Name = "AreaPart",
-	Type = "ObjectValue",
-	SchemaFn = Schema.Optional(Schema:IsA("BasePart")),
+local Area = BaseInstance:subclass(script.Name)
+Area:include(Component)
+Area:include(Area)
+Area:Component({
+	Properties = {
+		{
+			Name = "AreaPart",
+			Type = "ObjectValue",
+			SchemaFn = Schema.Optional(Schema:IsA("BasePart")),
+		}
+	}
 })
 
 function Area:initialize(input)
