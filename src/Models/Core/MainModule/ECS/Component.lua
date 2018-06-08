@@ -8,6 +8,7 @@ local Component = {
 local Schema = require(script.Parent.Parent.Schema)
 
 function Component:included(klass)
+	local _ = self
     print(klass.name .. ' included')
 end
 

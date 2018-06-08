@@ -75,7 +75,7 @@ function Entity:GetComponents()
 	return self:AssertSchema(
 		comps,
 		self.Schema.Collection(
-			self.Schema.IsSubclassOf(BaseComponent)
+			self.Schema.IsSubclassOf(BaseInstance)
 		)
 	)
 end
@@ -105,7 +105,7 @@ function Entity:GetComponentFolder(input)
 	self:AssertSchema(
 		input,
 		self.Schema.Record {
-			Component = self.Schema.IsSubclassOf(BaseComponent),
+			Component = self.Schema.IsSubclassOf(BaseInstance),
 		}
 	)
 
@@ -123,7 +123,7 @@ function Entity:AddComponent(input)
 	self:AssertSchema(
 		input,
 		self.Schema.Record {
-			Component = self.Schema.IsSubclassOf(BaseComponent),
+			Component = self.Schema.IsSubclassOf(BaseInstance),
 		}
 	)
 

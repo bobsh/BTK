@@ -1,7 +1,7 @@
 --- @classmod scripts.Collectable
 
 local BaseInstance = require(script.Parent.Parent.BaseInstance)
-local Componets = require(script.Parent.Parent.ECS.Componets)
+local Component = require(script.Parent.Parent.ECS.Componet)
 local Schema = require(script.Parent.Parent.Schema)
 
 local Collectable = BaseInstance:subclass(script.Name)
@@ -21,11 +21,11 @@ Collectable:Component({
     },
     Dependencies = {
         "Model"
-    }
-)
+    },
+})
 
 function Collectable:initialize(input)
-    Model.initialize(self, input)
+    BaseInstance.initialize(self, input)
     self:SetCollectableAttachment(self:GetPrimaryPart())
     self:SetCollectableAttachment(Instance.new("Attachment", self:GetCollectablePart()))
 end
