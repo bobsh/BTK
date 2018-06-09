@@ -2,7 +2,7 @@ local EntitySystem = require(game.ReplicatedStorage.EntitySystem)
 
 local Character = EntitySystem.Component:extend("Character", {
     AttackDistance = 5.0,
-    Humanoid = "foo",
+    Humanoid = "TODO objects",
 })
 
 function Character:added()
