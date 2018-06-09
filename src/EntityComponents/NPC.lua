@@ -17,6 +17,7 @@ local NPC = EntitySystem.Component:extend("NPC", {
 })
 
 function NPC:added()
+    self:Warn("Foo!")
     local _ = self:getComponent(Character)
     self.foo = "bar"
 end

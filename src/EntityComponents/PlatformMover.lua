@@ -8,7 +8,7 @@ local PlatformMover = EntitySystem.Component:extend("PlatformMover.lua", {
     Increment = 1,
 })
 
-function PlatformMover.lua:added()
+function PlatformMover:added()
     local _ = self
 end
 
