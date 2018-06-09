@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "BTK\n\n\n \n\n\nA toolkit for Roblox.\n\n\nPlugin Installation\n\n\nYou will need:\n\n\n\n\nRojo\n\n\nTag Editor\n\n\nHot Swap\n\n\n\n\nYou will also need to install the plugin for RobloxComponentSystem\n\n\nRaising bugs\n\n\nRaise issues on github: \nBug report\n\n\nFeature requests\n\n\nRaise requests on github: \nFeature request", 
+            "text": "BTK\n\n\n \n\n\nA toolkit for Roblox.\n\n\nPlugin Installation\n\n\nYou will need:\n\n\n\n\nRojo\n\n\nTag Editor\n\n\nHot Swap\n\n\nRobloxComponentSystem (Vendored and served via Rojo)\n\n\n\n\nYou can serve up this project via Rojo. We'll do this better later.\n\n\nRaising bugs\n\n\nRaise issues on github: \nBug report\n\n\nFeature requests\n\n\nRaise requests on github: \nFeature request", 
             "title": "Home"
         }, 
         {
@@ -12,7 +12,7 @@
         }, 
         {
             "location": "/#plugin-installation", 
-            "text": "You will need:   Rojo  Tag Editor  Hot Swap   You will also need to install the plugin for RobloxComponentSystem", 
+            "text": "You will need:   Rojo  Tag Editor  Hot Swap  RobloxComponentSystem (Vendored and served via Rojo)   You can serve up this project via Rojo. We'll do this better later.", 
             "title": "Plugin Installation"
         }, 
         {
