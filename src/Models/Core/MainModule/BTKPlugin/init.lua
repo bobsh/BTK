@@ -22,7 +22,6 @@ function BTKPlugin:initialize(plug)
 	self._mainToolBar = MainToolBar:new(plug, self._mainScreenGUI)
 
 	self:_assetsWidget()
-	self:_entityEditor()
 
 	plug.Deactivation:Connect(self:Deactivate())
 end
@@ -34,21 +33,6 @@ function BTKPlugin:_assetsWidget()
 		InitialDockState = Enum.InitialDockState.Right,
 	}, {
 		Roact.createElement(UI.AssetsWidget)
-	})
-	Roact.mount(gui)
-end
-
-function BTKPlugin:_entityEditor()
-	local gui = Roact.createElement(UI.DockWidgetPluginGui, {
-		Name = "Entity Editor",
-		Plugin = self._plugin,
-		InitialDockState = Enum.InitialDockState.Left,
-		MinWidth = 128,
-		MinHeight = 200,
-	}, {
-		Roact.createElement(UI.EntityEditor, {
-			Plugin = self._plugin,
-		})
 	})
 	Roact.mount(gui)
 end
