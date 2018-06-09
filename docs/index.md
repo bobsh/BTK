@@ -11,8 +11,9 @@ You will need:
 * Rojo
 * Tag Editor
 * Hot Swap
+* RobloxComponentSystem (Vendored and served via Rojo)
 
-You will also need to install the plugin for RobloxComponentSystem
+You can serve up this project via Rojo. We'll do this better later.
 
 ## Raising bugs
 
