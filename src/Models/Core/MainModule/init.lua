@@ -11,6 +11,9 @@ local btk = {
 
     --- @{UI}
     UI = require(script.UI),
+
+    --- @{EntitySystem}
+    EntitySystem = require(script.lib.EntitySystem)
 }
 
 return btk

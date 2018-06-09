@@ -2,7 +2,7 @@
 --
 -- @classmod Components.Character
 
-local BaseInstance = require(script.Parent.Parent.BaseInstance)
+local BaseInstance = require(script.Parent.Parent.xBaseInstance)
 local Component = require(script.Parent.Parent.ECS.Component)
 local Schema = require(script.Parent.Parent.Schema)
 

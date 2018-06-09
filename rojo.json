@@ -6,10 +6,6 @@
       "path": "src",
       "target": "ReplicatedStorage.BTK"
     },
-    "EntitySystem": {
-      "path": "modules/RobloxComponentSystem/lib/",
-      "target": "ReplicatedStorage.EntitySystem"
-    },
     "lib": {
       "path": "modules/RobloxComponentSystem/lib/",
       "target": "ReplicatedStorage.ComponentVisualizerPlugin.EntitySystem"
