@@ -5,8 +5,7 @@ local Area = EntitySystem.Component:extend("Area", {
 })
 
 function Area:added()
-    local _ = self:getComponent(Character)
-    self.foo = "bar"
+    local _ = self
 end
 
 return Area
