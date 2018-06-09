@@ -5,6 +5,28 @@
     "src": {
       "path": "src",
       "target": "ReplicatedStorage.BTK"
+    },
+
+    "EntitySystem": {
+      "path": "modules/RobloxComponentSystem/lib/",
+      "target": "ReplicatedStorage.EntitySystem"
+    },
+
+    "lib": {
+      "path": "modules/RobloxComponentSystem/lib/",
+      "target": "ReplicatedStorage.ComponentVisualizerPlugin.EntitySystem"
+    },
+    "plugin": {
+      "path": "modules/RobloxComponentSystem/plugin/",
+      "target": "ReplicatedStorage.ComponentVisualizerPlugin.Plugin"
+    },
+    "roact": {
+      "path": "modules/Roact/lib/",
+      "target": "ReplicatedStorage.ComponentVisualizerPlugin.Roact"
+    },
+    "roact-studio-widgets": {
+      "path": "modules/RoactStudioWidgets/lib/",
+      "target": "ReplicatedStorage.ComponentVisualizerPlugin.RoactStudioWidgets"
     }
   }
 }

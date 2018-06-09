@@ -6,20 +6,13 @@ A toolkit for Roblox.
 
 ## Plugin Installation
 
-Install the plugin into your Roblox Studio:
+You will need:
 
-* [https://www.roblox.com/library/1606500837/BTK](https://www.roblox.com/library/1606500837/BTK)
+* Rojo
+* Tag Editor
+* Hot Swap
 
-And while focused on the place, go to the *Plugins* ribbon and
-click *Install* for Bob's Toolkit.
-
-## Adding Scripts
-
-TODO
-
-## Configuring Scripts
-
-TODO
+You will also need to install the plugin for RobloxComponentSystem
 
 ## Raising bugs
 
