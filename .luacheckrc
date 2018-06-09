@@ -51,5 +51,5 @@ max_cyclomatic_complexity = 20
 
 -- Skip our lib, these are third party
 exclude_files = {
-	"src/Models/Core/MainModule/lib/"
+	"modules/"
 }

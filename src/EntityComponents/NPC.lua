@@ -1,4 +1,4 @@
-local EntitySystem = require(script.Parent.Parent.lib.EntitySystem)
+local EntitySystem = require(game.ReplicatedStorage.EntitySystem)
 local Character = require(script.Parent.Character)
 
 local NPC = EntitySystem.Component:extend("NPC", {
