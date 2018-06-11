@@ -2,9 +2,25 @@
   "name": "BTK",
   "servePort": 8000,
   "partitions": {
-    "src": {
-      "path": "src",
-      "target": "ReplicatedStorage.BTK"
+    "BTKComponents": {
+      "path": "src/EntityComponents",
+      "target": "ReplicatedStorage.BTK.EntityComponents"
+    },
+    "BTKPlugins": {
+      "path": "src/EntityPlugins",
+      "target": "ReplicatedStorage.BTK.EntityPlugins"
+    },
+    "BTKRoact": {
+      "path": "src/RoactComponents",
+      "target": "ReplicatedStorage.BTK.RoactComponents"
+    },
+    "BTKUtil": {
+      "path": "src/Util",
+      "target": "ReplicatedStorage.BTK.Util"
+    },
+    "BTKEntityCore": {
+      "path": "src/EntityCore",
+      "target": "ServerScriptService.BTK.EntityCore"
     },
 
     "Modules": {
