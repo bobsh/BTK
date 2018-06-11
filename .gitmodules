@@ -16,7 +16,7 @@
 	url = https://github.com/AmaranthineCodices/roact-animate
 [submodule "modules/RoactStudioWidgets"]
 	path = modules/RoactStudioWidgets
-	url = https://github.com/kbarber/RoactStudioWidgets.git
+	url = https://github.com/tiffany352/RoactStudioWidgets.git
 [submodule "modules/RobloxComponentSystem"]
 	path = modules/RobloxComponentSystem
-	url = https://github.com/kbarber/RobloxComponentSystem.git
+	url = https://github.com/tiffany352/RobloxComponentSystem.git
