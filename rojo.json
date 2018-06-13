@@ -14,10 +14,6 @@
       "path": "src/RoactComponents",
       "target": "ReplicatedStorage.BTK.RoactComponents"
     },
-    "BTKUtil": {
-      "path": "src/Util",
-      "target": "ReplicatedStorage.BTK.Util"
-    },
     "BTKEntityCore": {
       "path": "src/EntityCore",
       "target": "ServerScriptService.BTK.EntityCore"

@@ -1,13 +1,15 @@
 local EntitySystem = require(game.ReplicatedStorage.EntitySystem)
 local LoggingPlugin = require(game.ReplicatedStorage.BTK.EntityPlugins.LoggingPlugin)
 local AssertSchemaPlugin = require(game.ReplicatedStorage.BTK.EntityPlugins.AssertSchemaPlugin)
+local TouchPlugin = require(game.ReplicatedStorage.BTK.EntityPlugins.TouchPlugin)
 
 -- The array we pass here is a list of arguments. This is where we'll
 -- pass plugins and other data.
 local core = EntitySystem.Core.new({
 	plugins = {
 		LoggingPlugin,
-		AssertSchemaPlugin
+		AssertSchemaPlugin,
+		TouchPlugin,
 	}
 })
 

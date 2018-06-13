@@ -1,13 +1,15 @@
 --[[---
-	Touch utilities
+	Touch plugin
 
 	TouchUtil class which contains a series of static functions
 	that you can utilise.
 
-	@classmod TouchUtil
+	@classmod TouchPlugin
 --]]
 
-local TouchUtil = {}
+local TouchPlugin = {
+	ComponentMixins = {}
+}
 
 --[[---
 	A debounce implementation.
@@ -15,7 +17,7 @@ local TouchUtil = {}
 	@tparam func func
 	@treturn func
 --]]
-function TouchUtil.Debounce(func)
+function TouchPlugin.ComponentMixins.Debounce(func)
     local isRunning = false    -- Create a local debounce variable
     return function(...)       -- Return a new function
         if not isRunning then
@@ -28,13 +30,25 @@ function TouchUtil.Debounce(func)
     end
 end
 
+function TouchPlugin.ComponentMixins:GetComponentInAncestorInst(instance, component)
+	local cur = instance
+	while cur do
+		local object = self._core:getComponentFromInstance(component, cur)
+		if object then
+			return object
+		end
+		cur = cur.Parent
+	end
+	return nil
+end
+
 --[[---
 	An enhanced hit wrapper
 
 	@tparam func func
 	@treturn func
 --]]
-function TouchUtil.EnhancedFn(func)
+function TouchPlugin.ComponentMixins.EnhancedFn(func)
 	return function(hit)
 		local input = {
 			Instance = hit,
@@ -44,4 +58,4 @@ function TouchUtil.EnhancedFn(func)
 	end
 end
 
-return TouchUtil
+return TouchPlugin

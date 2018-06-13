@@ -4,7 +4,7 @@
 --]]
 
 local EntitySystem = require(game.ReplicatedStorage.EntitySystem)
-local Roact = require(game.ReplicatedStorage.Modules.Roact)
+local Roact = require(game.ReplicatedStorage.Modules.roact.lib)
 
 local RoactMount = EntitySystem.Component:extend("RoactMount", {
     App = "Demo",

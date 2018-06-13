@@ -1,5 +1,4 @@
 local EntitySystem = require(game.ReplicatedStorage.EntitySystem)
-local TouchUtil = require(script.Parent.Parent.Util.TouchUtil)
 
 local PlaceTeleporter = EntitySystem.Component:extend("PlaceTeleporter", {
     TeleportPlaceId = 0,
@@ -22,8 +21,8 @@ function PlaceTeleporter:added()
 
     if self.OnTouched then
         self.instance.Touched:Connect(
-            TouchUtil:Debounce(
-                TouchUtil:EnhancedFn(
+            self.TouchUtil:Debounce(
+                self.TouchUtil:EnhancedFn(
                     function(input)
                         if input.Player then
                             self:_teleport(input.Player)
