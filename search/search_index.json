@@ -74,6 +74,26 @@
             "location": "/development/#manual-deployment", 
             "text": "TODO", 
             "title": "Manual Deployment"
+        }, 
+        {
+            "location": "/content/", 
+            "text": "BTK RCS Components\n\n\nComponent Ideas\n\n\n\n\nTeleportAgent - attach to something that can be teleported by the TeleportTrigger?\n\n\nTeleport = TeleportTrigger - renmave this to trigger to differentiate\n\n\nInventory = To attach to a character for receiving items from the world\n\n\nHealth - a component to take damage, manage health\n*\n\n\n\n\nBTK Roact Components\n\n\nTODO", 
+            "title": "Components & Plugins"
+        }, 
+        {
+            "location": "/content/#btk-rcs-components", 
+            "text": "", 
+            "title": "BTK RCS Components"
+        }, 
+        {
+            "location": "/content/#component-ideas", 
+            "text": "TeleportAgent - attach to something that can be teleported by the TeleportTrigger?  Teleport = TeleportTrigger - renmave this to trigger to differentiate  Inventory = To attach to a character for receiving items from the world  Health - a component to take damage, manage health\n*", 
+            "title": "Component Ideas"
+        }, 
+        {
+            "location": "/content/#btk-roact-components", 
+            "text": "TODO", 
+            "title": "BTK Roact Components"
         }
     ]
 }

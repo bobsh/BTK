@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="BTK Docs">
         <meta name="author" content="Bob.sh Ltd">
-        <link rel="canonical" href="https://btk.bob.sh/development/">
+        <link rel="canonical" href="https://btk.bob.sh/content/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Development - BTK</title>
+        <title>Components & Plugins - BTK</title>
         <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/highlight.css">
@@ -64,14 +64,14 @@
             
             
             
-                <li class="active">
-                    <a href="./">Development</a>
+                <li >
+                    <a href="../development/">Development</a>
                 </li>
             
             
             
-                <li >
-                    <a href="../content/">Components & Plugins</a>
+                <li class="active">
+                    <a href="./">Components & Plugins</a>
                 </li>
             
             
@@ -80,12 +80,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                     <li >
-                        <a rel="next" href="..">
+                        <a rel="next" href="../development/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li >
-                        <a rel="prev" href="../content/">
+                    <li class="disabled">
+                        <a rel="prev" >
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -108,19 +108,12 @@
     <ul class="nav bs-sidenav">
       
     
-        <li class="main active"><a href="#btk-development">BTK Development</a></li>
+        <li class="main active"><a href="#btk-rcs-components">BTK RCS Components</a></li>
         
-            <li><a href="#api-reference">API Reference</a></li>
+            <li><a href="#component-ideas">Component Ideas</a></li>
         
-            <li><a href="#source-control">Source Control</a></li>
-        
-            <li><a href="#local-development">Local Development</a></li>
-        
-            <li><a href="#project-management">Project Management</a></li>
-        
-            <li><a href="#automated-testing">Automated testing</a></li>
-        
-            <li><a href="#manual-deployment">Manual Deployment</a></li>
+    
+        <li class="main "><a href="#btk-roact-components">BTK Roact Components</a></li>
         
     
     
@@ -128,37 +121,16 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="btk-development">BTK Development<a class="headerlink" href="#btk-development" title="Permanent link">&para;</a></h1>
-<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
-<p><a href="../ldoc/index.html">API Docs </a></p>
-<h2 id="source-control">Source Control<a class="headerlink" href="#source-control" title="Permanent link">&para;</a></h2>
-<p>Github repo: <a href="https://github.com/bobsh/BTK/">bobsh/BTK</a></p>
-<h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">&para;</a></h2>
-<p>The project uses "Rojo" to sync up the source with Roblox Studio,
-make sure this is running and you setup synchronisation for a solid development workflow.</p>
-<p>To run rojo:</p>
-<div class="codehilite"><pre><span></span># make dev
-</pre></div>
-
-
-<h3 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h3>
-<p>Run</p>
-<div class="codehilite"><pre><span></span># make test
-</pre></div>
-
-
-<h3 id="lint">Lint<a class="headerlink" href="#lint" title="Permanent link">&para;</a></h3>
-<p>Or for lint:</p>
-<div class="codehilite"><pre><span></span># make lint
-</pre></div>
-
-
-<h2 id="project-management">Project Management<a class="headerlink" href="#project-management" title="Permanent link">&para;</a></h2>
-<p>Github project: <a href="https://github.com/bobsh/BTK/projects/1">BTK</a></p>
-<h2 id="automated-testing">Automated testing<a class="headerlink" href="#automated-testing" title="Permanent link">&para;</a></h2>
-<p>TravisCI: <a href="https://travis-ci.org/bobsh/BTK">bobsh/BTK</a>
-Coveralls: <a href="https://coveralls.io/github/bobsh/BTK">bobsh/BTK</a></p>
-<h2 id="manual-deployment">Manual Deployment<a class="headerlink" href="#manual-deployment" title="Permanent link">&para;</a></h2>
+<h1 id="btk-rcs-components">BTK RCS Components<a class="headerlink" href="#btk-rcs-components" title="Permanent link">&para;</a></h1>
+<h2 id="component-ideas">Component Ideas<a class="headerlink" href="#component-ideas" title="Permanent link">&para;</a></h2>
+<ul>
+<li>TeleportAgent - attach to something that can be teleported by the TeleportTrigger?</li>
+<li>Teleport = TeleportTrigger - renmave this to trigger to differentiate</li>
+<li>Inventory = To attach to a character for receiving items from the world</li>
+<li>Health - a component to take damage, manage health
+*</li>
+</ul>
+<h1 id="btk-roact-components">BTK Roact Components<a class="headerlink" href="#btk-roact-components" title="Permanent link">&para;</a></h1>
 <p>TODO</p></div>
                 </div>
         </div>
