@@ -1,5 +1,5 @@
 local EntitySystem = require(game.ReplicatedStorage.EntitySystem)
-local Humanoid = require(script.Parent.Humanoid)
+local Character = require(script.Parent.Character)
 
 local Teleporter = EntitySystem.Component:extend("Teleporter", {
 	Target = {"Target"},
@@ -26,7 +26,7 @@ function Teleporter:CreateOnTouched()
 		local target = self.TargetInstance.CFrame
 		local offset = self.Offset
 
-		local humanoid = self:GetComponentInAncestorInst(input.Hit, Humanoid)
+		local humanoid = self:GetComponentInAncestorInst(input.Hit, Character)
 
 		if input.Player
 			and humanoid

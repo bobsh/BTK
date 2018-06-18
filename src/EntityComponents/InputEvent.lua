@@ -5,7 +5,11 @@ local InputEvent = EntitySystem.Component:extend("InputEvent", {
 })
 
 function InputEvent:added()
-    local _ = self
+	if not self.InputEventPart then
+		local event = Instance.new("BindableEvent", self.Entity)
+		event.Name = "InputEvent"
+		self.InputEventPart = event
+	end
 end
 
 return InputEvent

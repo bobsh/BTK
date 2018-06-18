@@ -1,15 +1,22 @@
 site_name: BTK
 site_url: https://btk.bob.sh/
+repo_url: https://github.com/bobsh/BTK
+repo_name: bobsh/BTK
+edit_uri: ""
 site_description: BTK Docs
 site_author: Bob.sh Ltd
-repo_name: bobsh/BTK
-repo_url: https://github.com/bobsh/BTK
-edit_uri: ""
-
 copyright: 'Copyright &copy; 2018 Bob.sh Ltd'
+google_analytics: ['UA-15152413-4', 'btk.bob.sh']
+remote_branch: gh-pages
+remote_name: origin
+
+pages:
+  - Home: index.md
+  - Development: development.md
+  - Components & Plugins: content.md
 
 theme:
-  name: material
+  name: bootstrap
   feature:
     tabs: true
   palette:
@@ -20,15 +27,19 @@ theme:
     code: Roboto Mono
   favicon: img/favicon.ico
 
+docs_dir: "docs"
+site_dir: "site"
 
-pages:
-  - Home: index.md
-  - Development: development.md
+#extra_css: ['ldoc/ldoc_fixed.css']
 
 extra:
   social:
     - type: 'github'
       link: 'https://github.com/bobsh'
+
+use_directory_urls: true
+strict: false
+dev_addr: '127.0.0.1:8000'
 
 markdown_extensions:
   - admonition
@@ -37,3 +48,6 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.superfences
+
+plugins:
+  - search

@@ -5,7 +5,9 @@ local Model = EntitySystem.Component:extend("Model", {
 })
 
 function Model:added()
-    local _ = self
+    if not self.Model then
+        self.Model = self.instance
+    end
 end
 
 return Model
